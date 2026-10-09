@@ -12,15 +12,15 @@ The review is not included here; the narration is written from scratch.
 | Scene | Content | Where in the review |
 |---|---|---|
 | S01 | bands and the Bloch sphere; quantum geometric tensor = metric − (i/2) Berry curvature | Sec. I, Fig. 1 |
-| S02 | rays, parallel/perpendicular split, metric, Berry connection and curvature | Sec. II.A |
-| S03 | two-band picture: distance ↔ metric, solid angle ↔ curvature; atomic insulator vs band inversion | Fig. 1 |
-| S04 | the whole Brillouin zone mapped onto the sphere; Chern number = wrapping number; tr g ≥ \|Ω\| | — |
-| S05 | quantum Fisher information = 4g; measuring the metric with quenches; qubit and polariton experiments | Sec. II.B, V |
+| S02 | rays, parallel/perpendicular split, metric, Berry connection and curvature | Sec. II.A, Fig. 2, Eqs. (4)–(14) |
+| S03 | two-band picture: distance ↔ metric, solid angle ↔ curvature; atomic insulator vs band inversion | Fig. 1, Eq. (41) |
+| S04 | the whole Brillouin zone mapped onto the sphere; Chern number = wrapping number; tr g ≥ \|Ω\| | Sec. III.F, Eqs. (292)–(296) |
+| S05 | quantum Fisher information = 4g; measuring the metric with quenches; qubit and polariton experiments | Sec. II.B, V (Tan et al. 2019; Gianfrate et al. 2020) |
 | S06 | wave-packet dynamics, anomalous velocity, AHE/QAH/FQAH, valley/spin/layer Hall, Berry curvature dipole | Sec. III.A, IV |
-| S07 | field-induced Berry connection, Berry-connection polarizability; two routes to suppress the Drude term | — |
-| S08 | quantum-metric-dipole nonlinear Hall effect: symmetry table, picture, MnBi₂Te₄ / black phosphorus evidence, third-order Hall | Sec. V.C |
-| S09 | flat-band superconductivity: the D_s ∝ n_s/m* puzzle, geometric superfluid weight, Wannier-spread bound, TBG | Sec. III.F, V.B |
-| S10 | Souza–Wilkens–Martin sum rule, optical-gap bound, ARPES quasi-QGT | — |
+| S07 | field-induced Berry connection, Berry-connection polarizability; two routes to suppress the Drude term | Sec. III.G, Eqs. (305)–(309) |
+| S08 | quantum-metric-dipole nonlinear Hall effect: symmetry table, picture, MnBi₂Te₄ / black phosphorus evidence, third-order Hall | Sec. V.C, Figs. 21–26 |
+| S09 | flat-band superconductivity: the D_s ∝ n_s/m* puzzle, geometric superfluid weight, Wannier-spread bound, TBG | Sec. III.F, V.B, Eqs. (282), (288) |
+| S10 | Souza–Wilkens–Martin sum rule, optical-gap bound, ARPES quasi-QGT | Sec. III.C, Eqs. (221), (230)–(231); Sec. V.D, Fig. 27 |
 | S11 | summary and outlook | Sec. VI |
 
 ## What is computed and what is schematic
@@ -30,6 +30,9 @@ The review is not included here; the narration is written from scratch.
   (two-band formulas g = ¼ ∂n·∂n, Ω = −½ n·(∂ₓn × ∂ᵧn)).
 - **Schematic (labelled on screen):** the measurement distributions and polariton g(k) in S05, the Drude/metric bars in S07,
   the sign-flip sketch in S08, the D_s bars in S09 and the absorption spectrum in S10. They show qualitative relations only.
+- **Stated without prefactors:** the geometric superfluid weight in S09 is shown only as the proportionality
+  ρ_s^geometric ∝ Δ ∫ g(k) d²k (Peotta and Törmä, 2015).
+- **Units:** the optical-gap bound in S10, E_g ≤ n / G_xx, is written in the review's units (Eq. (231), ħ = 1).
 
 ## Files
 
