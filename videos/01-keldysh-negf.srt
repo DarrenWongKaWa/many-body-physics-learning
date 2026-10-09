@@ -1,0 +1,1125 @@
+1
+00:00:00,050 --> 00:00:02,517
+A quantum dot sits between two electrodes.
+
+2
+00:00:02,757 --> 00:00:05,550
+Apply a bias across them,
+and electrons tunnel
+
+3
+00:00:05,569 --> 00:00:08,362
+through one after another,
+carrying a current.
+
+4
+00:00:08,917 --> 00:00:11,802
+At large bias the system
+is far from equilibrium
+
+5
+00:00:11,822 --> 00:00:15,130
+and equilibrium Green's
+functions are no longer enough.
+
+6
+00:00:15,370 --> 00:00:19,310
+We need a different tool:
+the Keldysh nonequilibrium Green's function.
+
+7
+00:00:20,567 --> 00:00:26,246
+This video follows a classic set of lecture notes,
+starting from equilibrium perturbation theory
+
+8
+00:00:26,266 --> 00:00:30,164
+then building up contour Green's functions,
+the Langreth rules and
+
+9
+00:00:30,184 --> 00:00:34,972
+the Keldysh equation, and finally computing
+the current through a resonant level.
+
+10
+00:00:36,233 --> 00:00:37,550
+Let's start with equilibrium.
+
+11
+00:00:37,790 --> 00:00:42,142
+The zero-temperature single-particle
+Green's function is a time-ordered
+
+12
+00:00:42,162 --> 00:00:45,898
+correlation of two field operators
+in the exact ground state.
+
+13
+00:00:46,466 --> 00:00:49,583
+The trouble is that it requires
+the exact ground state
+
+14
+00:00:49,603 --> 00:00:52,022
+which is precisely what we cannot compute.
+
+15
+00:00:53,283 --> 00:00:55,825
+The fix is to work in
+the interaction picture
+
+16
+00:00:55,845 --> 00:00:58,500
+with an S-matrix,
+which obeys a group property.
+
+17
+00:00:58,740 --> 00:01:02,586
+Then we switch the interaction on slowly,
+starting in the infinite past.
+
+18
+00:01:02,826 --> 00:01:06,379
+By the Gell-Mann and Low theorem,
+the noninteracting ground
+
+19
+00:01:06,399 --> 00:01:09,710
+state evolves adiabatically
+into the true ground state.
+
+20
+00:01:10,266 --> 00:01:11,772
+The crucial step comes next.
+
+21
+00:01:12,012 --> 00:01:17,337
+In equilibrium, if we slowly switch the
+interaction off again in the infinite future
+
+22
+00:01:17,357 --> 00:01:21,345
+the system returns to its original
+ground state, up to a phase.
+
+23
+00:01:21,585 --> 00:01:24,310
+So the bra can also be
+obtained with the S-matrix
+
+24
+00:01:24,330 --> 00:01:26,382
+coming back from the infinite future.
+
+25
+00:01:27,650 --> 00:01:32,933
+Now the Green's function is an expectation
+value in the noninteracting ground state.
+
+26
+00:01:33,173 --> 00:01:37,668
+Expand the S-matrix, contract the
+operators pairwise with Wick's theorem
+
+27
+00:01:37,688 --> 00:01:43,561
+and you get Feynman diagrams, with the disconnected
+ones cancelled exactly by the denominator.
+
+28
+00:01:44,817 --> 00:01:48,100
+Out of equilibrium, though,
+this crucial assumption fails.
+
+29
+00:01:48,340 --> 00:01:52,916
+Nothing forces the system back to where it started,
+not even in the infinite future.
+
+30
+00:01:53,484 --> 00:01:56,968
+Think of an atom hitting a surface
+and exchanging charge with it
+
+31
+00:01:56,988 --> 00:02:01,130
+the state it leaves in is completely
+different from the state it arrived in.
+
+32
+00:02:02,384 --> 00:02:05,749
+The way out is to never refer
+to the infinite future at all.
+
+33
+00:02:05,989 --> 00:02:09,341
+Start from the known initial state,
+evolve forward in time
+
+34
+00:02:09,361 --> 00:02:12,598
+to the moment we care about,
+and then evolve back again.
+
+35
+00:02:13,167 --> 00:02:15,980
+Every expectation value is then defined with
+
+36
+00:02:16,000 --> 00:02:18,557
+respect to a well-defined initial state.
+
+37
+00:02:18,797 --> 00:02:23,063
+The price is that the two time branches
+must be treated on an equal footing.
+
+38
+00:02:23,303 --> 00:02:24,713
+This is the Keldysh contour.
+
+39
+00:02:25,267 --> 00:02:28,047
+This closed loop also buys
+us something for free.
+
+40
+00:02:28,287 --> 00:02:31,339
+Going forward and then
+back again is the identity
+
+41
+00:02:31,359 --> 00:02:35,102
+so the evolution around the
+whole contour multiplies to one.
+
+42
+00:02:35,342 --> 00:02:38,246
+The awkward denominator
+of the equilibrium theory
+
+43
+00:02:38,266 --> 00:02:41,470
+and with it all the vacuum bubbles,
+simply disappears.
+
+44
+00:02:42,034 --> 00:02:45,670
+At the initial time the system
+is in thermal equilibrium
+
+45
+00:02:45,690 --> 00:02:50,306
+and the thermal density matrix itself
+is an evolution in imaginary time
+
+46
+00:02:50,326 --> 00:02:53,898
+so the full contour also
+carries an imaginary-time leg.
+
+47
+00:02:54,138 --> 00:02:57,710
+If we push the initial time to
+the infinite past and switch
+
+48
+00:02:57,730 --> 00:03:01,303
+the interactions on adiabatically,
+this leg can be dropped.
+
+49
+00:03:01,543 --> 00:03:03,878
+The price is losing initial correlations
+
+50
+00:03:03,898 --> 00:03:06,705
+which usually does not
+matter for steady states.
+
+51
+00:03:07,967 --> 00:03:11,511
+On the contour, we replace time
+ordering by contour ordering
+
+52
+00:03:11,531 --> 00:03:14,362
+and define the contour-ordered
+Green's function.
+
+53
+00:03:14,917 --> 00:03:18,286
+Remarkably, the topological
+structure of perturbation
+
+54
+00:03:18,306 --> 00:03:21,164
+theory is exactly the
+same as in equilibrium.
+
+55
+00:03:21,404 --> 00:03:25,728
+The contour Green's function obeys
+a Dyson equation of the same form
+
+56
+00:03:25,748 --> 00:03:29,498
+except that every time integral
+now runs along the contour.
+
+57
+00:03:30,667 --> 00:03:35,718
+Each of the two time arguments can sit on
+either the forward or the backward branch
+
+58
+00:03:35,738 --> 00:03:40,300
+so the contour function contains four
+real-time functions: the time-ordered
+
+59
+00:03:40,320 --> 00:03:44,455
+the anti-time-ordered,
+the greater and the lesser Green's functions.
+
+60
+00:03:45,817 --> 00:03:49,691
+They obey one identity,
+so only three are linearly independent.
+
+61
+00:03:49,931 --> 00:03:53,612
+The most convenient choice is
+the lesser and greater functions
+
+62
+00:03:53,632 --> 00:03:56,299
+together with the retarded
+and advanced ones.
+
+63
+00:03:57,667 --> 00:04:00,978
+Retarded minus advanced
+equals greater minus lesser.
+
+64
+00:04:01,219 --> 00:04:04,766
+Intuitively, the lesser function
+describes occupied states
+
+65
+00:04:04,786 --> 00:04:09,686
+the greater function describes empty states,
+and the difference between retarded
+
+66
+00:04:09,706 --> 00:04:13,623
+and advanced gives the spectral function,
+the density of states.
+
+67
+00:04:14,884 --> 00:04:17,999
+Here is the deeper reason we
+need this extra function.
+
+68
+00:04:18,239 --> 00:04:20,656
+The retarded function tells us which states
+
+69
+00:04:20,676 --> 00:04:23,094
+exist and how long they live: the spectrum.
+
+70
+00:04:23,334 --> 00:04:27,123
+The lesser function tells us how full
+those states are: the occupation.
+
+71
+00:04:27,684 --> 00:04:32,621
+In equilibrium, the two are locked together
+by the fluctuation-dissipation theorem
+
+72
+00:04:32,641 --> 00:04:36,611
+the lesser function is just the
+Fermi function times the spectrum.
+
+73
+00:04:36,851 --> 00:04:38,630
+Out of equilibrium that lock breaks.
+
+74
+00:04:38,870 --> 00:04:43,824
+The same spectrum can be filled in a completely
+different way, set by kinetics instead
+
+75
+00:04:43,844 --> 00:04:48,452
+of temperature, and that is exactly the
+information the lesser function carries.
+
+76
+00:04:49,717 --> 00:04:52,230
+But the Dyson equation lives on the contour
+
+77
+00:04:52,250 --> 00:04:54,941
+while in the end we want
+real-time quantities.
+
+78
+00:04:55,181 --> 00:04:57,793
+The key tool for this step
+is the Langreth theorem.
+
+79
+00:04:58,850 --> 00:05:01,428
+Take a convolution of two
+functions on the contour.
+
+80
+00:05:01,668 --> 00:05:05,072
+Put the first time on the forward
+branch and the second time on
+
+81
+00:05:05,092 --> 00:05:08,388
+the backward branch,
+so what we want is its lesser component.
+
+82
+00:05:08,950 --> 00:05:12,120
+Now deform the integration
+contour into two pieces
+
+83
+00:05:12,140 --> 00:05:16,523
+one looping around the first time,
+and one looping around the second.
+
+84
+00:05:17,084 --> 00:05:21,089
+On the first piece, the integration
+variable always comes earlier on
+
+85
+00:05:21,109 --> 00:05:24,877
+the contour than the second time,
+so B becomes a lesser function
+
+86
+00:05:24,897 --> 00:05:28,903
+while the two parts of A combine
+into exactly the retarded function.
+
+87
+00:05:29,143 --> 00:05:32,359
+The second piece gives an advanced
+function in the same way.
+
+88
+00:05:33,617 --> 00:05:36,844
+The result is beautifully tidy:
+C lesser equals A
+
+89
+00:05:36,864 --> 00:05:40,556
+retarded times B lesser,
+plus A lesser times B advanced.
+
+90
+00:05:40,796 --> 00:05:46,029
+Products of three functions work the same way:
+the lesser label slides along the chain
+
+91
+00:05:46,049 --> 00:05:50,427
+with retarded functions to its left
+and advanced functions to its right.
+
+92
+00:05:50,667 --> 00:05:55,469
+The retarded component is even simpler,
+just the product of the retarded functions.
+
+93
+00:05:56,834 --> 00:05:58,901
+There is a simple picture behind this rule.
+
+94
+00:05:59,141 --> 00:06:02,610
+Think of the product as a path
+that starts on the forward branch
+
+95
+00:06:02,630 --> 00:06:06,973
+the history of the ket, and ends on the
+backward branch, the history of the bra.
+
+96
+00:06:07,213 --> 00:06:11,990
+It has to switch branches exactly once:
+links before the switch are retarded
+
+97
+00:06:12,010 --> 00:06:16,156
+the link that switches is lesser,
+and links after it are advanced.
+
+98
+00:06:16,396 --> 00:06:19,305
+Summing over where the switch
+happens gives the three terms.
+
+99
+00:06:20,467 --> 00:06:22,357
+These rules fit into a single table.
+
+100
+00:06:22,597 --> 00:06:26,378
+As a demonstration,
+deriving the retarded electron-phonon
+
+101
+00:06:26,398 --> 00:06:29,379
+self-energy with them
+takes just a few lines.
+
+102
+00:06:30,633 --> 00:06:34,213
+Now apply the Langreth rules to
+the Dyson equation on the contour
+
+103
+00:06:34,233 --> 00:06:37,258
+and we get an equation for
+the lesser Green's function.
+
+104
+00:06:37,816 --> 00:06:42,142
+Iterating it to all orders gives the
+Keldysh equation: a first term that
+
+105
+00:06:42,162 --> 00:06:46,730
+depends on the initial state,
+and a second term that is the retarded Green's
+
+106
+00:06:46,750 --> 00:06:51,196
+function times the lesser self-energy
+times the advanced Green's function.
+
+107
+00:06:51,750 --> 00:06:56,234
+For a steady state, if the system was
+noninteracting in the infinite past
+
+108
+00:06:56,254 --> 00:06:59,503
+the first term vanishes and
+only the second survives.
+
+109
+00:06:59,743 --> 00:07:03,389
+Note that this is still an integral equation,
+because the lesser
+
+110
+00:07:03,409 --> 00:07:07,169
+self-energy usually depends on the
+lesser Green's function itself.
+
+111
+00:07:08,533 --> 00:07:10,694
+This equation has a transparent meaning.
+
+112
+00:07:10,934 --> 00:07:13,506
+The lesser self-energy is the rate at which
+
+113
+00:07:13,526 --> 00:07:16,037
+the leads inject electrons at each energy.
+
+114
+00:07:16,277 --> 00:07:20,756
+The retarded and advanced functions
+then carry each injected electron
+
+115
+00:07:20,776 --> 00:07:24,668
+along until it leaks away again,
+so the occupation is simply
+
+116
+00:07:24,688 --> 00:07:28,840
+the injection rate times the time
+an electron dwells on the dot.
+
+117
+00:07:30,000 --> 00:07:33,598
+And the first term,
+the memory of the initial state, fades away.
+
+118
+00:07:33,838 --> 00:07:37,276
+Start the dot with any occupation you like:
+it relaxes
+
+119
+00:07:37,296 --> 00:07:42,077
+on the time scale h-bar over Gamma,
+to the steady value fixed by the leads.
+
+120
+00:07:42,317 --> 00:07:45,494
+After a few lifetimes the
+initial state is forgotten
+
+121
+00:07:45,514 --> 00:07:48,137
+which is why only the second term survives.
+
+122
+00:07:49,400 --> 00:07:52,805
+Now for the application:
+mesoscopic tunneling structures.
+
+123
+00:07:53,045 --> 00:07:56,397
+A central region sits between
+a left and a right electrode.
+
+124
+00:07:56,967 --> 00:07:59,862
+In the remote past,
+the three parts are decoupled
+
+125
+00:07:59,882 --> 00:08:03,432
+each in thermal equilibrium with
+its own chemical potential.
+
+126
+00:08:03,672 --> 00:08:06,466
+The two chemical potentials
+can differ by a lot
+
+127
+00:08:06,486 --> 00:08:08,861
+with no need to be close to equilibrium.
+
+128
+00:08:09,417 --> 00:08:12,557
+Then the tunneling couplings
+between them are switched on
+
+129
+00:08:12,577 --> 00:08:15,939
+and handled by perturbation
+theory on the two-branch contour.
+
+130
+00:08:16,179 --> 00:08:20,249
+The couplings need not be weak,
+and typically must be summed to all orders.
+
+131
+00:08:21,417 --> 00:08:23,762
+The Hamiltonian splits into three parts
+
+132
+00:08:23,782 --> 00:08:26,915
+the contacts, the tunneling,
+and the central region.
+
+133
+00:08:27,155 --> 00:08:29,948
+The contacts are
+noninteracting electron gases.
+
+134
+00:08:30,188 --> 00:08:33,076
+The central region can be
+a set of simple levels
+
+135
+00:08:33,096 --> 00:08:37,620
+or include electron-phonon coupling,
+or an Anderson-type Coulomb repulsion.
+
+136
+00:08:38,883 --> 00:08:43,401
+The current is the rate of change of the
+electron number in the left electrode.
+
+137
+00:08:43,641 --> 00:08:47,811
+After working out the commutator,
+it can be written as the lesser component
+
+138
+00:08:47,831 --> 00:08:51,888
+of a mixed Green's function between
+the electrode and the central region.
+
+139
+00:08:52,450 --> 00:08:56,253
+Because the nonequilibrium theory
+is structurally equivalent to the
+
+140
+00:08:56,273 --> 00:09:00,190
+equilibrium one, we only need the
+zero-temperature equation of motion
+
+141
+00:09:00,210 --> 00:09:03,842
+continued onto the contour with
+the Langreth rules, to integrate
+
+142
+00:09:03,862 --> 00:09:07,436
+out the electrodes and leave a
+current that depends only on the
+
+143
+00:09:07,456 --> 00:09:11,430
+central-region Green's functions and
+the level-width functions, Gamma.
+
+144
+00:09:12,700 --> 00:09:15,615
+For a single level,
+this formula reads like a ledger.
+
+145
+00:09:15,855 --> 00:09:19,870
+Electrons flow in from the left
+at rate Gamma L whenever the lead
+
+146
+00:09:19,890 --> 00:09:23,656
+state is filled and the dot state is empty,
+and flow back out
+
+147
+00:09:23,676 --> 00:09:27,442
+whenever the dot state is filled
+and the lead state is empty.
+
+148
+00:09:27,682 --> 00:09:31,007
+Subtract the two,
+the Pauli blocking factors cancel
+
+149
+00:09:31,027 --> 00:09:33,892
+and what remains is exactly this expression.
+
+150
+00:09:34,132 --> 00:09:37,621
+These are the same rates that will
+reappear in the master equation.
+
+151
+00:09:38,783 --> 00:09:42,555
+If the left and right couplings
+are proportional to each other
+
+152
+00:09:42,575 --> 00:09:48,793
+the current formula collapses into a strikingly simple form:
+the difference of the two Fermi functions
+
+153
+00:09:48,813 --> 00:09:52,768
+times an effective transmission function,
+integrated over energy.
+
+154
+00:09:54,033 --> 00:09:58,856
+Current flows only inside the bias window,
+where the two Fermi functions differ.
+
+155
+00:09:59,096 --> 00:10:02,979
+And the transmission is set by the
+difference between the retarded and
+
+156
+00:10:02,999 --> 00:10:06,938
+advanced Green's functions,
+which is essentially the density of states.
+
+157
+00:10:08,100 --> 00:10:13,179
+Picture two streams at every energy:
+electrons coming from the left with weight f L
+
+158
+00:10:13,199 --> 00:10:17,847
+and from the right with weight f R,
+each getting through with probability T.
+
+159
+00:10:18,087 --> 00:10:22,371
+Deep below both chemical potentials
+the two streams cancel exactly.
+
+160
+00:10:22,612 --> 00:10:25,348
+Only inside the window
+does a net flow survive.
+
+161
+00:10:25,916 --> 00:10:28,751
+This formula holds for
+interacting systems too.
+
+162
+00:10:28,991 --> 00:10:31,517
+But how useful it is
+depends on whether we can
+
+163
+00:10:31,537 --> 00:10:34,504
+actually compute the
+central-region Green's functions.
+
+164
+00:10:35,767 --> 00:10:39,135
+The simplest example is a
+single noninteracting level.
+
+165
+00:10:39,375 --> 00:10:43,757
+The imaginary part of the retarded
+self-energy is half the level width
+
+166
+00:10:43,777 --> 00:10:46,651
+so the spectral function
+is a Lorentzian peak.
+
+167
+00:10:47,217 --> 00:10:49,874
+The stronger the coupling,
+the broader the peak
+
+168
+00:10:49,894 --> 00:10:53,920
+the shorter the electron stays on the dot,
+the less certain its energy.
+
+169
+00:10:55,484 --> 00:10:56,144
+Here is why.
+
+170
+00:10:56,384 --> 00:11:00,358
+Put an electron on the dot at time zero:
+its amplitude oscillates
+
+171
+00:11:00,378 --> 00:11:04,536
+at the level energy while leaking
+into the leads, so the probability
+
+172
+00:11:04,556 --> 00:11:08,469
+of still finding it decays as e
+to the minus Gamma t over h-bar.
+
+173
+00:11:08,709 --> 00:11:12,730
+The Fourier transform of that
+decaying oscillation is exactly
+
+174
+00:11:12,750 --> 00:11:16,772
+a Lorentzian of width Gamma:
+a short life means a broad line.
+
+175
+00:11:17,934 --> 00:11:20,990
+The lesser self-energy is a
+weighted mix of the left and
+
+176
+00:11:21,010 --> 00:11:24,177
+right Fermi functions,
+weighted by the coupling strengths.
+
+177
+00:11:24,417 --> 00:11:28,063
+So the dot is occupied as if
+it sat in a pseudo-equilibrium
+
+178
+00:11:28,083 --> 00:11:31,233
+distribution,
+blended from the two Fermi functions.
+
+179
+00:11:32,400 --> 00:11:34,024
+There is a neat way to see this blend.
+
+180
+00:11:34,264 --> 00:11:38,771
+Each lead keeps resetting the dot:
+lead alpha does so at rate Gamma alpha
+
+181
+00:11:38,791 --> 00:11:42,059
+and leaves the state filled
+with probability f alpha.
+
+182
+00:11:42,299 --> 00:11:47,058
+So the dot simply copies the Fermi
+function of whichever lead touched it last
+
+183
+00:11:47,078 --> 00:11:51,528
+and lead alpha was the last one with
+probability Gamma alpha over Gamma.
+
+184
+00:11:52,684 --> 00:11:55,848
+The current is the transmission
+times the difference
+
+185
+00:11:55,868 --> 00:11:58,727
+of the Fermi functions,
+integrated over energy.
+
+186
+00:11:58,967 --> 00:12:02,508
+And here the transmission is
+exactly a Breit-Wigner Lorentzian.
+
+187
+00:12:03,067 --> 00:12:04,987
+Two facts hide inside this Lorentzian.
+
+188
+00:12:05,227 --> 00:12:09,436
+At resonance, with symmetric barriers,
+the transmission reaches one
+
+189
+00:12:09,456 --> 00:12:12,403
+two barriers that are
+each nearly opaque become
+
+190
+00:12:12,423 --> 00:12:16,381
+perfectly transparent together,
+just like a Fabry-Perot cavity.
+
+191
+00:12:16,621 --> 00:12:21,103
+And the plateau current scales as
+Gamma L times Gamma R over their sum
+
+192
+00:12:21,123 --> 00:12:25,606
+like two resistors in series,
+so the weaker barrier is the bottleneck.
+
+193
+00:12:26,767 --> 00:12:28,159
+Now slowly raise the bias.
+
+194
+00:12:28,399 --> 00:12:30,566
+As the level enters the bias window
+
+195
+00:12:30,586 --> 00:12:34,129
+the current rises quickly,
+then saturates into a plateau.
+
+196
+00:12:34,369 --> 00:12:38,237
+The width of the step is set by both
+the temperature and the level width.
+
+197
+00:12:39,500 --> 00:12:42,986
+The same problem can also be
+handled with a master equation.
+
+198
+00:12:43,226 --> 00:12:47,496
+The dot has only two states: empty,
+or occupied by one electron.
+
+199
+00:12:48,050 --> 00:12:52,310
+Electrons hop in from the electrodes at some rate,
+and hop back out at another.
+
+200
+00:12:52,550 --> 00:12:56,252
+The rates come from Fermi's golden rule,
+proportional to the
+
+201
+00:12:56,272 --> 00:13:00,223
+probability of finding an electron,
+or a hole, in the electrode.
+
+202
+00:13:01,483 --> 00:13:05,721
+In the steady state, the occupation
+probability is a weighted average
+
+203
+00:13:05,741 --> 00:13:09,917
+of the two Fermi functions,
+and the current takes a simple form too.
+
+204
+00:13:11,083 --> 00:13:15,284
+In the weak-coupling limit,
+the Lorentzian shrinks into a delta function
+
+205
+00:13:15,304 --> 00:13:19,505
+and the Green's function result agrees
+exactly with the master equation.
+
+206
+00:13:19,745 --> 00:13:24,352
+But once the level width is comparable
+to the temperature, the master equation
+
+207
+00:13:24,372 --> 00:13:28,564
+is no longer accurate,
+while the Green's function result remains exact.
+
+208
+00:13:29,733 --> 00:13:33,603
+The difference is sharpest when the
+level sits outside the bias window.
+
+209
+00:13:33,843 --> 00:13:37,730
+The master equation then only
+allows thermally activated current
+
+210
+00:13:37,750 --> 00:13:41,454
+which dies off exponentially
+with the distance to the window.
+
+211
+00:13:41,694 --> 00:13:45,121
+The Green's function keeps the
+Lorentzian tails of the level
+
+212
+00:13:45,141 --> 00:13:50,004
+so current still leaks through by quantum tunneling,
+falling off only as a power law.
+
+213
+00:13:51,167 --> 00:13:55,110
+The notes close by sketching how the
+master equation could be derived
+
+214
+00:13:55,130 --> 00:13:58,039
+from the equations of motion
+in the wide-band limit
+
+215
+00:13:58,059 --> 00:14:02,404
+and invite the reader to spot a few
+suspicious approximations along the way.
+
+216
+00:14:03,667 --> 00:14:04,291
+To sum up.
+
+217
+00:14:04,850 --> 00:14:09,071
+Out of equilibrium, the system does
+not return to its initial state
+
+218
+00:14:09,091 --> 00:14:13,187
+so we evolve forward and then
+backward along the Keldysh contour.
+
+219
+00:14:13,750 --> 00:14:17,592
+Contour Green's functions obey
+a Dyson equation with the same
+
+220
+00:14:17,612 --> 00:14:21,454
+structure as in equilibrium,
+and the Langreth rules translate
+
+221
+00:14:21,474 --> 00:14:25,190
+it into retarded,
+advanced and lesser real-time components.
+
+222
+00:14:25,750 --> 00:14:28,823
+The Keldysh equation gives
+the lesser Green's function
+
+223
+00:14:28,843 --> 00:14:31,917
+and from it the current
+through an interacting region.
+
+224
+00:14:32,157 --> 00:14:35,617
+For a resonant level it yields
+Breit-Wigner transmission
+
+225
+00:14:35,637 --> 00:14:38,849
+and reduces to the master
+equation at weak coupling.
+
+226
+00:14:39,417 --> 00:14:44,459
+Behind every formula sits one physical picture:
+the leads inject electrons
+
+227
+00:14:44,479 --> 00:14:47,607
+the electrons propagate
+with a finite lifetime
+
+228
+00:14:47,627 --> 00:14:52,875
+and the occupation that results is set
+by kinetics, not by temperature alone.
+
+229
+00:14:53,434 --> 00:14:56,244
+Master these few steps,
+and you have the skeleton
+
+230
+00:14:56,264 --> 00:14:58,901
+of the nonequilibrium
+Green's function method.
+
+231
+00:14:59,141 --> 00:14:60,000
+Thanks for watching.

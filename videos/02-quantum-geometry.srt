@@ -1,0 +1,1025 @@
+1
+00:00:00,050 --> 00:00:04,835
+In a crystal, every electron state
+carries a momentum, k, and an energy.
+
+2
+00:00:05,105 --> 00:00:07,475
+Plot one against the other and you get the
+
+3
+00:00:07,495 --> 00:00:09,978
+band structure, the picture we usually draw.
+
+4
+00:00:10,533 --> 00:00:13,499
+But each of those states is
+also a quantum wavefunction.
+
+5
+00:00:13,769 --> 00:00:18,062
+As k moves, the energy changes,
+and so does the wavefunction itself.
+
+6
+00:00:18,332 --> 00:00:22,452
+Here, the arrow on the sphere tracks how
+the state is built from two orbitals.
+
+7
+00:00:23,017 --> 00:00:27,450
+So we can ask: how fast does the wavefunction change,
+and how does it twist?
+
+8
+00:00:27,720 --> 00:00:31,108
+The answer is a geometry that
+lives in momentum space.
+
+9
+00:00:31,378 --> 00:00:32,957
+It is called quantum geometry.
+
+10
+00:00:33,517 --> 00:00:37,305
+All of it is packed into one object,
+the quantum geometric tensor.
+
+11
+00:00:37,575 --> 00:00:41,962
+Its real part is the quantum metric,
+which measures distance between states.
+
+12
+00:00:42,232 --> 00:00:46,027
+Its imaginary part is the Berry curvature,
+which measures twisting.
+
+13
+00:00:46,583 --> 00:00:50,705
+Berry curvature became famous long ago,
+through Hall effects and topology.
+
+14
+00:00:50,975 --> 00:00:55,588
+The quantum metric was largely ignored
+until recently, when it turned up
+
+15
+00:00:55,608 --> 00:01:00,349
+in nonlinear transport,
+flat-band superconductivity, and nonlinear optics.
+
+16
+00:01:00,917 --> 00:01:03,967
+This video follows a review by Gao, Nagaosa
+
+17
+00:01:03,987 --> 00:01:06,895
+Ni, and Xu, in Reviews of Modern Physics.
+
+18
+00:01:07,165 --> 00:01:09,033
+Let's build the geometry from scratch.
+
+19
+00:01:10,400 --> 00:01:14,021
+Start with a simple question:
+how far apart are two quantum states?
+
+20
+00:01:14,291 --> 00:01:16,851
+The obvious guess is the
+length of their difference.
+
+21
+00:01:17,121 --> 00:01:18,020
+But that fails.
+
+22
+00:01:18,583 --> 00:01:22,208
+Multiply a state by a phase,
+and nothing physical changes.
+
+23
+00:01:22,478 --> 00:01:24,710
+Yet the length of the
+difference changes a lot.
+
+24
+00:01:24,980 --> 00:01:27,459
+A state is really a ray: a whole circle of
+
+25
+00:01:27,479 --> 00:01:29,959
+phases that all describe the same physics.
+
+26
+00:01:31,317 --> 00:01:34,338
+So take a small change of the state,
+and split it in two.
+
+27
+00:01:34,608 --> 00:01:38,448
+One part points along the state itself,
+and is just a change of phase.
+
+28
+00:01:38,718 --> 00:01:42,403
+The other part is perpendicular to it,
+and is a genuine change.
+
+29
+00:01:42,967 --> 00:01:46,231
+The length of the perpendicular
+part is the true distance
+
+30
+00:01:46,251 --> 00:01:48,363
+and it defines the quantum metric, g.
+
+31
+00:01:48,633 --> 00:01:51,572
+Equivalently,
+one minus the squared overlap of two
+
+32
+00:01:51,592 --> 00:01:54,650
+neighbouring states equals
+g times the squared step.
+
+33
+00:01:55,217 --> 00:01:56,587
+The phase part has meaning too.
+
+34
+00:01:56,857 --> 00:01:58,430
+It defines the Berry connection.
+
+35
+00:01:58,700 --> 00:02:01,338
+The connection depends
+on the choice of phase
+
+36
+00:02:01,358 --> 00:02:03,937
+but its curl, the Berry curvature, does not.
+
+37
+00:02:04,500 --> 00:02:07,795
+Both pieces combine into the
+quantum geometric tensor
+
+38
+00:02:07,815 --> 00:02:12,298
+the overlap of derivatives,
+with the part along the state projected out.
+
+39
+00:02:12,568 --> 00:02:14,805
+Its real, symmetric part is the metric.
+
+40
+00:02:15,075 --> 00:02:19,948
+Its imaginary, antisymmetric part is
+minus one half of the Berry curvature.
+
+41
+00:02:21,317 --> 00:02:25,977
+To see this concretely, take the simplest case:
+two orbitals, alpha and beta.
+
+42
+00:02:26,247 --> 00:02:28,466
+Any state is a superposition of the two
+
+43
+00:02:28,486 --> 00:02:31,166
+so it is a point on a sphere,
+the Bloch sphere.
+
+44
+00:02:31,436 --> 00:02:35,113
+Pure alpha sits at the north pole,
+and pure beta at the south pole.
+
+45
+00:02:35,667 --> 00:02:40,260
+A two-band Hamiltonian is a vector
+h dotted into the Pauli matrices.
+
+46
+00:02:40,530 --> 00:02:45,054
+Each band's state is just the direction of h,
+a unit vector n on the sphere.
+
+47
+00:02:45,617 --> 00:02:50,213
+Then the quantum geometric tensor
+becomes ordinary geometry on the sphere.
+
+48
+00:02:50,483 --> 00:02:54,383
+The metric is one quarter of the
+squared distance between nearby points.
+
+49
+00:02:54,653 --> 00:02:58,313
+The Berry curvature is one half of
+the solid angle that they sweep out.
+
+50
+00:02:58,867 --> 00:03:00,938
+Take a trivial atomic insulator first
+
+51
+00:03:00,958 --> 00:03:04,385
+where the whole conduction band
+is made of the alpha orbital.
+
+52
+00:03:04,655 --> 00:03:06,626
+Every momentum maps to the north pole.
+
+53
+00:03:06,896 --> 00:03:10,207
+Neighbouring states do not move apart,
+so the metric is zero.
+
+54
+00:03:10,477 --> 00:03:14,929
+A loop of momenta encloses no area,
+so the Berry curvature is zero too.
+
+55
+00:03:15,484 --> 00:03:16,579
+Now invert the bands.
+
+56
+00:03:16,849 --> 00:03:20,885
+Near the inversion,
+the orbital character changes quickly with momentum.
+
+57
+00:03:21,155 --> 00:03:25,694
+Two nearby momenta land far apart on
+the sphere, so the metric is large.
+
+58
+00:03:25,964 --> 00:03:29,099
+And a small loop in momentum
+space sweeps out a large
+
+59
+00:03:29,119 --> 00:03:32,493
+patch of the sphere,
+so the Berry curvature is large too.
+
+60
+00:03:33,850 --> 00:03:35,686
+Now do this for the whole Brillouin zone.
+
+61
+00:03:35,956 --> 00:03:38,988
+Take a simple lattice model
+with a mass parameter, m.
+
+62
+00:03:39,258 --> 00:03:43,083
+Here is a grid of momenta,
+and here is where each one lands on the sphere.
+
+63
+00:03:43,650 --> 00:03:45,583
+With a large mass the band is trivial.
+
+64
+00:03:45,853 --> 00:03:49,061
+The image of the grid stays
+crumpled near the north pole
+
+65
+00:03:49,081 --> 00:03:53,039
+the map barely stretches,
+and the quantum metric is small everywhere.
+
+66
+00:03:53,600 --> 00:03:55,720
+Now lower the mass through a band inversion.
+
+67
+00:03:55,990 --> 00:03:59,647
+The grid spreads out,
+and wraps the entire sphere exactly once.
+
+68
+00:03:59,917 --> 00:04:03,906
+The total Berry curvature,
+divided by two pi, counts the wrappings.
+
+69
+00:04:04,176 --> 00:04:05,375
+This is the Chern number.
+
+70
+00:04:05,933 --> 00:04:09,095
+So the Berry curvature,
+integrated over the zone
+
+71
+00:04:09,115 --> 00:04:11,945
+gives topology: a global, quantized number.
+
+72
+00:04:12,215 --> 00:04:17,094
+The quantum metric, by contrast,
+is a local quantity, and it is never negative.
+
+73
+00:04:17,650 --> 00:04:21,409
+Because the quantum geometric
+tensor is positive semidefinite
+
+74
+00:04:21,429 --> 00:04:24,506
+the metric is bounded from
+below by the curvature.
+
+75
+00:04:24,776 --> 00:04:27,631
+Its trace is at least the
+size of the Berry curvature.
+
+76
+00:04:27,901 --> 00:04:32,783
+So a band with a nonzero Chern number is
+forced to have a nonzero quantum metric.
+
+77
+00:04:34,150 --> 00:04:37,658
+The quantum metric also has a
+meaning in quantum information.
+
+78
+00:04:37,928 --> 00:04:40,610
+Suppose a state depends
+on a parameter, lambda
+
+79
+00:04:40,630 --> 00:04:43,840
+and you want to estimate
+lambda by measuring the state.
+
+80
+00:04:44,400 --> 00:04:48,693
+If neighbouring states are almost identical,
+no measurement can tell them apart.
+
+81
+00:04:48,963 --> 00:04:51,879
+If they are far apart,
+lambda is easy to read out.
+
+82
+00:04:52,149 --> 00:04:57,062
+In fact, the quantum Fisher information,
+which sets the best possible precision
+
+83
+00:04:57,082 --> 00:05:01,495
+through the Cramér-Rao bound,
+is exactly four times the quantum metric.
+
+84
+00:05:02,050 --> 00:05:04,971
+This also tells us how to
+measure the metric directly.
+
+85
+00:05:05,241 --> 00:05:09,052
+Prepare a qubit in its ground state,
+suddenly kick the parameter
+
+86
+00:05:09,072 --> 00:05:13,003
+by a small amount, and measure how
+likely it is to end up excited.
+
+87
+00:05:13,273 --> 00:05:16,676
+That probability equals the metric
+times the square of the kick.
+
+88
+00:05:17,233 --> 00:05:20,438
+This is how the quantum
+metric was first mapped out
+
+89
+00:05:20,458 --> 00:05:24,802
+in superconducting qubits,
+and in microcavities of exciton polaritons
+
+90
+00:05:24,822 --> 00:05:27,648
+where it was seen to
+blow up at Dirac points.
+
+91
+00:05:29,017 --> 00:05:30,603
+Now to electrons in solids.
+
+92
+00:05:30,873 --> 00:05:34,391
+The parameter is the crystal momentum,
+k, and each band
+
+93
+00:05:34,411 --> 00:05:38,058
+carries its own quantum geometry
+over the Brillouin zone.
+
+94
+00:05:38,617 --> 00:05:42,535
+Build a wave packet from one band,
+and push it with an electric field.
+
+95
+00:05:42,805 --> 00:05:44,958
+Its momentum changes at a steady rate.
+
+96
+00:05:45,228 --> 00:05:50,558
+But its velocity has two parts:
+the ordinary group velocity, and an anomalous velocity
+
+97
+00:05:50,578 --> 00:05:54,726
+perpendicular to the field and
+proportional to the Berry curvature.
+
+98
+00:05:55,284 --> 00:06:00,299
+Add up the anomalous velocity of every
+occupied state, and you get the intrinsic
+
+99
+00:06:00,319 --> 00:06:05,272
+anomalous Hall effect: a Hall current
+with no magnetic field and no scattering.
+
+100
+00:06:05,542 --> 00:06:10,282
+If the band is a filled Chern band,
+the Hall conductance is exactly quantized.
+
+101
+00:06:10,850 --> 00:06:14,932
+This quantum anomalous Hall
+effect has been seen in magnetic
+
+102
+00:06:14,952 --> 00:06:18,488
+topological insulators,
+and its fractional cousin in
+
+103
+00:06:18,508 --> 00:06:22,591
+twisted molybdenum ditelluride
+and in rhombohedral graphene.
+
+104
+00:06:23,150 --> 00:06:24,805
+Symmetry decides what survives.
+
+105
+00:06:25,075 --> 00:06:29,399
+Time reversal makes the curvature odd in k,
+while inversion makes it even.
+
+106
+00:06:29,669 --> 00:06:32,147
+With both symmetries,
+it vanishes everywhere.
+
+107
+00:06:32,717 --> 00:06:37,115
+Break time reversal with magnetism,
+and you get the anomalous Hall effect.
+
+108
+00:06:37,385 --> 00:06:42,836
+Keep time reversal but break inversion,
+and the curvature becomes locked to valleys
+
+109
+00:06:42,856 --> 00:06:46,923
+spins, or layers, giving valley,
+spin, and layer Hall effects.
+
+110
+00:06:47,484 --> 00:06:52,621
+Even when every linear Hall effect vanishes,
+a Berry curvature dipole can survive.
+
+111
+00:06:52,891 --> 00:06:57,656
+The field shifts the Fermi sea,
+the shifted sea sees uncompensated curvature
+
+112
+00:06:57,676 --> 00:07:01,182
+and a Hall current appears at
+second order in the field.
+
+113
+00:07:01,452 --> 00:07:04,567
+This was first seen in
+few-layer tungsten ditelluride.
+
+114
+00:07:05,933 --> 00:07:09,389
+So where does the quantum metric
+enter the motion of electrons?
+
+115
+00:07:09,659 --> 00:07:10,558
+Through the other bands.
+
+116
+00:07:10,828 --> 00:07:14,763
+An electric field mixes a little of
+the neighbouring band into each state.
+
+117
+00:07:15,333 --> 00:07:18,800
+That mixing shifts where the
+electron sits inside the unit cell.
+
+118
+00:07:19,070 --> 00:07:22,550
+This positional shift is a
+field-induced Berry connection
+
+119
+00:07:22,570 --> 00:07:27,277
+equal to the field times a tensor called
+the Berry connection polarizability.
+
+120
+00:07:27,833 --> 00:07:30,518
+For two bands,
+the polarizability is just the
+
+121
+00:07:30,538 --> 00:07:33,162
+quantum metric divided by half the band gap.
+
+122
+00:07:33,432 --> 00:07:35,898
+The faster the wavefunction changes with k
+
+123
+00:07:35,918 --> 00:07:38,620
+and the smaller the gap,
+the bigger the shift.
+
+124
+00:07:39,183 --> 00:07:39,971
+Here is the catch.
+
+125
+00:07:40,241 --> 00:07:45,080
+This geometric motion is usually tiny
+compared with ordinary Drude transport
+
+126
+00:07:45,100 --> 00:07:48,468
+where electrons simply
+accelerate until they scatter.
+
+127
+00:07:48,738 --> 00:07:51,661
+To see the metric,
+the Drude part has to be suppressed.
+
+128
+00:07:52,216 --> 00:07:53,502
+There are two ways to do that.
+
+129
+00:07:53,772 --> 00:07:58,591
+One is to make the band flat,
+so that the electrons have no group velocity at all.
+
+130
+00:07:59,150 --> 00:08:02,762
+The other is to go to higher order,
+and separate the pieces by
+
+131
+00:08:02,782 --> 00:08:06,335
+symmetry and by how they scale
+with the scattering time, tau.
+
+132
+00:08:06,605 --> 00:08:11,763
+The nonlinear Drude term grows as tau squared,
+the Berry curvature dipole as tau
+
+133
+00:08:11,783 --> 00:08:15,646
+and the quantum metric dipole
+does not depend on tau at all.
+
+134
+00:08:17,000 --> 00:08:21,085
+Follow the second route, and you reach
+the intrinsic nonlinear Hall effect.
+
+135
+00:08:21,355 --> 00:08:25,711
+Its source is the quantum metric dipole:
+an uneven distribution of the
+
+136
+00:08:25,731 --> 00:08:30,086
+metric around the Fermi surface,
+larger on one side than on the other.
+
+137
+00:08:30,650 --> 00:08:32,164
+Symmetry tells us where to look.
+
+138
+00:08:32,434 --> 00:08:35,276
+The metric dipole is odd under time reversal
+
+139
+00:08:35,296 --> 00:08:39,375
+and odd under inversion,
+but even under their combination, P T.
+
+140
+00:08:39,645 --> 00:08:44,262
+The Berry curvature dipole behaves differently:
+it is even under time reversal.
+
+141
+00:08:44,532 --> 00:08:48,675
+So the metric dipole lives in P
+T symmetric antiferromagnets.
+
+142
+00:08:49,233 --> 00:08:50,119
+Here is the picture.
+
+143
+00:08:50,389 --> 00:08:54,544
+In a P T symmetric antiferromagnet,
+the Berry curvature vanishes
+
+144
+00:08:54,564 --> 00:08:58,198
+at every k, so there is no
+anomalous Hall effect at all.
+
+145
+00:08:58,767 --> 00:09:02,299
+Apply an electric field,
+and it induces a Berry curvature
+
+146
+00:09:02,319 --> 00:09:05,415
+proportional to the metric
+dipole times the field.
+
+147
+00:09:05,685 --> 00:09:08,488
+The driven system now
+has a Hall conductivity.
+
+148
+00:09:08,758 --> 00:09:13,346
+Acting a second time, the field drives
+a Hall current that grows as E squared.
+
+149
+00:09:13,900 --> 00:09:18,033
+This was observed in twenty twenty-three,
+in even-layer manganese
+
+150
+00:09:18,053 --> 00:09:21,994
+bismuth telluride,
+an antiferromagnetic topological insulator.
+
+151
+00:09:22,264 --> 00:09:25,479
+Interfacing it with black
+phosphorus breaks its threefold
+
+152
+00:09:25,499 --> 00:09:28,828
+rotation symmetry,
+which would otherwise forbid the effect.
+
+153
+00:09:29,383 --> 00:09:30,790
+The evidence is convincing.
+
+154
+00:09:31,060 --> 00:09:35,257
+The signal flips sign when the
+antiferromagnetic order is reversed
+
+155
+00:09:35,277 --> 00:09:40,050
+so it is odd under time reversal,
+which rules out a Berry curvature dipole.
+
+156
+00:09:40,320 --> 00:09:42,357
+It vanishes above the Néel temperature.
+
+157
+00:09:42,627 --> 00:09:44,599
+It does not depend on the scattering time.
+
+158
+00:09:44,869 --> 00:09:48,064
+It is antisymmetric,
+as a true Hall response must be.
+
+159
+00:09:48,334 --> 00:09:52,129
+And its doping dependence follows
+the calculated metric dipole.
+
+160
+00:09:52,683 --> 00:09:57,441
+The effect can even rectify wireless
+microwave signals into direct current
+
+161
+00:09:57,461 --> 00:10:01,637
+and in films of manganese tin it
+survives up to room temperature.
+
+162
+00:10:01,907 --> 00:10:05,321
+One order higher,
+a quantum metric quadrupole produces a
+
+163
+00:10:05,341 --> 00:10:09,307
+third-order Hall effect,
+which needs no symmetry breaking at all.
+
+164
+00:10:10,667 --> 00:10:12,674
+Now the first route: flat bands.
+
+165
+00:10:12,944 --> 00:10:16,935
+Think about superconductivity in
+a band with no dispersion at all.
+
+166
+00:10:17,205 --> 00:10:19,843
+Conventional theory runs into a paradox.
+
+167
+00:10:20,400 --> 00:10:25,418
+The superfluid stiffness measures how easily
+the condensate carries a supercurrent.
+
+168
+00:10:25,688 --> 00:10:29,697
+It goes as the density of pairs
+divided by the effective mass.
+
+169
+00:10:29,967 --> 00:10:32,020
+In a flat band the mass is infinite
+
+170
+00:10:32,040 --> 00:10:35,694
+so the stiffness should vanish,
+and superconductivity with it.
+
+171
+00:10:36,250 --> 00:10:37,403
+The way out is geometry.
+
+172
+00:10:37,673 --> 00:10:40,088
+Expand the energy of the condensate in the
+
+173
+00:10:40,108 --> 00:10:42,929
+gradient of its phase,
+and a second term appears.
+
+174
+00:10:43,199 --> 00:10:46,763
+It is set not by the band dispersion,
+but by the quantum metric.
+
+175
+00:10:47,033 --> 00:10:50,745
+The stiffness is a conventional
+part plus a geometric part.
+
+176
+00:10:51,300 --> 00:10:52,583
+Picture it in real space.
+
+177
+00:10:52,853 --> 00:10:57,691
+If the flat band is built from compact,
+isolated orbitals, the pairs are stuck.
+
+178
+00:10:57,961 --> 00:11:01,011
+But a nontrivial quantum
+metric forces the Wannier
+
+179
+00:11:01,031 --> 00:11:04,265
+orbitals to spread out and overlap,
+so pairs can hop.
+
+180
+00:11:04,535 --> 00:11:08,326
+For a Chern band this spread is bounded
+from below by the Chern number.
+
+181
+00:11:08,596 --> 00:11:11,010
+Topology guarantees a minimum stiffness.
+
+182
+00:11:11,567 --> 00:11:15,335
+Magic-angle twisted bilayer
+graphene is the prime test case.
+
+183
+00:11:15,605 --> 00:11:20,173
+Its electrons move about a thousand
+times slower than in ordinary graphene.
+
+184
+00:11:20,443 --> 00:11:25,646
+Yet the measured superfluid stiffness is
+far larger than the conventional estimate
+
+185
+00:11:25,666 --> 00:11:29,532
+which is consistent with a large
+quantum metric contribution.
+
+186
+00:11:29,802 --> 00:11:32,644
+A fully quantitative account
+is still being worked out.
+
+187
+00:11:34,000 --> 00:11:36,857
+Can we see the quantum geometry
+of a crystal directly?
+
+188
+00:11:37,127 --> 00:11:38,418
+Optics gives one handle.
+
+189
+00:11:38,688 --> 00:11:42,518
+Integrate the absorption spectrum,
+weighted by one over frequency
+
+190
+00:11:42,538 --> 00:11:45,835
+and you get the quantum metric
+integrated over the zone.
+
+191
+00:11:46,105 --> 00:11:48,419
+This is the Souza Wilkens Martin sum rule.
+
+192
+00:11:48,983 --> 00:11:52,469
+Since every absorbed photon
+must at least cross the gap
+
+193
+00:11:52,489 --> 00:11:56,039
+the same sum rule puts an
+upper bound on the optical gap
+
+194
+00:11:56,059 --> 00:11:59,482
+set by the electron density
+and the integrated metric.
+
+195
+00:12:00,050 --> 00:12:04,177
+And recently, photoemission has
+gone further, mapping a quasi
+
+196
+00:12:04,197 --> 00:12:08,120
+quantum geometric tensor point
+by point in momentum space.
+
+197
+00:12:08,390 --> 00:12:11,424
+In the kagome metal cobalt tin,
+the metric extracted
+
+198
+00:12:11,444 --> 00:12:14,243
+from the measured bands
+agrees well with theory.
+
+199
+00:12:15,600 --> 00:12:16,224
+To sum up.
+
+200
+00:12:16,494 --> 00:12:21,223
+The quantum geometric tensor packs two
+kinds of geometry into one object.
+
+201
+00:12:21,783 --> 00:12:27,015
+Its imaginary part, the Berry curvature,
+drives the anomalous, quantum anomalous
+
+202
+00:12:27,035 --> 00:12:31,479
+valley, spin and layer Hall effects,
+and the Berry curvature dipole.
+
+203
+00:12:31,749 --> 00:12:36,203
+Its real part, the quantum metric,
+sets the size of Wannier orbitals
+
+204
+00:12:36,223 --> 00:12:39,163
+optical sum rules,
+the stiffness of flat-band
+
+205
+00:12:39,183 --> 00:12:42,913
+superconductors,
+and the intrinsic nonlinear Hall effect.
+
+206
+00:12:43,483 --> 00:12:44,078
+Where next?
+
+207
+00:12:44,348 --> 00:12:49,622
+Near topological band crossings the geometry diverges,
+which could drive strong
+
+208
+00:12:49,642 --> 00:12:53,710
+nonperturbative high-harmonic
+generation even at weak fields.
+
+209
+00:12:53,980 --> 00:12:59,320
+In fractional Chern insulators,
+band geometry guides where these exotic states appear
+
+210
+00:12:59,340 --> 00:13:03,356
+and fluctuations of the metric
+show up as chiral graviton modes.
+
+211
+00:13:03,917 --> 00:13:08,425
+Geometry can also live in real space,
+as in skyrmion spin textures.
+
+212
+00:13:08,695 --> 00:13:11,757
+And it connects to quantum information,
+where the quantum
+
+213
+00:13:11,777 --> 00:13:14,622
+Fisher information becomes
+a witness of entanglement.
+
+214
+00:13:15,183 --> 00:13:19,200
+The quantum metric, especially,
+has only just begun to be explored.
+
+215
+00:13:19,470 --> 00:13:20,329
+Thanks for watching.

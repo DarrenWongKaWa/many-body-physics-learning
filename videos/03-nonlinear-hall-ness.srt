@@ -1,0 +1,761 @@
+1
+00:00:00,050 --> 00:00:04,817
+Push electrons along one direction,
+and the current bends, flowing off to the side.
+
+2
+00:00:05,057 --> 00:00:07,024
+And there is no magnetic field anywhere.
+
+3
+00:00:07,600 --> 00:00:09,336
+This is the nonlinear Hall effect.
+
+4
+00:00:09,576 --> 00:00:12,167
+At weak fields it is a second-order effect
+
+5
+00:00:12,187 --> 00:00:16,208
+the transverse current grows as
+the square of the electric field.
+
+6
+00:00:16,783 --> 00:00:18,493
+But what happens when the field is strong?
+
+7
+00:00:18,733 --> 00:00:23,054
+The paper we look at today studies
+exactly this: the nonlinear Hall
+
+8
+00:00:23,074 --> 00:00:27,135
+effect in nonequilibrium steady
+states driven by strong fields.
+
+9
+00:00:29,500 --> 00:00:31,741
+First, recall the ordinary Hall effect.
+
+10
+00:00:31,981 --> 00:00:36,238
+An electron moving through a magnetic
+field feels the Lorentz force
+
+11
+00:00:36,258 --> 00:00:39,941
+gets deflected sideways,
+and a transverse current appears.
+
+12
+00:00:40,500 --> 00:00:45,425
+But in some materials, a transverse current
+appears even without a magnetic field.
+
+13
+00:00:45,665 --> 00:00:49,700
+The reason is hidden in momentum space:
+the wavefunctions of Bloch
+
+14
+00:00:49,720 --> 00:00:53,633
+electrons carry a geometric property
+called the Berry curvature.
+
+15
+00:00:53,873 --> 00:00:57,331
+It acts like an effective
+magnetic field in momentum space.
+
+16
+00:00:57,900 --> 00:01:01,861
+In an electric field,
+an electron picks up an anomalous velocity.
+
+17
+00:01:02,101 --> 00:01:04,043
+It points perpendicular to the field
+
+18
+00:01:04,063 --> 00:01:06,660
+with a size proportional
+to the Berry curvature.
+
+19
+00:01:07,217 --> 00:01:09,510
+Add up the anomalous velocities of all the
+
+20
+00:01:09,530 --> 00:01:12,043
+occupied states,
+and you get the Hall current.
+
+21
+00:01:12,600 --> 00:01:15,632
+But if the material has
+time-reversal symmetry
+
+22
+00:01:15,652 --> 00:01:20,807
+the Berry curvature at k and at minus k
+is equal in size and opposite in sign.
+
+23
+00:01:21,047 --> 00:01:24,282
+Positive and negative cancel,
+the integral vanishes
+
+24
+00:01:24,302 --> 00:01:26,516
+and the linear Hall effect is gone.
+
+25
+00:01:27,883 --> 00:01:29,520
+The way out appears at second order.
+
+26
+00:01:29,760 --> 00:01:34,521
+The electric field pushes the whole Fermi sea,
+shifting it through momentum space.
+
+27
+00:01:35,083 --> 00:01:39,518
+After the shift, the positive and
+negative Berry curvature covered by
+
+28
+00:01:39,538 --> 00:01:43,972
+the Fermi sea no longer balance,
+so a net anomalous velocity appears.
+
+29
+00:01:44,212 --> 00:01:48,968
+The shift is proportional to the field,
+and the anomalous velocity is proportional
+
+30
+00:01:48,988 --> 00:01:53,277
+to the field again, so the transverse
+current scales as the field squared.
+
+31
+00:01:53,833 --> 00:01:56,276
+This is the Berry curvature dipole picture.
+
+32
+00:01:56,516 --> 00:01:59,860
+It successfully explains the
+second-order Hall signals
+
+33
+00:01:59,880 --> 00:02:03,286
+seen in materials such as
+bilayer tungsten ditelluride.
+
+34
+00:02:03,850 --> 00:02:08,367
+However, in a Weyl Kondo semimetal,
+experiments found a giant Hall response
+
+35
+00:02:08,387 --> 00:02:12,782
+that clearly departs from the square
+law predicted by the dipole picture.
+
+36
+00:02:13,350 --> 00:02:16,439
+The issue is that the dipole
+picture is fundamentally
+
+37
+00:02:16,459 --> 00:02:18,961
+perturbative: it assumes the shift is tiny.
+
+38
+00:02:19,201 --> 00:02:23,147
+Once the field is strong enough to
+push the Fermi sea toward the hot
+
+39
+00:02:23,167 --> 00:02:27,229
+spots where the Berry curvature is
+concentrated, or to drive electrons
+
+40
+00:02:27,249 --> 00:02:30,845
+between the two bands,
+the perturbative expansion breaks down.
+
+41
+00:02:31,085 --> 00:02:32,744
+We need a nonperturbative theory.
+
+42
+00:02:34,100 --> 00:02:38,201
+The authors study this with the simplest
+possible two-band lattice model.
+
+43
+00:02:38,767 --> 00:02:42,280
+The three Pauli matrices act on
+an orbital degree of freedom.
+
+44
+00:02:42,520 --> 00:02:45,576
+With D x equal to one
+half and D y equal to one
+
+45
+00:02:45,596 --> 00:02:49,700
+the two bands touch at two points,
+forming two Weyl-like nodes.
+
+46
+00:02:50,283 --> 00:02:53,877
+The Berry curvature is strongly
+concentrated near these two nodes
+
+47
+00:02:53,897 --> 00:02:56,046
+with opposite signs at the two of them.
+
+48
+00:02:56,286 --> 00:02:58,799
+We call these regions
+Berry curvature hot spots.
+
+49
+00:02:59,367 --> 00:03:03,334
+The model keeps time-reversal symmetry
+but breaks inversion symmetry.
+
+50
+00:03:03,574 --> 00:03:07,229
+So it has no linear Hall effect,
+but it can have a nonlinear one.
+
+51
+00:03:07,783 --> 00:03:10,423
+At a chemical potential of zero point three
+
+52
+00:03:10,443 --> 00:03:14,445
+the Fermi surface consists of two
+small pockets around the nodes.
+
+53
+00:03:15,800 --> 00:03:18,984
+So how do we describe a
+lattice driven by a constant
+
+54
+00:03:19,004 --> 00:03:21,879
+electric field,
+without expanding in the field?
+
+55
+00:03:23,233 --> 00:03:27,984
+Here is the first difficulty:
+a DC field keeps accelerating the electrons.
+
+56
+00:03:28,224 --> 00:03:32,278
+On a lattice, their momentum sweeps through
+the Brillouin zone again and again.
+
+57
+00:03:32,518 --> 00:03:36,443
+Without dissipation,
+the work done by the field has nowhere to go
+
+58
+00:03:36,463 --> 00:03:39,417
+and the system never settles
+into a steady state.
+
+59
+00:03:40,683 --> 00:03:44,522
+So the authors couple every lattice
+site to a fermionic reservoir.
+
+60
+00:03:44,762 --> 00:03:48,454
+The reservoir exchanges particles
+and energy at a rate Gamma.
+
+61
+00:03:48,694 --> 00:03:53,285
+Energy pumped in by the field balances
+energy drained by the reservoirs
+
+62
+00:03:53,305 --> 00:03:56,727
+and the system reaches a
+nonequilibrium steady state.
+
+63
+00:03:57,983 --> 00:04:02,689
+In this steady state, the electron
+momentum drifts along the field at rate E
+
+64
+00:04:02,709 --> 00:04:05,799
+and survives for a time of
+roughly one over Gamma.
+
+65
+00:04:06,039 --> 00:04:09,504
+So the occupation ends up
+shifted by roughly E over Gamma.
+
+66
+00:04:11,633 --> 00:04:16,529
+To handle all of this exactly,
+the authors use nonequilibrium Green's functions.
+
+67
+00:04:16,769 --> 00:04:21,436
+The field enters through the Moyal star
+product in the Wigner representation
+
+68
+00:04:21,456 --> 00:04:25,938
+and the natural momentum variable is
+the gauge-covariant momentum, kappa.
+
+69
+00:04:26,178 --> 00:04:29,795
+Nowhere does the calculation
+expand in powers of the field.
+
+70
+00:04:30,950 --> 00:04:35,970
+Once you have the steady-state density matrix,
+the Hall current is the trace of the
+
+71
+00:04:35,990 --> 00:04:40,768
+velocity operator times the density matrix,
+integrated over the Brillouin zone.
+
+72
+00:04:42,133 --> 00:04:46,581
+Compared with the semiclassical Boltzmann equation,
+this approach keeps the
+
+73
+00:04:46,601 --> 00:04:50,930
+quantum coherence between bands,
+does not rely on a quasiparticle picture
+
+74
+00:04:50,950 --> 00:04:55,696
+and can include interactions and
+electron-phonon coupling through self-energies.
+
+75
+00:04:57,050 --> 00:04:58,237
+Let's look at the results.
+
+76
+00:04:58,477 --> 00:05:01,400
+This is the transverse
+current divided by the field
+
+77
+00:05:01,420 --> 00:05:03,247
+as a function of field strength.
+
+78
+00:05:03,487 --> 00:05:06,063
+Each curve is a different chemical potential
+
+79
+00:05:06,083 --> 00:05:08,837
+with the damping Gamma
+fixed at zero point one.
+
+80
+00:05:09,400 --> 00:05:14,029
+At weak fields the curves are nearly
+straight lines, meaning the transverse
+
+81
+00:05:14,049 --> 00:05:19,112
+current goes as the field squared,
+exactly as the Berry curvature dipole predicts.
+
+82
+00:05:19,667 --> 00:05:22,554
+But near a field of about
+zero point zero three
+
+83
+00:05:22,574 --> 00:05:26,142
+the curves for larger chemical
+potentials bend noticeably.
+
+84
+00:05:26,700 --> 00:05:31,540
+Further up, when the field becomes comparable
+to the damping Gamma, a bump appears.
+
+85
+00:05:31,780 --> 00:05:36,530
+At even stronger fields, the Hall signal
+can actually decrease as the field grows.
+
+86
+00:05:37,100 --> 00:05:41,333
+The small wiggles on the curves come
+from Landau, Zener, Stueckelberg
+
+87
+00:05:41,353 --> 00:05:45,894
+interference between the coherent
+amplitudes of the upper and lower bands.
+
+88
+00:05:47,250 --> 00:05:48,426
+Where does the bend come from?
+
+89
+00:05:48,666 --> 00:05:50,380
+Let's go back to momentum space.
+
+90
+00:05:50,620 --> 00:05:54,453
+At a chemical potential of zero point three,
+the edge of the left
+
+91
+00:05:54,473 --> 00:05:58,544
+pocket sits a distance of zero point
+three two two two from its node.
+
+92
+00:05:59,100 --> 00:06:00,103
+Now turn on the field.
+
+93
+00:06:00,343 --> 00:06:05,606
+This is the steady-state occupation,
+computed with nonequilibrium Green's functions.
+
+94
+00:06:05,846 --> 00:06:08,259
+As the field grows, the whole occupation
+
+95
+00:06:08,279 --> 00:06:10,996
+drifts to the right,
+by roughly E over Gamma.
+
+96
+00:06:11,550 --> 00:06:14,525
+When the drift equals that distance,
+the edge of the
+
+97
+00:06:14,545 --> 00:06:17,578
+Fermi surface runs into the
+Berry curvature hot spot.
+
+98
+00:06:17,818 --> 00:06:20,865
+From here on,
+the dipole expansion no longer holds.
+
+99
+00:06:21,105 --> 00:06:24,466
+So the critical field is roughly
+Gamma times this distance.
+
+100
+00:06:25,033 --> 00:06:29,524
+Check this with different values of Gamma:
+for every curve, the bend lands
+
+101
+00:06:29,544 --> 00:06:34,157
+right near the point where E over Gamma
+equals zero point three two two two.
+
+102
+00:06:35,517 --> 00:06:38,725
+But if the chemical potential
+sits exactly at the nodes
+
+103
+00:06:38,745 --> 00:06:43,479
+there is no Fermi surface at all,
+so where does the transverse current come from?
+
+104
+00:06:44,034 --> 00:06:46,078
+The answer is interband transitions.
+
+105
+00:06:46,318 --> 00:06:50,065
+Near the cones, the field pushes
+electrons from the lower band
+
+106
+00:06:50,085 --> 00:06:53,954
+into the upper band,
+leaving a hole behind at the same momentum.
+
+107
+00:06:54,194 --> 00:06:57,100
+Drift and dissipation
+drag these electron-hole
+
+108
+00:06:57,120 --> 00:06:59,836
+pairs away from the nodes, along the field.
+
+109
+00:07:00,076 --> 00:07:02,603
+The stronger the field,
+the farther they are dragged.
+
+110
+00:07:03,967 --> 00:07:06,772
+In this regime,
+can we still compute the Hall current
+
+111
+00:07:06,792 --> 00:07:09,597
+from the Berry-curvature-weighted
+occupation formula?
+
+112
+00:07:09,837 --> 00:07:11,672
+The authors compared the two directly.
+
+113
+00:07:12,234 --> 00:07:14,713
+At a chemical potential of zero point three
+
+114
+00:07:14,733 --> 00:07:17,388
+and weak fields,
+all three methods agree well.
+
+115
+00:07:17,628 --> 00:07:20,887
+But once interband processes matter,
+the Berry curvature
+
+116
+00:07:20,907 --> 00:07:23,816
+formula departs clearly
+from the full calculation.
+
+117
+00:07:24,384 --> 00:07:29,302
+At zero chemical potential it is even starker:
+a rigidly shifted equilibrium
+
+118
+00:07:29,322 --> 00:07:34,566
+distribution gives exactly zero Hall current,
+while the true current is not zero.
+
+119
+00:07:35,934 --> 00:07:37,215
+There is one more subtlety.
+
+120
+00:07:37,455 --> 00:07:40,845
+The constant relaxation time
+approximation predicts a
+
+121
+00:07:40,865 --> 00:07:44,255
+critical field twice as large
+as the reservoir model.
+
+122
+00:07:44,495 --> 00:07:47,177
+The hot-spot criterion itself is universal
+
+123
+00:07:47,197 --> 00:07:51,487
+but the actual critical field depends
+on how the system dissipates.
+
+124
+00:07:52,850 --> 00:07:56,067
+The framework also gives
+frequency-resolved information
+
+125
+00:07:56,087 --> 00:07:58,656
+such as the effective distribution function.
+
+126
+00:07:58,896 --> 00:08:01,374
+In equilibrium, it is simply a Fermi step.
+
+127
+00:08:01,933 --> 00:08:04,262
+At weak fields, the step just gets smoother.
+
+128
+00:08:04,502 --> 00:08:07,055
+At strong fields, the distribution develops
+
+129
+00:08:07,075 --> 00:08:09,508
+clear wiggles and a left-right asymmetry.
+
+130
+00:08:09,748 --> 00:08:13,474
+This marks the complete breakdown
+of the perturbative regime
+
+131
+00:08:13,494 --> 00:08:17,656
+as the system enters a strongly
+driven nonequilibrium steady state.
+
+132
+00:08:19,017 --> 00:08:22,210
+Finally, real materials
+also have electron-phonon
+
+133
+00:08:22,230 --> 00:08:24,505
+coupling and electron correlations.
+
+134
+00:08:24,745 --> 00:08:26,850
+Within dynamical mean-field theory
+
+135
+00:08:26,870 --> 00:08:29,977
+the authors add phonons
+and a Hubbard interaction.
+
+136
+00:08:30,534 --> 00:08:34,812
+The overall shape of the Hall
+signal versus field does not change
+
+137
+00:08:34,832 --> 00:08:38,714
+so the nonperturbative mechanisms
+found earlier are robust.
+
+138
+00:08:38,954 --> 00:08:41,863
+But the size of the signal
+is substantially enhanced.
+
+139
+00:08:43,217 --> 00:08:45,857
+The enhancement comes
+mainly from the real part
+
+140
+00:08:45,877 --> 00:08:48,291
+of the self-energy, not from extra damping.
+
+141
+00:08:48,531 --> 00:08:53,048
+The real part renormalizes the bands,
+and opens a small gap at the nodes.
+
+142
+00:08:54,767 --> 00:08:57,666
+The gap is small,
+yet it makes the Berry curvature
+
+143
+00:08:57,686 --> 00:09:00,060
+hot spots stronger and more concentrated.
+
+144
+00:09:00,617 --> 00:09:05,559
+In fact, simply replacing D y with an
+effective value lets a noninteracting
+
+145
+00:09:05,579 --> 00:09:10,323
+model reproduce the full electron-phonon
+result to within a few percent.
+
+146
+00:09:11,683 --> 00:09:12,307
+To sum up.
+
+147
+00:09:12,866 --> 00:09:15,707
+First, the Berry curvature
+dipole picture is only
+
+148
+00:09:15,727 --> 00:09:19,035
+controlled at large enough
+doping and weak enough fields.
+
+149
+00:09:19,600 --> 00:09:24,677
+Second, it breaks down when the driven
+Fermi-surface edge reaches the Berry curvature
+
+150
+00:09:24,697 --> 00:09:29,354
+hot spots near the nodes,
+or when interband charge transfer becomes important.
+
+151
+00:09:29,594 --> 00:09:32,459
+In those regimes,
+the Berry-curvature-weighted
+
+152
+00:09:32,479 --> 00:09:35,468
+occupation formula is no
+longer reliable either.
+
+153
+00:09:36,033 --> 00:09:40,024
+Third, the nonequilibrium
+steady-state Green's function method
+
+154
+00:09:40,044 --> 00:09:44,100
+computes the full Hall current
+nonperturbatively, and naturally
+
+155
+00:09:44,120 --> 00:09:48,304
+includes dissipation, interactions,
+and electron-phonon coupling.
+
+156
+00:09:48,544 --> 00:09:51,546
+These do more than add damping,
+because through band
+
+157
+00:09:51,566 --> 00:09:54,975
+renormalization they reshape
+the Berry curvature hot spots.
+
+158
+00:09:55,533 --> 00:09:58,263
+This gives a quantitative
+theoretical tool for
+
+159
+00:09:58,283 --> 00:10:01,371
+strong-field transport and
+spectroscopy experiments.
+
+160
+00:10:01,611 --> 00:10:02,472
+Thanks for watching.
