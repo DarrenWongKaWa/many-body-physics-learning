@@ -1,6 +1,8 @@
 # 04 · Quantum geometry on the Grassmannian: projectors, distances, folds
 
-**Status:** study materials and numerical checks. The explainer video is in production; the plan is in [Video plan](#video-plan) below.
+**Status:** study materials, numerical checks and an explainer video (scenes and build in [Video](#video) below).
+
+**Watch:** [`04-grassmannian-quantum-geometry.mp4`](https://github.com/DarrenWongKaWa/many-body-physics-learning/releases/download/v1.0/04-grassmannian-quantum-geometry.mp4) · subtitles: [`videos/04-grassmannian-quantum-geometry.srt`](../../videos/04-grassmannian-quantum-geometry.srt)
 
 This topic follows three preprints by Shin-Ming Huang (National Sun Yat-sen University, Kaohsiung),
 which treat a band structure as a map from the Brillouin torus into the Grassmannian of occupied subspaces
@@ -41,6 +43,9 @@ guide/     illustrated study guide (21 pages), one-page poster, two-page "sphere
 verify/    gauge-free projector code that checks the multiband extension on 2-, 3- and 4-band models
 notes/     study notes in Chinese: the story, the open question, the proposed answer, status and risks;
            video_plan_zh.md is the video plan with the checked numbers
+compute/   make_data.py: precomputed data for the video (MDS iterations, Bargmann phases, Kähler-angle maps)
+data/      its output, read by the scenes
+narration.py, tts.py, common.py, scenes/, build.py, tools/   the video (same pipeline as topic 02)
 ```
 
 - `guide/quantum_geometry_visual_guide.pdf` — physics-first guide for a final-year undergraduate: states, rays,
@@ -104,6 +109,42 @@ pdflatex sphere_to_bloch_bridge.tex && pdflatex sphere_to_bloch_bridge.tex
 ```
 
 All figures are native TikZ; no external images or bibliography database are needed.
+
+## Video
+
+English narration (Kokoro-82M, voice `af_bella`), 1920×1080, 60 fps, English subtitles burned in.
+It follows the plan below: one picture (the Brillouin torus pressed onto the Bloch sphere), a cold open with the puzzle,
+then three acts for H1, H2, H3 and a fourth act for the proposal, marked **PROPOSAL (unpublished)** in green on screen.
+The video runs 10 minutes instead of the planned 14 because the narration came out tighter; none of the planned pictures was dropped.
+
+| Scene | Content | Source |
+|---|---|---|
+| S01 | cold open: a sheet rolls into a cylinder and a torus; the torus pressed onto the sphere by the actual QWZ map must fold | H3 |
+| S02 | the stage: Brillouin zone = torus, Bloch sphere; the grid painted onto the sphere cell by cell, blue face up, red flipped; the fold curve and its image with cusps | — |
+| S03 | principal angle; chord = D_HS = sin θ and arc = d_FS = θ on the radius-1/2 sphere; principal angles of two planes from the SVD of the overlap matrix | H1 |
+| S04 | the Hilbert–Schmidt distance table of 484 states; SMACOF iterations rebuild a closed sphere (Chern band, m = 1) and an open cap (trivial band, m = 3.2) | H1 |
+| S05 | small circle → metric ellipse, g = ½ tr(∂P ∂P); small square → oriented parallelogram, Berry curvature = signed area; the other band: same g, opposite Ω, both K_G = 4 | H2, guide p. 6 |
+| S06 | geodesics as exponentials of the horizontal generator; parallel transport around a geodesic triangle turns by the solid angle; Bargmann invariant = half the solid angle; geodesic polygons converge to the Berry phase | H2 |
+| S07 | Tissot-style metric ellipses collapsing to segments on the fold; a folded film with mirrored arrows; the polar cap covered three times; unsigned 1.189 vs signed 1.000 spheres | H3 |
+| S08 | Gauss–Bonnet: regular sheets +2.378 × 2π, fold −2.378 × 2π, total 0 = 2πχ(T²); signed: 4πC; Huang's doubled metric gives the same 2.378 | H3 |
+| S09 | proposal: the fold (s, t²) lifted by εt; Kähler angle, cos θ_K = ±1 (two bands) vs smooth (three bands); five complex points with indices +1, +1, +1, +1, −1, signed sum 3 = 3\|C\|; ∫K_G dA = 0 | proposal, `verify/` |
+| S10 | summary of H1–H3 and credits | — |
+
+**What is computed.** Every map, ellipse, parallelogram, fold curve, area counter, MDS step and Kähler-angle map comes
+from the two-band formulas in `common.py` (g = ¼ ∂n·∂n, Ω = −½ n·(∂ₓn × ∂ᵧn), the band with Bloch vector n = d/|d|,
+C = +1 at m = 1) or from `compute/make_data.py`, which reuses `verify/verify_kahler_gauss.py` for the three-band model.
+The parallelogram insets in S05 are the linearised map at the sample momentum; the bars in S08 are drawn to scale.
+The film fold in S07 and the lifted fold in S09 are teaching pictures and are labelled as such.
+
+**Build** (from this folder, with the environment in [`pipeline/`](../../pipeline/README.md)):
+
+```bash
+python compute/make_data.py                     # data/*.npz (a few seconds)
+python tts.py                                   # narration (only changed beats are regenerated)
+python build.py                                 # 1080p60 + out/grassmann_en_subtitled.mp4
+python build.py --quality l --only S07_Fold     # quick 480p preview of one scene
+python tools/sheet.py S07_Fold s07_fold         # contact sheet of that preview
+```
 
 ## Video plan
 

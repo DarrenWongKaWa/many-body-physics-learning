@@ -1,0 +1,848 @@
+1
+00:00:00,050 --> 00:00:01,337
+Take a flat sheet of paper.
+
+2
+00:00:01,607 --> 00:00:05,891
+You can roll it into a cylinder without stretching it,
+and without a single crease.
+
+3
+00:00:06,450 --> 00:00:09,852
+Now bend the cylinder around,
+and glue its two ends together.
+
+4
+00:00:10,122 --> 00:00:12,316
+You get a torus, the surface of a donut.
+
+5
+00:00:12,883 --> 00:00:14,142
+Here is a harder question.
+
+6
+00:00:14,412 --> 00:00:18,839
+Can you lay a torus-shaped membrane smoothly
+over a sphere, without any creases?
+
+7
+00:00:19,109 --> 00:00:19,729
+You cannot.
+
+8
+00:00:19,999 --> 00:00:22,873
+Somewhere, the membrane has
+to fold back on itself.
+
+9
+00:00:23,433 --> 00:00:25,856
+Electrons in a crystal do exactly this.
+
+10
+00:00:26,126 --> 00:00:30,166
+In a two-band crystal,
+every band presses a torus onto a sphere
+
+11
+00:00:30,186 --> 00:00:34,419
+and hidden in the folds is a topological number,
+the Chern number.
+
+12
+00:00:34,983 --> 00:00:40,098
+This video follows three papers by Shin-Ming Huang,
+which read all of this from a
+
+13
+00:00:40,118 --> 00:00:45,359
+single object, the projector onto the occupied states,
+without ever fixing a phase.
+
+14
+00:00:46,717 --> 00:00:47,584
+Here is the stage.
+
+15
+00:00:47,854 --> 00:00:51,518
+On the left is the Brillouin zone,
+a square of crystal momenta.
+
+16
+00:00:51,788 --> 00:00:54,132
+Opposite edges describe the same states
+
+17
+00:00:54,152 --> 00:00:57,830
+so they are glued together,
+and the square is really a torus.
+
+18
+00:00:58,384 --> 00:01:00,045
+On the right is the space of states.
+
+19
+00:01:00,315 --> 00:01:04,532
+For two bands, a state up to its overall
+phase is a point on the Bloch sphere.
+
+20
+00:01:05,100 --> 00:01:07,299
+As the momentum moves, the state moves.
+
+21
+00:01:07,569 --> 00:01:11,663
+We use one model throughout,
+the Qi Wu Zhang model with mass one
+
+22
+00:01:11,683 --> 00:01:14,107
+the same band as in our earlier video.
+
+23
+00:01:14,377 --> 00:01:15,603
+Its Chern number is one.
+
+24
+00:01:16,167 --> 00:01:18,967
+Now paint the whole grid onto
+the sphere, cell by cell.
+
+25
+00:01:19,237 --> 00:01:22,927
+Most of the zone lands one way up,
+and we color those cells blue.
+
+26
+00:01:23,197 --> 00:01:26,320
+But around the point M,
+where both momenta equal pi
+
+27
+00:01:26,340 --> 00:01:29,648
+the sheet lands flipped over,
+and those cells are red.
+
+28
+00:01:30,217 --> 00:01:32,189
+Where blue meets red, the map folds.
+
+29
+00:01:32,459 --> 00:01:33,651
+Keep this picture in mind.
+
+30
+00:01:33,921 --> 00:01:37,382
+We will come back to it again and again,
+adding one layer at a time.
+
+31
+00:01:38,750 --> 00:01:41,180
+The first paper, by Huang and Giataganas
+
+32
+00:01:41,200 --> 00:01:44,856
+starts with a simple question:
+how far apart are two states?
+
+33
+00:01:45,417 --> 00:01:49,975
+A state does not care about its overall phase,
+so compare projectors instead.
+
+34
+00:01:50,245 --> 00:01:53,116
+For one band, two states make an angle theta
+
+35
+00:01:53,136 --> 00:01:55,875
+whose cosine is the size of their overlap.
+
+36
+00:01:56,433 --> 00:02:00,120
+On this Bloch sphere of radius one half,
+the angle has a picture.
+
+37
+00:02:00,390 --> 00:02:03,847
+The straight chord between the
+two points has length sine theta
+
+38
+00:02:03,867 --> 00:02:06,717
+the Hilbert Schmidt distance
+between the projectors.
+
+39
+00:02:06,987 --> 00:02:10,821
+The arc along the sphere has length theta,
+the Fubini Study distance.
+
+40
+00:02:11,091 --> 00:02:12,572
+For nearby states the two agree.
+
+41
+00:02:13,133 --> 00:02:17,937
+With several occupied bands,
+the occupied states form a plane rather than a line.
+
+42
+00:02:18,207 --> 00:02:20,814
+Two planes are separated by a set of angles
+
+43
+00:02:20,834 --> 00:02:24,664
+the principal angles,
+one for each pair of matching directions.
+
+44
+00:02:25,233 --> 00:02:28,642
+They come from the singular
+values of the overlap matrix
+
+45
+00:02:28,662 --> 00:02:32,805
+so they do not change when you rotate
+the basis inside either plane.
+
+46
+00:02:33,075 --> 00:02:37,408
+The Hilbert Schmidt distance is the square
+root of the sum of their squared sines.
+
+47
+00:02:38,767 --> 00:02:41,319
+Now suppose all you are given is a table
+
+48
+00:02:41,339 --> 00:02:44,598
+the distance between every
+pair of sampled momenta.
+
+49
+00:02:44,868 --> 00:02:47,631
+Can you rebuild the shape of the
+states from the table alone?
+
+50
+00:02:48,200 --> 00:02:51,512
+Because the Hilbert Schmidt
+distance is a straight-line
+
+51
+00:02:51,532 --> 00:02:54,239
+distance between matrices,
+the answer is yes.
+
+52
+00:02:54,509 --> 00:02:57,351
+Multidimensional scaling looks for points in
+
+53
+00:02:57,371 --> 00:03:00,409
+ordinary space whose
+distances match the table.
+
+54
+00:03:00,967 --> 00:03:01,685
+Watch it work.
+
+55
+00:03:01,955 --> 00:03:05,321
+Start from a random cloud,
+and let every pair of points pull
+
+56
+00:03:05,341 --> 00:03:08,594
+or push like a spring,
+until its length matches the table.
+
+57
+00:03:08,864 --> 00:03:11,605
+Each frame here is one real
+step of the algorithm.
+
+58
+00:03:12,167 --> 00:03:14,866
+For the Chern band, the cloud closes into a
+
+59
+00:03:14,886 --> 00:03:17,712
+complete sphere,
+with an empty cavity inside.
+
+60
+00:03:18,267 --> 00:03:21,030
+For a trivial band,
+with mass three point two
+
+61
+00:03:21,050 --> 00:03:24,061
+it builds only a small cap
+around the north pole.
+
+62
+00:03:24,331 --> 00:03:27,767
+The cap is fully covered,
+with no hole in it, but it never closes.
+
+63
+00:03:28,037 --> 00:03:30,934
+Whether the shape closes up
+is a sign of the topology.
+
+64
+00:03:31,500 --> 00:03:34,084
+But distances alone
+cannot tell you how often
+
+65
+00:03:34,104 --> 00:03:36,341
+each piece is covered, or which way up.
+
+66
+00:03:36,611 --> 00:03:38,184
+For that, we need to zoom in.
+
+67
+00:03:39,550 --> 00:03:40,732
+Zoom in on one momentum.
+
+68
+00:03:41,002 --> 00:03:45,328
+A tiny circle of momenta around it
+lands on the sphere as a tiny ellipse.
+
+69
+00:03:45,883 --> 00:03:47,741
+That ellipse is the quantum metric.
+
+70
+00:03:48,011 --> 00:03:51,780
+It says how far the state moves for
+each direction of step in momentum.
+
+71
+00:03:52,050 --> 00:03:54,776
+The long axis points where
+the state changes fastest.
+
+72
+00:03:55,333 --> 00:03:59,496
+In the second paper, Huang builds everything
+from the derivative of the projector.
+
+73
+00:03:59,766 --> 00:04:04,969
+The metric is one half the trace of d P times d P,
+and no phase is ever chosen.
+
+74
+00:04:05,533 --> 00:04:07,697
+Now take a tiny square of momenta instead.
+
+75
+00:04:07,967 --> 00:04:09,849
+It lands as a tiny parallelogram.
+
+76
+00:04:10,119 --> 00:04:13,762
+Its area is the quantum area,
+and it has an orientation
+
+77
+00:04:13,782 --> 00:04:15,893
+it can land face up, or flipped.
+
+78
+00:04:16,450 --> 00:04:19,058
+The Berry curvature is
+exactly this signed area.
+
+79
+00:04:19,328 --> 00:04:23,709
+It is positive where the cell lands face up,
+negative where it lands flipped
+
+80
+00:04:23,729 --> 00:04:27,821
+and in our units it is twice the
+signed area per unit area in momentum.
+
+81
+00:04:28,383 --> 00:04:30,454
+Here is a check that this
+is the right picture.
+
+82
+00:04:30,724 --> 00:04:33,478
+The other band sits at the
+opposite point of the sphere.
+
+83
+00:04:33,748 --> 00:04:37,255
+Its parallelogram has the same shape,
+so the same metric
+
+84
+00:04:37,275 --> 00:04:40,468
+but it is flipped,
+so the opposite Berry curvature.
+
+85
+00:04:41,033 --> 00:04:43,833
+Yet the metric of both
+bands is that of a sphere
+
+86
+00:04:43,853 --> 00:04:46,712
+of radius one half,
+with Gaussian curvature four.
+
+87
+00:04:46,982 --> 00:04:49,767
+So the Berry curvature is not
+the curvature of the metric.
+
+88
+00:04:50,037 --> 00:04:50,990
+Keep the two apart.
+
+89
+00:04:52,350 --> 00:04:55,052
+The derivative of the
+projector also tells you how
+
+90
+00:04:55,072 --> 00:04:57,882
+to travel between states
+along the straightest path.
+
+91
+00:04:58,152 --> 00:05:00,581
+Exponentiate it, and you get a geodesic.
+
+92
+00:05:00,851 --> 00:05:03,489
+On the Bloch sphere,
+geodesics are great circles.
+
+93
+00:05:04,050 --> 00:05:07,871
+Now carry an arrow around a
+triangle made of three geodesics
+
+94
+00:05:07,891 --> 00:05:11,199
+keeping it as parallel as
+the curved surface allows.
+
+95
+00:05:11,469 --> 00:05:13,095
+When it comes home, it has turned.
+
+96
+00:05:13,650 --> 00:05:17,829
+The turning angle is the curvature,
+four, times the enclosed area
+
+97
+00:05:17,849 --> 00:05:20,800
+which is just the solid
+angle of the triangle.
+
+98
+00:05:21,367 --> 00:05:23,208
+The quantum states remember the loop too.
+
+99
+00:05:23,478 --> 00:05:28,901
+Multiply the overlaps around the triangle,
+one to two, two to three, three to one.
+
+100
+00:05:29,171 --> 00:05:32,079
+The phase of this product,
+the Bargmann invariant
+
+101
+00:05:32,099 --> 00:05:36,441
+gives the Berry phase of the triangle,
+and it is half of the solid angle.
+
+102
+00:05:37,000 --> 00:05:41,207
+So the arrow turns by the full solid angle,
+while the state picks up half of it.
+
+103
+00:05:41,477 --> 00:05:44,105
+They are proportional,
+but they are not the same thing.
+
+104
+00:05:44,667 --> 00:05:47,260
+This gives a phase-free way
+to compute Berry phases.
+
+105
+00:05:47,530 --> 00:05:52,278
+Replace a smooth loop by a polygon of
+sampled states joined by geodesics.
+
+106
+00:05:52,548 --> 00:05:57,253
+The polygon's phase converges to the Berry
+phase of the loop as you add more points.
+
+107
+00:05:58,616 --> 00:05:59,516
+Back to the fold.
+
+108
+00:05:59,786 --> 00:06:02,016
+Draw the metric ellipse at every momentum
+
+109
+00:06:02,036 --> 00:06:05,803
+like the little circles that show
+the distortion of a map projection.
+
+110
+00:06:06,366 --> 00:06:08,506
+Far from the fold the ellipses are fat.
+
+111
+00:06:08,776 --> 00:06:13,612
+Near the fold they flatten, and on the fold
+itself they collapse into line segments
+
+112
+00:06:13,632 --> 00:06:16,946
+one direction of motion no
+longer moves the state at all.
+
+113
+00:06:17,499 --> 00:06:18,668
+That is what a fold is.
+
+114
+00:06:18,938 --> 00:06:23,409
+Fold a clear sheet printed with arrows,
+and the folded part comes down mirrored.
+
+115
+00:06:23,679 --> 00:06:27,987
+Two different momenta land on the same state,
+with opposite orientations.
+
+116
+00:06:28,549 --> 00:06:31,381
+In our model the fold is
+a closed curve around M
+
+117
+00:06:31,401 --> 00:06:34,054
+where the determinant
+of the metric vanishes.
+
+118
+00:06:34,324 --> 00:06:35,923
+Inside it, the sheet is flipped.
+
+119
+00:06:36,483 --> 00:06:37,694
+Now look at the polar cap.
+
+120
+00:06:37,964 --> 00:06:41,401
+It is covered three times:
+two sheets face up, and one flipped.
+
+121
+00:06:41,966 --> 00:06:43,670
+So there are two ways to add up area.
+
+122
+00:06:43,940 --> 00:06:48,540
+Count every sheet, and you get the quantum volume:
+one point one nine spheres.
+
+123
+00:06:49,099 --> 00:06:51,412
+Count with signs, and the flipped sheet
+
+124
+00:06:51,432 --> 00:06:54,162
+cancels one of the others:
+exactly one sphere.
+
+125
+00:06:54,432 --> 00:06:56,357
+That signed count is the Chern number.
+
+126
+00:06:56,627 --> 00:07:00,501
+The difference is the extra area
+tucked into the folds, which is why
+
+127
+00:07:00,521 --> 00:07:04,967
+in these units, the quantum volume can
+never be smaller than the Chern number.
+
+128
+00:07:06,333 --> 00:07:08,301
+The third paper asks a deeper question.
+
+129
+00:07:08,571 --> 00:07:11,292
+What does the curvature of the
+metric know about topology?
+
+130
+00:07:11,850 --> 00:07:15,888
+For a smooth closed surface,
+the Gauss Bonnet theorem says that the
+
+131
+00:07:15,908 --> 00:07:19,885
+total Gaussian curvature is two pi
+times the Euler characteristic.
+
+132
+00:07:20,155 --> 00:07:21,487
+For a sphere that is four pi
+
+133
+00:07:21,757 --> 00:07:22,910
+for a torus it is zero.
+
+134
+00:07:23,466 --> 00:07:28,381
+Away from the folds, our metric is a piece of sphere,
+with constant curvature four.
+
+135
+00:07:28,651 --> 00:07:30,716
+Add it up over all the regular sheets
+
+136
+00:07:30,736 --> 00:07:34,042
+and you get plus two point three
+seven eight, times two pi.
+
+137
+00:07:34,312 --> 00:07:34,927
+Not zero.
+
+138
+00:07:35,483 --> 00:07:37,119
+The missing piece lives on the fold.
+
+139
+00:07:37,389 --> 00:07:40,970
+Treated as a crease,
+the fold carries a singular curvature
+
+140
+00:07:40,990 --> 00:07:45,130
+and it contributes minus two point
+three seven eight, times two pi.
+
+141
+00:07:45,400 --> 00:07:49,301
+The books balance, and the total is zero,
+as it must be for a torus.
+
+142
+00:07:49,866 --> 00:07:51,141
+Now keep the signs instead.
+
+143
+00:07:51,411 --> 00:07:54,431
+The flipped sheet subtracts,
+three sheets become one
+
+144
+00:07:54,451 --> 00:07:58,230
+and the signed total curvature is
+four pi times the Chern number.
+
+145
+00:07:58,800 --> 00:08:02,227
+These totals do not depend on
+how the metric is normalized.
+
+146
+00:08:02,497 --> 00:08:06,526
+Huang's papers use a metric twice as large,
+with sphere curvature two
+
+147
+00:08:06,546 --> 00:08:09,225
+and find the same two
+point three seven eight.
+
+148
+00:08:10,583 --> 00:08:12,754
+The third paper ends with an open question.
+
+149
+00:08:13,024 --> 00:08:16,084
+What replaces this picture when
+there are more than two bands?
+
+150
+00:08:16,354 --> 00:08:18,019
+What follows is our own proposal.
+
+151
+00:08:18,289 --> 00:08:20,954
+It is not yet published,
+and it is marked as such.
+
+152
+00:08:21,516 --> 00:08:24,772
+With a third band,
+the space of states has four real
+
+153
+00:08:24,792 --> 00:08:28,364
+dimensions instead of two,
+and a fold has room to escape.
+
+154
+00:08:28,634 --> 00:08:32,452
+Take the simplest fold,
+where s and t go to s and t squared.
+
+155
+00:08:32,722 --> 00:08:36,140
+Push it gently into a new direction,
+epsilon times t
+
+156
+00:08:36,160 --> 00:08:38,785
+and the crease opens into a smooth bend.
+
+157
+00:08:39,350 --> 00:08:41,516
+Then what replaces the plus or minus sign?
+
+158
+00:08:41,786 --> 00:08:43,415
+An angle, the Kähler angle.
+
+159
+00:08:43,685 --> 00:08:47,950
+The Berry curvature is twice its
+cosine times the quantum area density.
+
+160
+00:08:48,220 --> 00:08:51,524
+For two bands the cosine can
+only be plus or minus one
+
+161
+00:08:51,544 --> 00:08:53,309
+and it jumps across the fold.
+
+162
+00:08:53,579 --> 00:08:55,240
+For three bands it varies smoothly.
+
+163
+00:08:55,800 --> 00:08:58,304
+Points where its size
+reaches one are special
+
+164
+00:08:58,324 --> 00:09:00,660
+there the tangent plane is a complex line.
+
+165
+00:09:00,930 --> 00:09:04,937
+In our three-band example there
+are five such complex points
+
+166
+00:09:04,957 --> 00:09:08,562
+four with index plus one and
+one with index minus one.
+
+167
+00:09:08,832 --> 00:09:12,334
+Their signed count is three,
+three times the size of the
+
+168
+00:09:12,354 --> 00:09:15,918
+Chern number, exactly as a
+topological argument predicts.
+
+169
+00:09:16,483 --> 00:09:18,764
+And since this surface no longer folds
+
+170
+00:09:18,784 --> 00:09:21,671
+the ordinary Gauss Bonnet
+theorem applies again.
+
+171
+00:09:21,941 --> 00:09:26,379
+The total Gaussian curvature vanishes,
+and it no longer carries the Chern number.
+
+172
+00:09:27,733 --> 00:09:29,379
+Let's put the three papers together.
+
+173
+00:09:29,649 --> 00:09:31,757
+The first compares states at a distance
+
+174
+00:09:31,777 --> 00:09:34,539
+and rebuilds their shape
+from a table of distances.
+
+175
+00:09:35,100 --> 00:09:38,641
+The second differentiates the projector,
+giving the metric
+
+176
+00:09:38,661 --> 00:09:41,588
+the Berry curvature,
+geodesics and Berry phases.
+
+177
+00:09:41,858 --> 00:09:46,531
+The same toolbox gives Wilson loops,
+winding numbers and the Z two index.
+
+178
+00:09:47,100 --> 00:09:51,146
+The third integrates curvature carefully,
+folds and signs included
+
+179
+00:09:51,166 --> 00:09:53,919
+and gets the Chern number
+back from geometry.
+
+180
+00:09:54,483 --> 00:09:58,818
+All of it starts from one object,
+the projector, with no phase to fix
+
+181
+00:09:58,838 --> 00:10:04,245
+and it all lives in one picture:
+a torus pressed onto a sphere, folding where it must.
+
+182
+00:10:04,515 --> 00:10:05,374
+Thanks for watching.
