@@ -1,5 +1,8 @@
 # How the videos are made
 
+This file is the technical how-to. The method behind it (how to choose what to show, the stages and their checks)
+is in [`METHOD.md`](METHOD.md), and every problem we ran into is in [`PITFALLS.md`](PITFALLS.md).
+
 Every topic folder is a self-contained project with the same pipeline:
 
 ```
@@ -40,13 +43,19 @@ python tts.py --lang en --voice af_bella      # only beats whose text changed ar
 ```
 
 We cannot listen to the output during development, so the voice was chosen by transcribing candidates back with
-Whisper (`mlx-whisper`) and keeping the one with the lowest word error rate.
+Whisper (`mlx-whisper`) and keeping the one with the lowest word error rate. The same check runs on every new
+narration:
+
+```bash
+python ../../pipeline/tools/check_tts.py      # from a topic folder; lists beats whose transcription differs
+```
 
 ## 4. Animate
 
 - Scenes use `with self.narrate(key) as b:` from `common.py`. It adds the audio, logs the start time for the subtitles,
   and pads the scene until the speech ends.
-- Inside a beat, `b.wait_sentence(i)` waits for the i-th sentence and `b.rest()` returns the remaining time.
+- Inside a beat, `b.wait_sentence(i)` waits for the i-th sentence, `b.until_sentence(i)` gives the time left until it
+  starts (useful as a `run_time`), and `b.remaining()` the time left in the beat (`b.rest()` in topic 01).
 - Whenever possible, curves come from real calculations, not drawings.
   Examples: the NEGF solver in topic 03, the resonant-level formulas in topic 01, the two-band geometry in topic 02.
   Anything schematic is labelled on screen.
@@ -70,11 +79,6 @@ The Homebrew ffmpeg has no libass/drawtext. `tools/burn_subs.py` therefore draws
 and overlays it with ffmpeg. It also shrinks the animation to 88 % and puts the subtitles in a band of the background colour
 underneath, so they never cover equations.
 
-## Pitfalls we hit
+## Pitfalls
 
-- **Parallel Manim runs share the LaTeX cache** and race on it. `build.py` gives each scene its own `--media_dir`.
-- **`\'` inside a Python raw string reaches LaTeX as an accent command.** Write `r"G(x,t;x',t')"` with double quotes.
-- **`\;` spacing inside `Tex` breaks Manim's string splitting.** Use `\quad` or plain spaces.
-- **`plot_line_graph` returns a `VDict`.** Use `['line_graph']` before wrapping it in `DashedVMobject`.
-- **Homebrew upgrades can break ffmpeg's dynamic libraries** (e.g. x265). Fix with `brew upgrade ffmpeg`.
-- **zsh aborts a command when a glob matches nothing.** Use `find ... -delete` in scripts instead of `rm pattern*`.
+The list of problems we hit, with symptoms and fixes, is in [`PITFALLS.md`](PITFALLS.md).

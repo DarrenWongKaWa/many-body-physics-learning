@@ -21,13 +21,24 @@ Subtitles are in [`videos/`](videos/README.md).
 
 [Manim](https://www.manim.community/) for the animation, [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) for the narration
 (runs locally), ffmpeg for assembly, and a small amount of glue that keeps the animation in sync with the voice and
-burns in subtitles. The full workflow, environment setup and pitfalls are in [`pipeline/`](pipeline/README.md).
+burns in subtitles.
+
+## Make one yourself
+
+The repository is meant to be reused: pick a topic you want to learn, and turn it into a video the same way.
+
+- [`pipeline/METHOD.md`](pipeline/METHOD.md): the principles and the standard workflow, from choosing the one picture
+  to publishing, with a check at the end of every stage.
+- [`pipeline/README.md`](pipeline/README.md): environment, voice, rendering, assembly.
+- [`pipeline/PITFALLS.md`](pipeline/PITFALLS.md): every problem we ran into, with its fix.
+- `topics/04-grassmannian-quantum-geometry` is the most complete reference project. It has study notes, numerical
+  checks, a written plan, precomputed data and the scenes.
 
 ## Layout
 
 ```
 materials/   links to the source texts
-pipeline/    how the videos are made
+pipeline/    how the videos are made: METHOD.md (principles and workflow), README.md (tools), PITFALLS.md
 videos/      subtitles and links to the MP4 files (attached to the GitHub release)
 topics/NN-*/ one self-contained project per video: narration, scenes, physics code, build script
 ```
