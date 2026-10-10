@@ -1,0 +1,253 @@
+\RequirePackage{fix-cm}
+\documentclass[10pt,a4paper,landscape]{article}
+\usepackage[margin=0mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor,tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.markings}
+\usepackage[bookmarks=false,colorlinks=true,urlcolor=paperblue]{hyperref}
+\definecolor{paperblue}{HTML}{1C5F99}
+\definecolor{support}{HTML}{445267}
+\definecolor{openamber}{HTML}{9B6200}
+\hypersetup{pdftitle={Three papers, one projector map},pdfauthor={Scientific reading guide},pdfsubject={Huang and Giataganas: distance, projector calculus, signed area}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Gr}{\operatorname{Gr}}
+\newcommand{\src}[2]{\href{#1}{#2}}
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm,
+  >={Latex[length=2.2mm,width=1.5mm]},
+  body/.style={anchor=north west,align=left,text width=81mm,
+    font=\fontsize{10.2}{12.5}\selectfont,text=paperblue,inner sep=0pt},
+  small/.style={font=\fontsize{10.1}{11.5}\selectfont,text=support,inner sep=0pt},
+  source/.style={anchor=north west,align=left,text width=81mm,
+    font=\fontsize{10.1}{11.5}\selectfont,text=support,inner sep=0pt},
+  equation/.style={anchor=north,font=\fontsize{10.8}{13}\selectfont,
+    text=paperblue,inner sep=0pt},
+  diagram/.style={font=\fontsize{10.1}{11.5}\selectfont,inner sep=1pt,text=support}]
+\begin{scope}[shift={(current page.south west)}]
+
+% Header: the ordering is explicitly conceptual rather than chronological.
+\node[anchor=north west,text=paperblue,font=\bfseries\fontsize{23}{25}\selectfont,
+  inner sep=0pt] at (9,201) {Three papers, one projector map};
+\node[anchor=north east,text=support,font=\bfseries\fontsize{10.1}{12}\selectfont,
+  inner sep=0pt] at (288,199) {A VISUAL READING GUIDE};
+\node[anchor=north west,text=support,font=\fontsize{11}{13}\selectfont,
+  inner sep=0pt] at (9,188)
+  {The author's story: finite distance $\longrightarrow$ local geometry and holonomy $\longrightarrow$ signed area and topology};
+\node[anchor=north east,text=support,font=\fontsize{10.1}{12}\selectfont,
+  inner sep=0pt] at (288,183) {Conceptual order, not chronology};
+
+% The common projector and the normalization used throughout this poster.
+\fill[paperblue!6] (9,167.5) rectangle (288,178.8);
+\node[anchor=west,text=support,font=\fontsize{11}{13}\selectfont,inner sep=0pt]
+  at (13,173.2)
+  {$P(\mathbf k)=\Psi(\mathbf k)\Psi(\mathbf k)^\dagger:
+    M\longrightarrow\Gr(r,N)$};
+\node[anchor=west,text=support,font=\fontsize{10.1}{12}\selectfont,inner sep=0pt]
+  at (128,173.2) {rank-$r$ occupied subspace};
+\node[anchor=east,text=support,font=\fontsize{11}{13}\selectfont,inner sep=0pt]
+  at (284,173.2)
+  {$g_{\mu\nu}=\frac12\tr(\partial_\mu P\,\partial_\nu P)$};
+
+% Three columns. Arrows occupy the gutters, never the text areas.
+\foreach \x in {9,104,199}{
+  \fill[paperblue!2] (\x,46) rectangle (\x+89,164);
+  \draw[paperblue!22,line width=.45pt] (\x,46) rectangle (\x+89,164);
+  \fill[paperblue] (\x,163.3) rectangle (\x+89,164);
+}
+\draw[->,paperblue!70,line width=1pt] (98.8,153.4)--(103.2,153.4);
+\draw[->,paperblue!70,line width=1pt] (193.8,153.4)--(198.2,153.4);
+
+% H1: 33 words of story prose, followed by a principal-pair sketch.
+\node[anchor=north west,text=paperblue,font=\bfseries\fontsize{10.1}{12}\selectfont,
+  inner sep=0pt] at (13,160.5) {H1 \quad DISTANCES};
+\node[anchor=north west,text=paperblue,font=\bfseries\fontsize{14}{16}\selectfont,
+  inner sep=0pt] at (13,154.3) {Compare whole subspaces};
+\node[body] at (13,143.8) {Occupied states span a subspace; rotating\\
+  their basis changes no physics. Principal\\
+  angles compare subspaces. Projector\\
+  distances reconstruct their sampled image\\
+  in Euclidean space. Distance data alone\\
+  do not fix the map's orientation.};
+
+% Original sketch: one principal pair, plus chordal projector separation.
+\begin{scope}[shift={(13,87)}]
+  \coordinate (O) at (5,5);
+  \draw[->,paperblue,line width=1.1pt] (O)--(32,5);
+  \draw[->,paperblue,line width=1.1pt] (O)--(26.9,20.3);
+  \draw[paperblue,line width=.8pt] (15,5) arc[start angle=0,end angle=35,radius=10];
+  \node[diagram,text=paperblue] at (18,9.2) {$\theta_a$};
+  \node[diagram,anchor=north] at (31,3.5) {$u_a$};
+  \node[diagram,anchor=south] at (28,21) {$v_a$};
+  \fill[paperblue] (O) circle[radius=.65mm];
+  \node[diagram,anchor=north] at (16.5,-1) {one principal pair};
+
+  \coordinate (P) at (46,6);
+  \coordinate (Q) at (73,17.5);
+  \draw[paperblue,line width=1pt] (P)
+    .. controls (44,20) and (60,26) .. (Q)
+    .. controls (80,13) and (81,8) .. (81,5);
+  \draw[support,dashed,line width=.85pt] (P)--(Q);
+  \fill[paperblue] (P) circle[radius=.8mm];
+  \fill[paperblue] (Q) circle[radius=.8mm];
+  \node[diagram,anchor=east] at (44.8,5.6) {$P_1$};
+  \node[diagram,anchor=west] at (74.3,18.8) {$P_2$};
+  \node[diagram,fill=paperblue!2] at (62,8.4) {$D_{\rm HS}$};
+  \node[diagram,anchor=north] at (62.5,-1) {projector image};
+\end{scope}
+
+\node[equation] at (53.5,81.2)
+  {$s_a(\Psi_1^\dagger\Psi_2)=\cos\theta_a$};
+\node[equation] at (53.5,74.6)
+  {$D_{\rm HS}^2=\frac12\tr(P_1-P_2)^2
+     =\sum_a\sin^2\theta_a$};
+\node[source] at (13,67.2)
+  {\src{https://arxiv.org/html/2412.20046v2\#S2.E4}{H1 \S II, Eqs. (4), (8)};
+   \src{https://arxiv.org/html/2412.20046v2\#S3.SS1.SSS1}{\S III.1.1}.};
+\draw[paperblue!20] (13,60.5)--(94,60.5);
+\node[anchor=north west,text=paperblue,font=\bfseries\fontsize{11}{13}\selectfont,
+  inner sep=0pt] at (13,57.4) {Global view};
+\node[anchor=north west,text=support,font=\fontsize{10.2}{12}\selectfont,
+  inner sep=0pt] at (13,51.6) {How far apart are the subspaces?};
+
+% H2: 33 words. The drawing distinguishes local tangents and closed loops.
+\node[anchor=north west,text=paperblue,font=\bfseries\fontsize{10.1}{12}\selectfont,
+  inner sep=0pt] at (108,160.5) {H2 \quad PROJECTOR CALCULUS};
+\node[anchor=north west,text=paperblue,font=\bfseries\fontsize{14}{16}\selectfont,
+  inner sep=0pt] at (108,154.3) {Differentiate and transport};
+\node[body] at (108,143.8) {The projector carries local geometry.\\
+  Its derivatives are tangents; the quantum\\
+  geometric tensor supplies metric and\\
+  Berry curvature. Loops produce holonomy.\\
+  Principal angles determine geodesic length;\\
+  an ambient geodesic can leave the image.};
+
+% Original sketch: a physical image patch, its tangent, and a loop.
+\begin{scope}[shift={(108,87)}]
+  \path[fill=paperblue!7,draw=paperblue!45,line width=.6pt]
+    (4,5) .. controls (12,19) and (38,28) .. (76,18)
+    -- (79,2) .. controls (46,-2) and (19,-1) .. cycle;
+  \draw[paperblue!22] (18,2) .. controls (20,13) and (34,22) .. (47,22);
+  \draw[paperblue!22] (41,0) .. controls (41,10) and (51,20) .. (61,21);
+  \draw[paperblue!22] (8,10) .. controls (26,14) and (54,13) .. (77,9);
+  \fill[paperblue] (21,10) circle[radius=.9mm];
+  \draw[->,paperblue,line width=1.2pt] (21,10)--(37,20);
+  \node[diagram,anchor=south,text=paperblue] at (30,21.2) {$T_\mu=\partial_\mu P$};
+  \node[diagram,anchor=north] at (19,8) {$P(\mathbf k)$};
+  \draw[paperblue,line width=1.1pt,
+    postaction={decorate},decoration={markings,
+      mark=at position .22 with {\arrow{Latex}},
+      mark=at position .70 with {\arrow{Latex}}}]
+    (55,8) .. controls (49,13) and (58,19) .. (65,17)
+    .. controls (74,15) and (72,7) .. (63,6)
+    .. controls (59,6) and (56,6) .. cycle;
+  \node[diagram,anchor=south,text=paperblue] at (68,20) {loop $\gamma$};
+  \node[diagram,anchor=north] at (41,-1)
+    {A closed loop can rotate the frame.};
+\end{scope}
+
+\node[equation] at (148.5,81.2)
+  {$q_{\mu\nu}=\tr(P\,\partial_\mu P\,\partial_\nu P)
+       =g_{\mu\nu}-\frac{i}{2}\Omega_{\mu\nu}$};
+\node[equation] at (148.5,74.6)
+  {$\Omega_{\mu\nu}=i\tr\!\left(P[\partial_\mu P,\partial_\nu P]\right)$};
+\node[source] at (108,68.4)
+  {\src{https://arxiv.org/html/2608.06777v1\#S4.E27}{H2 \S IV.2, Eqs. (27)--(30)};
+   \src{https://arxiv.org/html/2608.06777v1\#S4.E62}{\S IV.5}.
+   \src{https://arxiv.org/html/2608.06777v1\#S4.SS3}{Geodesics: \S IV.3--IV.4, Eq. (61)}.};
+\draw[paperblue!20] (108,59.2)--(189,59.2);
+\node[anchor=north west,text=paperblue,font=\bfseries\fontsize{11}{13}\selectfont,
+  inner sep=0pt] at (108,57.1) {Local and loop view};
+\node[anchor=north west,text=support,font=\fontsize{10.2}{12}\selectfont,
+  inner sep=0pt] at (108,51.3) {How does the subspace move?};
+
+% H3: 32 words. The displayed formulas use the unified convention above.
+\node[anchor=north west,text=paperblue,font=\bfseries\fontsize{10.1}{12}\selectfont,
+  inner sep=0pt] at (203,160.5) {H3 \quad SIGNED AREA};
+\node[anchor=north west,text=paperblue,font=\bfseries\fontsize{14}{16}\selectfont,
+  inner sep=0pt] at (203,154.3) {Account for folds and signs};
+\node[body] at (203,143.8) {Two-band states lie on a sphere. Folds\\
+  make the metric degenerate and overlap\\
+  sheets with opposite orientations.\\
+  Unsigned area adds sheets; signed area\\
+  cancels them. Singular curvature enters\\
+  Gauss--Bonnet along the fold.};
+
+% Original sketch: two parameter-space sheets map to the same sphere patch.
+\begin{scope}[shift={(203,87)}]
+  \fill[paperblue!12] (5,13) rectangle (27,25);
+  \fill[support!9] (5,1) rectangle (27,13);
+  \draw[support!60,line width=.6pt] (5,1) rectangle (27,25);
+  \draw[paperblue,line width=1pt] (5,13)--(27,13);
+  \node[diagram,anchor=east,text=paperblue] at (4,13) {$\Sigma$};
+  \node[diagram,text=paperblue] at (9,20) {$+$};
+  \node[diagram] at (9,6) {$-$};
+  \fill[paperblue] (20,20) circle[radius=.8mm];
+  \fill[support] (20,6) circle[radius=.8mm];
+  \node[diagram,anchor=north] at (16,-1) {two sheets};
+  \draw[->,paperblue,line width=.9pt]
+    (22,20) .. controls (33,23) and (40,20) .. (55.1,15);
+  \draw[->,support,dashed,line width=.9pt]
+    (22,6) .. controls (34,3) and (43,12) .. (55.1,15);
+  \node[diagram,anchor=south] at (40,24) {same state};
+  \fill[paperblue!8] (67,13) circle[radius=11mm];
+  \draw[paperblue!75,line width=.8pt] (67,13) circle[radius=11mm];
+  \draw[paperblue!30] (56,13) arc[start angle=180,end angle=360,
+    x radius=11mm,y radius=3.5mm];
+  \draw[paperblue!30,dashed] (56,13) arc[start angle=180,end angle=0,
+    x radius=11mm,y radius=3.5mm];
+  \path[fill=paperblue!22] (56.4,15.8)
+    .. controls (60,24) and (68,22) .. (70,17)
+    .. controls (66,13) and (61,13) .. cycle;
+  \fill[paperblue] (56.8,15.5) circle[radius=.9mm];
+  \node[diagram,anchor=north] at (67,-1) {sphere $S^2$};
+\end{scope}
+
+\node[equation] at (243.5,81.2)
+  {$dA=\frac12|\Omega|\,d^2k,\qquad
+    d\bar A=\frac12\Omega\,d^2k$};
+\node[equation] at (243.5,74.6)
+  {$C=\frac{1}{2\pi}\int_M\Omega\,d^2k
+      =\frac{1}{4\pi}\int_M K\,d\bar A$};
+\node[source] at (203,67.2)
+  {$K=4$ on regular regions (H3 \S II.2).\\
+   \src{https://arxiv.org/html/2510.15760v1\#S3.E24}{H3 \S\S III--IV, Eqs. (24), (30), (37)}.};
+\fill[openamber!7] (202,47.5) rectangle (285,57.4);
+\draw[openamber!45,line width=.6pt] (202,47.5) rectangle (285,57.4);
+\node[anchor=north west,text=openamber,
+  font=\bfseries\fontsize{10.1}{11.5}\selectfont,inner sep=0pt]
+  at (204,56.4) {OPEN: MULTIBAND IDENTIFICATION};
+\node[anchor=north west,text=openamber,
+  font=\fontsize{10.1}{11.5}\selectfont,inner sep=0pt]
+  at (204,51.9) {Extending this geometric link: H3 \S V.};
+
+% Scope and sign notes: all use >=10 pt type.
+\node[anchor=north west,text=support,text width=279mm,align=left,
+  font=\fontsize{10.1}{11.5}\selectfont,inner sep=0pt] at (9,42.7)
+  {\textbf{Conventions.} This poster uses $g=\tfrac12\tr(dP\,dP)$ and $\Omega=\Omega_{xy}$ with the H2 sign.
+   H2 and H3 use $g_H=2g$; H3's displayed Berry curvature is $-\Omega$ here. Signed area is oriented consistently with $\Omega$.};
+\node[anchor=north west,text=support,text width=279mm,align=left,
+  font=\fontsize{10.1}{11.5}\selectfont,inner sep=0pt] at (9,33.2)
+  {\textbf{Scope.} $P(M)$ is the physical image. H2 \S III.2 concerns $U(N)$ group curvature (Eqs. 13--14).
+   H3's singular terms depend on its fold/cusp setting.};
+
+% Full primary-paper identifications, clickable and readable in print.
+\draw[paperblue!25,line width=.4pt] (9,26.1)--(288,26.1);
+\node[anchor=north west,text=support,font=\fontsize{10.1}{11.5}\selectfont,
+  inner sep=0pt] at (9,23.8)
+  {\textbf{H1}\; Huang and Giataganas, \src{https://arxiv.org/html/2412.20046v2}{\textit{Exploring Grassmann manifolds in topological systems via quantum distance}}, arXiv:2412.20046v2.};
+\node[anchor=north west,text=support,font=\fontsize{10.1}{11.5}\selectfont,
+  inner sep=0pt] at (9,17.8)
+  {\textbf{H2}\; Huang, \src{https://arxiv.org/html/2608.06777v1}{\textit{Quantum-State Projectors on Grassmannian: Geometry, Holonomy, and Topology}}, arXiv:2608.06777v1.};
+\node[anchor=north west,text=support,text width=279mm,align=left,
+  font=\fontsize{10.1}{11.5}\selectfont,inner sep=0pt] at (9,11.8)
+  {\textbf{H3}\; Huang, \src{https://arxiv.org/html/2510.15760v1}{\textit{A Gauss-Bonnet Theorem for Quantum States: Gauss Curvature and Topology in the Projective Hilbert Space}}, arXiv:2510.15760v1.};
+
+\end{scope}
+\end{tikzpicture}
+\end{document}

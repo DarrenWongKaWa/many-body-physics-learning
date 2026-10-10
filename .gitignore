@@ -20,3 +20,6 @@ paper*.txt
 # videos live in GitHub Releases
 *.mp4
 *.wav
+
+# own study-guide PDFs for topic 04 (compiled from the .tex sources next to them)
+!topics/04-grassmannian-quantum-geometry/guide/*.pdf

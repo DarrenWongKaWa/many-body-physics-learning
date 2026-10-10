@@ -1,0 +1,65 @@
+
+==== two-band QWZ (m0=1): N=2, occupied rank k=1, grid 240x240 ====
+model dH/d2H vs finite differences : 5.6e-09
+min gap between band 1 and 2  : 2.0000
+d^2P Sylvester consistency (unocc,occ blocks): 3.7e-16, 3.9e-16
+Chern number  (1/2pi)∫Ω           : -1.000000
+min det g (standard conv.)        : 6.798e-11   max: 6.250e-02
+cos theta_K  range                 : [-1.0000, +1.0000]
+max |cos theta_K| - 1              : +2.12e-09
+Kähler form via J=i[P,·] vs Ω      : 5.6e-17
+quantum volume ∫√det g             : 3.735198  (π|C| = 3.141593),  ∫(1-cosθ)dA = 0.593605
+||[X1,X2]||² vs ||F_occ||²+||F_un||² : 1.1e-16
+K_Gr (‖[X1,X2]‖²/det g) vs Gauss eq. of Gr⊂Herm : 8.5e-09
+K_Gr vs (1+3cos²θ)/2               : 2.1e-09
+K_G (Gauss eq. in Herm) vs K_Gr + K_II : 3.8e-14
+K_G vs intrinsic Brioschi (rel.)   : 6.9e-01   [masked 7.3% of BZ]
+K_G  range (Huang conv.)           : [2.0000, 2.0000]
+K_Gr range (Huang conv.)           : [2.0000, 2.0000]
+K_II range (Huang conv.)           : [-0.0000, 0.0000]
+Gauss-Bonnet ∫K_G dA /2π           : +2.377901  (χ(T²)=0)
+           ∫K_Gr dA /2π, ∫K_II dA /2π : +2.3779, -0.0000
+
+==== three-band: QWZ ⊕ orbital, coupled: N=3, occupied rank k=1, grid 240x240 ====
+model dH/d2H vs finite differences : 1.6e-08
+min gap between band 1 and 2  : 1.5308
+d^2P Sylvester consistency (unocc,occ blocks): 6.8e-16, 8.9e-16
+Chern number  (1/2pi)∫Ω           : -1.000000
+min det g (standard conv.)        : 1.026e-05   max: 1.249e-01
+cos theta_K  range                 : [-1.0000, +0.9282]
+max |cos theta_K| - 1              : -6.87e-06
+Kähler form via J=i[P,·] vs Ω      : 2.2e-16
+quantum volume ∫√det g             : 4.132271  (π|C| = 3.141593),  ∫(1-cosθ)dA = 0.990678
+||[X1,X2]||² vs ||F_occ||²+||F_un||² : 4.4e-16
+K_Gr (‖[X1,X2]‖²/det g) vs Gauss eq. of Gr⊂Herm : 2.7e-14
+K_Gr vs (1+3cos²θ)/2               : 1.9e-14
+K_G (Gauss eq. in Herm) vs K_Gr + K_II : 8.5e-14
+K_G vs intrinsic Brioschi (rel.)   : 8.0e-03   [masked 0.9% of BZ]
+K_G  range (Huang conv.)           : [-204.1833, 4.0336]
+K_Gr range (Huang conv.)           : [0.5000, 2.0000]
+K_II range (Huang conv.)           : [-205.1527, 2.0764]
+Gauss-Bonnet ∫K_G dA /2π           : +0.000016  (χ(T²)=0)
+           ∫K_Gr dA /2π, ∫K_II dA /2π : +2.3321, -2.3321
+
+==== four-band, two occupied (rank-2 projector): N=4, occupied rank k=2, grid 240x240 ====
+model dH/d2H vs finite differences : 9.4e-09
+min gap between band 2 and 3  : 0.6957
+d^2P Sylvester consistency (unocc,occ blocks): 9.0e-16, 8.9e-16
+Chern number  (1/2pi)∫Ω           : -2.000000
+min det g (standard conv.)        : 9.677e-05   max: 2.306e+00
+cos theta_K  range                 : [-0.9989, +0.9976]
+max |cos theta_K| - 1              : -1.05e-03
+Kähler form via J=i[P,·] vs Ω      : 4.4e-16
+quantum volume ∫√det g             : 8.251766  (π|C| = 6.283185),  ∫(1-cosθ)dA = 1.968581
+||[X1,X2]||² vs ||F_occ||²+||F_un||² : 5.3e-15
+K_Gr (‖[X1,X2]‖²/det g) vs Gauss eq. of Gr⊂Herm : 7.9e-14
+K_G (Gauss eq. in Herm) vs K_Gr + K_II : 1.4e-14
+K_G vs intrinsic Brioschi (rel.)   : 1.1e-02   [masked 12.5% of BZ]
+K_G  range (Huang conv.)           : [-37.9072, 1.5178]
+K_Gr range (Huang conv.)           : [0.1766, 1.5214]
+K_II range (Huang conv.)           : [-38.3345, 0.0169]
+Gauss-Bonnet ∫K_G dA /2π           : +0.000000  (χ(T²)=0)
+           ∫K_Gr dA /2π, ∫K_II dA /2π : +2.8238, -2.8238
+complex points of the 3-band model (k_x, k_y, winding): [(np.float64(0.4764748857944519), np.float64(2.8117254249628645), 1), (np.float64(4.948008429403924), np.float64(5.220279792715039), 1), (np.float64(5.1574479396432436), np.float64(1.5969762655748114), 1), (np.float64(5.262167694762903), np.float64(2.8012534494508987), 1), (np.float64(5.304055596810767), np.float64(1.8378317023500288), -1)]   signed total = 3  (theory: -3C = 3 )
+
+figure saved

@@ -1,0 +1,326 @@
+% Self-contained two-page TikZ supplement. Compile with pdfLaTeX twice.
+% No external graphics, fonts, or data files are required.
+% All diagrams are original teaching schematics, not depictions of a band model.
+\RequirePackage{fix-cm}
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=0mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor,tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.markings}
+\definecolor{paperblue}{HTML}{1C5F99}
+\definecolor{slate}{HTML}{475569}
+\definecolor{ink}{HTML}{233247}
+\definecolor{extension}{HTML}{167159}
+\usepackage[bookmarks=false,colorlinks=true,urlcolor=paperblue]{hyperref}
+\hypersetup{pdftitle={From a sphere to the Bloch-state map},
+  pdfauthor={Scientific reading supplement},
+  pdfsubject={Coordinate tangents, second fundamental form, Gauss equation, and ambient geometry}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\newcommand{\tr}{\operatorname{Tr}}
+\newcommand{\Gr}{\operatorname{Gr}}
+\newcommand{\Herm}{\operatorname{Herm}}
+\newcommand{\II}{\mathrm{II}}
+\newcommand{\n}{\mathbf n}
+\newcommand{\T}{\mathbf T}
+\newcommand{\x}{\mathbf x}
+\newcommand{\src}[2]{\href{#1}{#2}}
+\tikzset{
+  >={Latex[length=2.2mm,width=1.45mm]},
+  title/.style={anchor=north west,inner sep=0pt,text=ink,
+    font=\bfseries\fontsize{19}{22}\selectfont},
+  kicker/.style={anchor=north west,inner sep=0pt,text=paperblue,
+    font=\bfseries\fontsize{9}{11}\selectfont},
+  body/.style={anchor=north west,align=left,inner sep=0pt,text=slate,
+    font=\fontsize{11}{13.5}\selectfont,text width=178mm},
+  heading/.style={anchor=north west,inner sep=0pt,text=ink,
+    font=\bfseries\fontsize{11.6}{14}\selectfont},
+  eq/.style={inner sep=0pt,text=slate,font=\fontsize{11.7}{14}\selectfont},
+  small/.style={inner sep=0pt,text=slate,font=\fontsize{10.1}{12.2}\selectfont},
+  micro/.style={anchor=north west,align=left,inner sep=0pt,text=slate,
+    font=\fontsize{8.5}{10.4}\selectfont,text width=174mm}
+}
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
+\begin{scope}[shift={(current page.south west)}]
+  \node[kicker] at (16,283) {SPHERE $\longrightarrow$ QUANTUM GEOMETRY \quad / \quad 1};
+  \node[title] at (16,274) {A sphere: one derivative, two geometric parts};
+  \node[body,font=\fontsize{10.7}{13}\selectfont] at (16,262)
+    {Classical teaching derivation. An ambient derivative can leave the tangent plane.};
+  \draw[paperblue!25,line width=.55pt] (16,254)--(194,254);
+
+  % A projected sphere, a tangent patch, and an outward normal.
+  \fill[paperblue!3] (48,218) circle[radius=24.5];
+  \draw[paperblue!55,line width=.8pt] (48,218) circle[radius=24.5];
+  \draw[paperblue!28,dashed,line width=.65pt]
+    (23.5,218) arc[start angle=180,end angle=0,x radius=24.5,y radius=7.2];
+  \draw[paperblue!35,line width=.65pt]
+    (23.5,218) arc[start angle=180,end angle=360,x radius=24.5,y radius=7.2];
+  \draw[paperblue!22,line width=.65pt] (48,193.5)
+    .. controls (65,200) and (65,236) .. (48,242.5);
+  \draw[paperblue!22,dashed,line width=.65pt] (48,193.5)
+    .. controls (32,200) and (32,236) .. (48,242.5);
+  \coordinate (p) at (64,231);
+  \draw[slate!45,dashed,line width=.65pt] (48,218)--(p);
+  \node[small,fill=paperblue!3,font=\fontsize{10}{12}\selectfont] at (53.5,222.5) {$R$};
+  \path[draw=paperblue!55,fill=paperblue!8,fill opacity=.91,line width=.7pt]
+    (49,235)--(58,241)--(79,227)--(70,221)--cycle;
+  \draw[->,paperblue,line width=1.35pt] (p)--(78,221.5);
+  \draw[->,slate,line width=1.15pt] (p)--(79.6,244);
+  \fill[ink] (p) circle[radius=.85];
+  \node[small,anchor=east,fill=paperblue!8] at (62.1,229.1) {$p$};
+  \node[eq,anchor=west,text=paperblue] at (80,220.7) {$\T$};
+  \node[eq,anchor=west] at (81.5,244.3) {$\n$};
+  \node[small,anchor=north west,align=left] at (16,249) {tangent plane\\at $p$};
+  \draw[slate!45,line width=.6pt] (37.5,242.7)--(49,237.5);
+  \node[small] at (48,187.9) {sphere in flat $\mathbb R^3$};
+
+  % Exact vector-addition schematic: the normal part is translated at right.
+  \node[small,anchor=north west,text=ink] at (105,248)
+    {Split the change of a tangent arrow};
+  \coordinate (o) at (120,232);
+  \coordinate (a) at (169,232);
+  \coordinate (b) at (120,205);
+  \coordinate (c) at (169,205);
+  \draw[->,paperblue,line width=1.3pt] (o)--(a);
+  \draw[->,slate,line width=1.15pt] (o)--(b);
+  \draw[slate!45,dashed,line width=.7pt] (a)--(c);
+  \draw[paperblue!40,dashed,line width=.7pt] (b)--(c);
+  \draw[->,ink,line width=1.25pt] (o)--(c);
+  \fill[ink] (o) circle[radius=.7];
+  \node[small,text=paperblue,anchor=south] at (144.5,234.2)
+    {tangent part};
+  \node[small,anchor=east,align=right] at (116.8,218)
+    {normal\\part};
+  \node[eq,fill=white,inner sep=1.1pt] at (148,218.4) {$\mathrm d\T$};
+  \node[eq] at (147,192.3)
+    {$\mathrm d\T=
+      {\color{paperblue}(\mathrm d\T)^\top}+
+      {\color{slate}(\mathrm d\T)^\perp}$};
+
+  \node[heading] at (16,178.5) {Coordinate tangents make the split explicit};
+  \node[body] at (16,171)
+    {Set $\T_a=\partial_a\x$. Their ambient derivatives have a tangent part and a normal part:};
+  \node[eq,font=\fontsize{13.2}{16}\selectfont] at (105,158)
+    {$\partial_a\T_b=
+      \underbrace{\color{paperblue}\Gamma^c{}_{ab}\T_c}_{\text{tangent connection}}
+      +\underbrace{\color{slate}\II_{ab}}_{\text{normal bending}}.$};
+  \node[body,font=\fontsize{10.5}{13}\selectfont] at (16,147)
+    {$\II_{ab}$ is a \textbf{normal vector}. A scalar second fundamental form requires a chosen normal.};
+
+  \node[heading] at (16,136) {Compute it for the round sphere};
+  \node[eq] at (105,128)
+    {$\x=R(\sin\theta\cos\phi,\,\sin\theta\sin\phi,\,\cos\theta),
+      \qquad \n=\x/R.$};
+  \node[eq] at (105,119.5)
+    {$g_{ab}=\langle\T_a,\T_b\rangle
+      =\operatorname{diag}(R^2,\,R^2\sin^2\theta),\qquad 0<\theta<\pi.$};
+  \node[eq] at (105,111) {$\partial_\theta\T_\theta=-R\n,$};
+  \node[eq] at (105,103)
+    {$\partial_\phi\T_\phi=-\sin\theta\cos\theta\,\T_\theta
+      -R\sin^2\theta\,\n,$};
+  \node[eq] at (105,95)
+    {$\partial_\theta\T_\phi=\cot\theta\,\T_\phi
+      \quad (=\partial_\phi\T_\theta).$};
+  \node[eq,font=\fontsize{11.3}{13.5}\selectfont] at (105,86.4)
+    {$\II_{\theta\theta}=-R\n,\qquad
+      \II_{\phi\phi}=-R\sin^2\theta\,\n,\qquad
+      \II_{\theta\phi}=0.$};
+
+  \fill[slate!4] (16,65.8) rectangle (194,81);
+  \node[eq,font=\fontsize{12}{15}\selectfont] at (105,73.4)
+    {$\displaystyle K=K_{\rm ambient}+
+      \frac{\langle\II_{\theta\theta},\II_{\phi\phi}\rangle
+        -\|\II_{\theta\phi}\|^2}{\det g}
+      =0+\frac{1}{R^2}.$};
+  \node[eq,text=paperblue,font=\fontsize{11.3}{14}\selectfont] at (105,59.9)
+    {$R=1\Rightarrow K=1;\qquad
+      R=\tfrac12\Rightarrow K=4\quad\text{(standard quantum metric).}$};
+
+  % Curvature magnitudes avoid a hidden change of the outward-normal convention.
+  \node[small,anchor=west,text=ink,font=\bfseries\fontsize{9.6}{12}\selectfont] at (16,49.9) {Surface};
+  \node[small,text=ink] at (57,49.9) {$|\kappa_1|$};
+  \node[small,text=ink] at (75,49.9) {$|\kappa_2|$};
+  \node[small,text=ink] at (96,49.9) {$K$};
+  \draw[slate!25,line width=.55pt] (16,46.7)--(103,46.7);
+  \node[small,anchor=west] at (16,42.6) {Plane};
+  \node[small] at (57,42.6) {$0$};
+  \node[small] at (75,42.6) {$0$};
+  \node[small] at (96,42.6) {$0$};
+  \node[small,anchor=west] at (16,37.2) {Cylinder};
+  \node[small] at (57,37.2) {$1/R$};
+  \node[small] at (75,37.2) {$0$};
+  \node[small] at (96,37.2) {$0$};
+  \node[small,anchor=west] at (16,31.8) {Sphere};
+  \node[small] at (57,31.8) {$1/R$};
+  \node[small] at (75,31.8) {$1/R$};
+  \node[small] at (96,31.8) {$1/R^2$};
+  \node[small,anchor=north west,font=\fontsize{8.5}{10.4}\selectfont] at (16,26.9)
+    {Signed curvatures flip with the normal; $K=\kappa_1\kappa_2$.};
+  \draw[slate!20,line width=.55pt] (109,28)--(109,51);
+  \node[small,anchor=north west,text=ink,align=left,
+    font=\bfseries\fontsize{10.1}{12}\selectfont,text width=79mm] at (115,51)
+    {Connections act on different objects};
+  \node[small,anchor=north west,align=left,text width=79mm,
+    font=\fontsize{10.1}{12.3}\selectfont] at (115,44.2)
+    {Christoffel: tangent arrows. Berry: state fibers.
+     A matrix form alone does not imply non-Abelian Berry physics.};
+
+  \draw[slate!20,line width=.5pt] (16,22)--(194,22);
+  \node[micro] at (16,18.5)
+    {Gauss equation and second fundamental form:
+      \src{https://arxiv.org/abs/2205.15353}
+      {Avdoshkin--Popov, arXiv:2205.15353, Appendix D}.
+      The sphere calculation is a classical teaching derivation.};
+  \node[micro] at (16,10.8)
+    {Blue: reference geometry. Slate: worked derivations. All diagrams are original schematics.};
+  \node[small,anchor=east,font=\fontsize{8.5}{10.4}\selectfont] at (194,8.8) {1 / 2};
+\end{scope}
+\end{tikzpicture}
+\newpage
+\null
+\begin{tikzpicture}[remember picture,overlay,x=1mm,y=1mm]
+\begin{scope}[shift={(current page.south west)}]
+  \node[kicker] at (16,283) {SPHERE $\longrightarrow$ QUANTUM GEOMETRY \quad / \quad 2};
+  \node[title,font=\bfseries\fontsize{18.4}{22}\selectfont] at (16,274)
+    {Which ambient space? Two stages of the same map};
+  \node[body,font=\fontsize{10.7}{13}\selectfont] at (16,262)
+    {The intrinsic metric stays fixed; its Gauss decomposition depends on the surrounding space.};
+  \draw[paperblue!25,line width=.55pt] (16,254)--(194,254);
+
+  % One source and two nested targets: no global embedding of the BZ is assumed.
+  \node[kicker] at (16,249) {SOURCE};
+  \path[fill=paperblue!7,draw=paperblue!55,line width=.8pt]
+    (38,229) ellipse[x radius=19,y radius=11];
+  \path[fill=white,draw=paperblue!55,line width=.75pt]
+    (38,231.4) ellipse[x radius=8.7,y radius=3.9];
+  \draw[paperblue!25,line width=.65pt]
+    (19,229) .. controls (29,219) and (48,219) .. (57,229);
+  \draw[paperblue!35,line width=.65pt]
+    (38,218) .. controls (44.7,220) and (48,222.4) .. (46.7,231.4);
+  \node[eq,text=paperblue] at (38,208.9) {$\mathrm{BZ}=\mathbb T^2$};
+  \node[small] at (38,202.8) {two real dimensions};
+
+  \fill[slate!2] (76,200) rectangle (194,251);
+  \draw[slate!35,line width=.7pt] (76,200) rectangle (194,251);
+  \node[small,anchor=north east] at (190,248)
+    {$\Herm(N)$: flat real vector space};
+  \path[fill=paperblue!4,draw=paperblue!55,line width=.85pt]
+    (134,224.8) ellipse[x radius=44.3,y radius=18.3];
+  \node[eq,text=paperblue] at (147,233.9) {$M=\Gr(r,N)$};
+  \node[small,text=paperblue,align=center] at (147,215.7)
+    {all rank-$r$\\projectors};
+  \path[fill=paperblue!16,draw=paperblue,line width=.85pt]
+    (97,220) .. controls (98,228) and (112,234) .. (126,231)
+    -- (129,222) .. controls (114,218) and (103,216) .. cycle;
+  \draw[paperblue!40,line width=.6pt]
+    (100,224) .. controls (111,227) and (120,227) .. (127,225);
+  \fill[paperblue] (112,224) circle[radius=.8];
+  \draw[->,paperblue,line width=.9pt] (112,224)--(121,229);
+  \node[small,text=paperblue,anchor=north] at (111,214.1) {$\Sigma=P(U)$};
+  \draw[->,paperblue,line width=1.2pt] (60.5,227.7)--(101,227.7);
+  \node[eq,text=paperblue,fill=white,inner sep=1.1pt] at (69,232) {$P$};
+  \draw[->,slate,line width=1pt] (177.4,224.8)--(188,224.8);
+  \node[small,anchor=south] at (183.8,227.1) {$\iota$};
+
+  \node[body,font=\fontsize{10.4}{12.8}\selectfont] at (16,194.7)
+    {$U\subset\mathrm{BZ}$ is a regular patch and $\Sigma=P(U)$.
+      Global self-intersections are allowed; the full BZ map need not be an embedding.};
+
+  \node[heading] at (16,181) {Two bands: one metric, two Gauss decompositions};
+  \node[eq,text=paperblue] at (105,171.4)
+    {$P=\frac{I+\n\cdot\boldsymbol\sigma}{2},\quad |\n|=1;
+      \qquad M=\mathbb CP^1\simeq S^2\quad (r=1,\ N=2).$};
+  \node[eq,text=paperblue,font=\fontsize{11.3}{13.5}\selectfont] at (105,161)
+    {$G(X,Y)=\tfrac12\tr(XY)
+      \quad\Longrightarrow\quad
+      \mathrm ds^2=\tfrac14\,\mathrm d\n\cdot\mathrm d\n,
+      \quad R_{\rm eff}=\tfrac12.$};
+
+  % The two rows refer to exactly the same regular two-band image patch.
+  \fill[paperblue!5] (16,145.7) rectangle (194,154);
+  \node[small,anchor=west,text=ink,font=\bfseries\fontsize{10}{12}\selectfont]
+    at (20,149.7) {Ambient for the same regular patch};
+  \node[small,text=ink] at (121,149.7) {$K_{\rm ambient}$};
+  \node[small,text=ink] at (151,149.7) {$K_{\II}$};
+  \node[small,text=ink] at (180,149.7) {$K_G$};
+  \node[small,anchor=west,text=paperblue,font=\fontsize{10.7}{13}\selectfont]
+    at (20,139.8) {Inside $\mathbb CP^1$};
+  \node[eq,text=paperblue] at (121,139.8) {$4$};
+  \node[eq,text=paperblue] at (151,139.8) {$0$};
+  \node[eq,text=paperblue] at (180,139.8) {$4$};
+  \draw[slate!17,line width=.5pt] (16,134.9)--(194,134.9);
+  \node[small,anchor=west,text=paperblue,font=\fontsize{10.7}{13}\selectfont]
+    at (20,128.9) {Inside flat $\Herm(2)$};
+  \node[eq,text=paperblue] at (121,128.9) {$0$};
+  \node[eq,text=paperblue] at (151,128.9) {$4$};
+  \node[eq,text=paperblue] at (180,128.9) {$4$};
+  \draw[slate!25,line width=.55pt] (16,123.8)--(194,123.8);
+  \node[body,font=\fontsize{10.3}{12.6}\selectfont] at (16,120)
+    {A regular two-band patch fills $\mathbb CP^1$ locally: $\II=0$ there,
+      despite having one unoccupied band.};
+
+  \node[heading] at (16,109) {A third band adds room inside state space};
+  \node[body,font=\fontsize{10.8}{13.2}\selectfont,text=paperblue] at (16,101.9)
+    {For $N=3$ total bands and occupied rank $r=1$, $M=\mathbb CP^2$ has four real dimensions.
+      The regular image has two; new normals in $M$ are possible. Berry remains $U(1)$.};
+
+  \node[heading] at (16,85.6) {Extra target directions can lift a projected fold};
+
+  % Cross-section of (s,t) -> (s,t^2,epsilon t), with epsilon > 0 drawn.
+  % The horizontal dashed ray is the projection epsilon=0, not a band model.
+  \coordinate (F) at (25,58.5);
+  \draw[->,slate!55,line width=.65pt] (21,58.5)--(74,58.5);
+  \draw[->,slate!55,line width=.65pt] (25,41.5)--(25,77.4);
+  \node[small,anchor=west] at (73.3,58.5) {$t^2$};
+  \node[small,anchor=west,align=left,font=\fontsize{9.4}{11}\selectfont]
+    at (29,76.7) {$\varepsilon t$:\ new\\target direction};
+  \draw[slate!55,dashed,line width=.8pt] (25,58.5)--(63,58.5);
+  \draw[slate!28,dashed,line width=.65pt] (49.6,71.9)--(49.6,45.1);
+  \draw[slate,line width=1.2pt,domain=-1:1,samples=65,variable=\t,
+    postaction={decorate},decoration={markings,
+      mark=at position .3 with {\arrow{Latex}},
+      mark=at position .76 with {\arrow{Latex}}}]
+    plot ({25+36*\t*\t},{58.5+16.2*\t});
+  \fill[slate] (F) circle[radius=.75];
+  \node[small,anchor=north,font=\fontsize{9.4}{11}\selectfont,fill=white,inner sep=.5pt]
+    at (52,57.2) {projected fold};
+  \node[small,anchor=north west,font=\fontsize{9.1}{11}\selectfont]
+    at (16,42) {Euclidean teaching analogy only.};
+
+  \node[eq,anchor=west,font=\fontsize{11.1}{13.5}\selectfont] at (87,77)
+    {$f(s,t)=(s,t^2),\quad g=\operatorname{diag}(1,4t^2),$};
+  \node[eq,anchor=west,font=\fontsize{10.8}{13}\selectfont] at (87,70)
+    {$\det g=4t^2\quad\text{(zero at the fold).}$};
+  \node[eq,anchor=west,font=\fontsize{11.1}{13.5}\selectfont] at (87,61.7)
+    {$f_\varepsilon(s,t)=(s,t^2,\varepsilon t),\quad\varepsilon\ne0,$};
+  \node[eq,anchor=west,font=\fontsize{11.1}{13.5}\selectfont] at (87,54.6)
+    {$g_\varepsilon=\operatorname{diag}(1,4t^2+\varepsilon^2),$};
+  \node[eq,anchor=west,font=\fontsize{10.8}{13}\selectfont] at (87,47.3)
+    {$\det g_\varepsilon>0:\quad\text{the differential regains rank.}$};
+
+  \fill[extension!6] (16,24.5) rectangle (194,38.3);
+  \node[small,anchor=north west,text=extension,
+    font=\fontsize{9.4}{11.4}\selectfont] at (20,36.5)
+    {Extension preview: $\theta_K$ is the signed K\"ahler angle; regular points only.};
+  \node[eq,text=extension,font=\fontsize{11.6}{14}\selectfont] at (105,28.8)
+    {$\Omega_{xy}=2\cos\theta_K\sqrt{\det g},
+      \qquad K_G=K_{\Gr}+K_{\II}.$};
+
+  \node[micro,font=\fontsize{8.2}{10}\selectfont] at (16,20)
+    {\src{https://arxiv.org/html/2608.06777v1\#S2}{[H2] Huang, arXiv:2608.06777, \S\S II, IV};
+      \src{https://arxiv.org/html/2510.15760v1\#S2}{[H3] Huang, arXiv:2510.15760, \S\S II--V}.};
+  \node[micro,font=\fontsize{8.2}{10}\selectfont] at (16,15.2)
+    {\src{https://arxiv.org/html/2103.11583v3\#S2}{[MO] Mera--Ozawa, arXiv:2103.11583, \S II, Appendix A}.
+      $K_{\Gr}$: target sectional curvature on the image tangent plane.};
+  \node[micro,font=\fontsize{8.2}{10}\selectfont] at (16,10.4)
+    {Blue: known material [H2]/[H3]/[MO]. Slate: teaching derivation. Green: proposed interpretation, no novelty claim.};
+  \node[small,anchor=east,font=\fontsize{8.5}{10.4}\selectfont] at (194,8.6) {2 / 2};
+\end{scope}
+\end{tikzpicture}
+\end{document}
