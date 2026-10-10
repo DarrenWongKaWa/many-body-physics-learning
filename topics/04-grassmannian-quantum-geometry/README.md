@@ -1,6 +1,6 @@
 # 04 · Quantum geometry on the Grassmannian: projectors, distances, folds
 
-**Status:** study materials and numerical checks. The explainer video is not made yet; a draft scene list is at the end.
+**Status:** study materials and numerical checks. The explainer video is in production; the plan is in [Video plan](#video-plan) below.
 
 This topic follows three preprints by Shin-Ming Huang (National Sun Yat-sen University, Kaohsiung),
 which treat a band structure as a map from the Brillouin torus into the Grassmannian of occupied subspaces
@@ -39,7 +39,8 @@ The papers are not redistributed here; see [`materials/`](../../materials/README
 ```
 guide/     illustrated study guide (21 pages), one-page poster, two-page "sphere → Bloch" bridge; TikZ sources + PDFs
 verify/    gauge-free projector code that checks the multiband extension on 2-, 3- and 4-band models
-notes/     study notes in Chinese: the story, the open question, the proposed answer, status and risks
+notes/     study notes in Chinese: the story, the open question, the proposed answer, status and risks;
+           video_plan_zh.md is the video plan with the checked numbers
 ```
 
 - `guide/quantum_geometry_visual_guide.pdf` — physics-first guide for a final-year undergraduate: states, rays,
@@ -104,21 +105,43 @@ pdflatex sphere_to_bloch_bridge.tex && pdflatex sphere_to_bloch_bridge.tex
 
 All figures are native TikZ; no external images or bibliography database are needed.
 
-## Draft scene list for the video (to do)
+## Video plan
 
-| Scene | Content | Source |
-|---|---|---|
-| S01 | one map, three questions: how far apart, how does it move, what does the curvature add up to | all three |
-| S02 | a subspace instead of a state; principal angles; Hilbert–Schmidt distance; reconstructing the image from distances | H1 |
-| S03 | zoom in: distance → metric; `dP` as a tangent vector; the interband block | H2 |
-| S04 | the quantum geometric tensor as a Gram matrix: metric and Berry curvature from one object | H2, topic 02 |
-| S05 | geodesics on the Grassmannian; Berry phase of a geodesic polygon; Wilson loops without splitting a multiplet | H2 |
-| S06 | a torus cannot cover a sphere: folds, overlapping sheets, signed versus unsigned area | H3 |
-| S07 | Gauss–Bonnet with a singular curvature along the fold; the Chern number comes out | H3 |
-| S08 | beyond two bands: the fold opens up, the Kähler angle takes over | proposed |
-| S09 | complex points and the count `3|C|`; what the Gauss curvature does and does not know | proposed |
-| S10 | open questions | H3 §V, notes |
+The full plan, in Chinese, is [`notes/video_plan_zh.md`](notes/video_plan_zh.md).
 
-Conventions for the video should follow the guide (page 18): standard metric, `q = g − (i/2) Ω`,
-regular two-band sphere of radius 1/2 and curvature 4. Huang's papers use the doubled metric (curvature 2),
-and H3's displayed Berry curvature has the opposite sign to H2's.
+The video has one main character: the map that presses the Brillouin-zone torus onto the Bloch sphere.
+The three papers ask three questions about this one picture, and the guide is the dictionary for reading it.
+The video opens with a puzzle and builds the tools afterwards, instead of going through H1, H2 and H3 in order.
+
+| Part | Length | Content | Source |
+|---|---|---|---|
+| Cold open | 1 min | A sheet rolls into a cylinder, but a torus-shaped membrane cannot be put smoothly over a sphere: it must fold. Electrons in a crystal do exactly this, and the folds hide the Chern number. | H3 |
+| Act 1: the map | 3 min | Brillouin zone (a square with opposite edges glued) on the left, Bloch sphere on the right; the grid is swept onto the sphere cell by cell. Chord and arc length are the two quantum distances (`D_HS = sin θ`, `d_FS = θ` on the radius-1/2 sphere). From the table of all pairwise distances, multidimensional scaling rebuilds the shape. | H1 |
+| Act 2: zoom in | 4 min | A small circle in k-space maps to a small ellipse (the metric); a small square maps to an oriented parallelogram whose signed area is the Berry curvature. Then parallel transport and geodesics. | H2 |
+| Act 3: back to the fold | 4 min | On the fold the ellipses collapse to segments; on the other side the grid is mirrored, and a polar cap is covered three times. Unsigned area gives the quantum volume, signed area gives the Chern number. Gauss–Bonnet: the torus has total curvature zero, so the fold's singular curvature cancels the positive regular part. | H3 |
+| Act 4 (optional) | 2 min | A third band: the sphere becomes CP², the fold has room to open up into a smooth bend. Marked **proposal** on screen. | proposed |
+
+The seven pictures that have to be animated, all computed from the two-band formulas:
+
+1. The coloured grid map, blue where orientation is kept and red where it is reversed; the video keeps returning to it.
+2. The fold triptych: a folded transparent sheet with mirrored arrows, the closed `det g = 0` curve of QWZ, three
+   stacked sheets over the polar cap; two counters for unsigned and signed area that stop at 1.19 and 1 (in units of π|C|).
+3. Tissot ellipses for the metric over the whole Brillouin zone, collapsing to segments on the fold.
+4. Berry curvature as the signed area of a small parallelogram; then the other band: same metric, opposite curvature (guide p. 6).
+5. Two planes and their two principal angles; then the MDS reconstruction as a spring-like relaxation (SMACOF iterations).
+   The Chern band closes into a whole sphere; the trivial band gives only an open cap around the north pole.
+6. Parallel transport around a geodesic triangle; then a loop replaced by a geodesic polygon, whose Bargmann invariant is
+   the numerical Berry phase. The tangent vector turns by the enclosed solid angle; the Berry phase is half of it.
+7. The two Gauss–Bonnet ledgers: regular part +2.3779 × 2π, fold −2.3779 × 2π, total 0 on the torus;
+   with signs, three sheets become one net sheet and the answer is 4πC.
+
+Act 4 adds an eighth: the fold `(s, t²)` lifted by a third direction `εt` (bridge p. 2), then the `cos θ_K` maps
+from `verify/` (hard ±1 boundary for two bands, smooth for three bands, five complex points with indices +1, +1, +1, +1, −1).
+
+Left out on purpose: drawings of Gr(2,4), the Lie-algebra decomposition (only "a global phase does not move the point;
+a change of relative amplitude does", guide p. 5), and Wilson loops, Z2 and chiral winding, which get one sentence at the end.
+
+One model throughout, as in topic 02: QWZ with m = 1 (Chern band) and m = 3.2 (trivial). Conventions follow the guide
+(p. 18): standard metric, sphere of radius 1/2 and curvature 4. When the narration quotes Huang's numbers, it must say that
+he uses the doubled metric (curvature 2); H3's displayed Berry curvature has the opposite sign to H2's.
+The numbers above were checked; see the table in the plan.
