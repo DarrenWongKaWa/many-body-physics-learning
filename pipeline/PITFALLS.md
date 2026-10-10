@@ -175,3 +175,133 @@ The workflow these belong to is in [`METHOD.md`](METHOD.md); the commands are in
 - **The tables disagree with each other.**
   - Fix: one video touches the topic README, the root `README.md`, `videos/README.md`, the subtitle file and the
     release notes. Update them in the same commit.
+
+## Added by the author of topics 01 and 03
+
+> **Who wrote this section.** Claude Opus 5.5 (Anthropic), working as a coding agent for the repository owner in
+> one Claude Code session (`f80d935c`). In that session I made:
+> - **topic 03**, *Nonperturbative nonlinear Hall effect in NESS* (10 min), including the NEGF solver `compute/negf.py`;
+> - **topic 01**, *The Keldysh nonequilibrium Green's function technique*: version 1 (10.7 min) followed the notes;
+>   version 2 (15.1 min) added twelve physical-picture beats after the owner's review;
+> - the first layout of this repository, the first version of `pipeline/README.md`, `tools/burn_subs.py` in topics 01
+>   and 03, and `pipeline/tools/check_overlap.py`.
+>
+> Topics 02 and 04, the sections above and `pipeline/tools/check_tts.py` were written in other sessions; I have not
+> changed them. Below are only problems that are not already listed above.
+> My checks were back-transcription and sampled frames: I cannot hear the audio or watch a video the way a viewer does.
+> The most important problem below, the first one, was found by the owner, not by me.
+
+### Teaching and intuition
+
+- **The video is correct, but it does not build intuition.**
+  - Example: topic 01, version 1. The owner, who knows the subject, said most physical pictures were missing.
+  - Cause: the narration was planned from the derivation in the source. Each formula was explained through the
+    previous formula, never through something the viewer can picture.
+  - Fix: give every key formula a picture card before writing any narration: the question it answers, the picture,
+    the formula, a limiting case, and one sentence to remember. Topic 01 version 2 is the result. For example:
+    - lesser function = how full the states are;
+    - Langreth rule = a path that switches branch exactly once;
+    - Keldysh equation = injection rate × dwell time;
+    - current = in-flow minus out-flow.
+
+    Show the cards to the person who asked for the video before animating anything.
+- **The voice reads a formula symbol by symbol.**
+  - Example: "C lesser equals A retarded times B lesser, plus A lesser times B advanced" (topic 01, beat `la5`).
+    It is still in the video.
+  - Cause: the formula was turned into a sentence instead of an idea.
+  - Fix: the screen shows the formula; the voice says what it means and which part to look at.
+- **Too many new symbols at once.**
+  - Example: topic 01 scene S04 introduces G_c, G_c̃, G^>, G^<, G^r and G^a within about a minute.
+  - Fix:
+    - at most one new symbol every 20–30 seconds;
+    - one colour per symbol, kept across scenes and videos (topic 01: retarded blue, advanced orange, lesser green).
+- **The voice repeats a quantitative claim from the source that the computed picture does not show.**
+  - Example: topic 03's first draft said that the excitations at μ = 0 sit about E/Γ from the nodes, as the paper
+    states. In the computed Δn₊ map the peak moves by only about half of that.
+  - Cause: the narration was drafted from the paper before the data existed.
+  - Fix: write the narration's numbers after the data exist. Check every "about", "twice" and "exponentially"
+    against the plot it accompanies.
+- **One picture belongs to two evidence classes.**
+  - Example: "each lead resets the dot, and the dot copies the last lead that touched it" (topic 01, beat `re3b`).
+    It is exact for the master equation, but only an analogy for the coherent Green's-function result.
+  - Fix: say in which framework the picture is exact. **The current topic 01 video does not say this yet.**
+
+### Voice
+
+- **The package resolver picks an ancient `transformers`.**
+  - Symptom: installing `kokoro` and `misaki[zh]` in one command with the rest of the stack selected transformers
+    4.12, which needs a Rust build of `tokenizers`, and the install failed.
+  - Fix: require `transformers>=4.40`, as `requirements.txt` does.
+- **Mandarin narration with English terms and Greek letters.** (The Chinese scripts are kept in topics 01 and 03.)
+  - Kokoro-82M-v1.1-zh reads English words through an English G2P callback. Single letters and Greek symbols are
+    unreliable.
+  - Fix:
+    - write symbols as Chinese words (伽马, 德尔塔, "E 除以伽马");
+    - transliterate names (凯尔迪什, 朗格雷斯);
+    - expect the back-transcription to report homophones that are not errors (星积/星基, 电场/电厂).
+- **Translating a finished video breaks its timing.**
+  - Cause: scenes wait for the i-th sentence (`b.wait_sentence(i)`) and size animations from the time left in a beat.
+  - Fix:
+    - keep the same number of sentences per beat in every language, and check it with a script before generating audio;
+    - clamp every duration computed from the voice, e.g. `max(0.5, b.remaining() - 0.3)` (`b.rest()` in topic 01).
+
+      Two run times in topic 03 were unclamped and had to be guarded before the English build.
+
+### Layout and translation
+
+- **English labels overflow where the Chinese ones fitted.**
+  - Examples:
+    - topic 03 S08: the question "No Fermi surface: where does the current come from?" ran past the right edge in the
+      first English 1080p build;
+    - topic 01 S08: `scale_to_fit_width` shrank a note to about 65 %.
+  - Fix:
+    - design in the final language;
+    - if a translation dictionary is used (`i18n_en.py`), fail on missing keys (an empty table cell was one of them);
+    - wrap long labels with `\\` instead of shrinking them;
+    - run the visual pass again on the translated version.
+- **A frame taken during a transition looks like a layout bug.**
+  - Example: a highlight box in topic 01 S05 looked misplaced. It was halfway between two terms.
+  - Fix: take review frames near the end of each beat, at t₀ + 0.9 × duration:
+    - t₀ is the beat's start, in `media/sublog*/<Scene>.json`;
+    - the duration is in `audio/<voice>/manifest.json`.
+- **zsh does not split an unquoted variable into words.**
+  - Symptom: `set -- $spec` in a frame-sampling loop received a single word.
+  - Fix: use separate variables or `${=spec}`.
+
+### 3D
+
+- **A clipped surface has a jagged rim.** (Topic 03, band structure.)
+  - Cause: faces above an energy cap were deleted, so the rim follows the grid.
+  - Fix: parametrise the region radially so that the rim is a grid line, and put special points (the cone tips) on
+    grid vertices.
+
+### Data and numerics
+
+- **Reading numbers off a paper's figure.**
+  - Vector figures: read the marker positions from the PDF (`pymupdf`, `page.get_drawings()`) and calibrate with the
+    tick labels (`page.get_text('dict')`). This is exact (topic 03, Fig. 2(c,d)).
+  - Raster figures:
+    - mask by colour and calibrate with the gridlines;
+    - mask the legend;
+    - draw known curves analytically instead of tracing them, e.g. the dashed equilibrium Fermi function in Fig. 3(d).
+- **One bad column sets the colour scale.**
+  - Example: an off-by-one in topic 03's trajectory sampling never recorded κ_x = −π. The map's minimum became 0 and
+    the colour scale was useless.
+  - Fix:
+    - in the code: `ik = (s // m_sub) % Nkx`;
+    - in general: set colour limits from percentiles of the displayed region, and look at a raw map's edges once.
+
+### Publishing
+
+- **The narration repeats the source's wording.**
+  - Fix: run `pipeline/tools/check_overlap.py` with your local copy of the source.
+    - It lists passages of ten or more words shared with the topic's narration, labels and documents.
+    - Only titles and citations should remain.
+    - Topic 01 had one such phrase. It was reworded and the scene re-rendered before publishing.
+- **Third-party material other than the PDF.**
+  - Crops of a paper's figures (used for digitising) and full-text extractions (`paper.txt`) are also the source's
+    content.
+  - Fix: keep them in the ignored `ref/` folder.
+- **A commit needs an identity, and the global git config is empty.**
+  - Fix: set `user.name` and `user.email` for this repository only, with the GitHub noreply address, so no personal
+    email is published.
