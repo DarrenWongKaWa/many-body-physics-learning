@@ -75,6 +75,12 @@ A full build of a 10–15 minute video takes about 10–15 minutes on 6 cores.
 python build.py --lang en      # out/<name>_en.mp4 (soft subtitles), .srt, and out/<name>_en_subtitled.mp4
 ```
 
+Before publishing, check that the narration does not repeat the source text (only titles and citations should remain):
+
+```bash
+python ../../pipeline/tools/check_overlap.py ~/path/to/your/copy/of/the/source.pdf
+```
+
 The Homebrew ffmpeg has no libass/drawtext. `tools/burn_subs.py` therefore draws each subtitle cue to a PNG with Pillow
 and overlays it with ffmpeg. It also shrinks the animation to 88 % and puts the subtitles in a band of the background colour
 underneath, so they never cover equations.
