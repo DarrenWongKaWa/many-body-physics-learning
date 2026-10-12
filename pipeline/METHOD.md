@@ -234,6 +234,64 @@ python build.py                       # 1080p60 render in parallel, concatenatio
 A typical 10-minute video renders at 1080p60 in about 10 minutes on 10 cores. Most of the time goes into
 stages 1–2 and into the scene iterations of stage 6.
 
+## Additions from the author of topics 01 and 03
+
+> Written by Claude Opus 5.5 (Anthropic), the Claude Code session `f80d935c` that made topic 03
+> (*Nonperturbative nonlinear Hall effect in NESS*) and topic 01 (*The Keldysh nonequilibrium Green's function
+> technique*, versions 1 and 2). The full statement is in the last section of [`PITFALLS.md`](PITFALLS.md).
+> Nothing above this section was changed.
+
+### What we already do (applied in topics 01 and 03)
+
+1. **Follow each key formula with a picture and a limit.** In a lecture-notes companion, the notes fix the order
+   of the formulas. The video adds a picture right after each one, answering "what does this mean physically?".
+   Where possible it also shows a limiting case the viewer already trusts:
+   - Γ → 0 gives the master equation;
+   - in equilibrium −iG^< = f·A (fluctuation–dissipation).
+
+   This complements principle 2: the one picture carries the story, and the per-formula pictures carry the details.
+2. **Give every key formula a knob.** The beats that worked best move one parameter and show the consequence.
+   Each one is a `ValueTracker` driving a computed curve:
+   - Γ broadening the Lorentzian;
+   - E pushing the Fermi sea into the hot spot (topic 03);
+   - the asymmetry Γ^L/Γ lowering the peak transmission;
+   - Γ → 0 merging the Green's-function and master-equation currents;
+   - three initial occupations relaxing to one steady value.
+3. **Check the wording against the source before publishing.** Run `pipeline/tools/check_overlap.py` with your local
+   copy of the source; only titles and citations may remain (see the last section of `PITFALLS.md`).
+
+### Proposed changes (not yet applied to any topic)
+
+These follow from the problems in the last section of `PITFALLS.md`. The reviewer should decide which to adopt.
+
+1. **Get the plan approved and pilot one minute first.**
+   - Stage 2's gate: the person who asked for the video reads the picture cards and says which formulas still feel
+     opaque.
+   - Stage 6 starts with one finished minute (voice, animation, subtitles) for approval.
+
+   In topic 01, the switch from Chinese to English and the missing pictures were both found only after the full
+   video had been rendered. These were the two most expensive rounds of rework.
+2. **Make episodes shorter.** Aim for 6–8 minutes and one or two pictures per episode (Mayer's segmenting principle).
+   Topic 01 version 2 is 15 minutes; it could be three episodes:
+   - the contour and the components;
+   - Langreth rules and the Keldysh equation;
+   - transport.
+3. **Leave room to think.**
+   - After the key result of a scene, hold the picture still for one to two seconds (a longer `pad` for that beat).
+   - End each scene with a one-sentence takeaway on screen.
+
+   In topics 01 and 03 a beat ends 0.35 s after the voice.
+4. **Sync to words, not sentences.** Whisper returns word timestamps. A helper such as `b.wait_word('lesser')` would
+   make a highlight land when the word is spoken, instead of at the start of its sentence.
+5. **Automate the gates.**
+   - A layout check on the end-of-beat frames: boxes outside the safe area, overlapping labels, text below 22 pt.
+   - Assertions in the scene code for every number the narration says.
+   - A pacing report: words per minute, and new symbols per beat.
+6. **Test the intuition, not only the facts.**
+   - Give each topic three concept questions that can be answered from the pictures alone, for example "at μ = 0,
+     why is Tr ñ exactly 1?".
+   - Optionally, add an interactive page with the same sliders as the video.
+
 ## References
 
 - G. Wiggins and J. McTighe, *Understanding by Design* (ASCD, 1998; 2nd ed. 2005). Backward design: start from the goals.
