@@ -104,7 +104,7 @@ The workflow these belong to is in [`METHOD.md`](METHOD.md); the commands are in
   - Cause: `ThreeDScene` makes this awkward.
   - Fix: use the orthographic helpers (`Sphere2D`, `Cam`, `mesh`, `polyline3d` in topics 02 and 04). They project to 2D,
     shade, sort faces by depth, and draw back faces faint.
-- **Coincident sheets flicker or show stripes.** In topic 04, three sheets cover the same polar cap.
+- **Coincident sheets flicker or show stripes.** In topic 04, three sheets cover the same region near the north pole.
   - Fix: lift the sheet that should be seen by a few percent along the normal, and give it draw-on-top priority
     (`mesh(..., on_top=...)`).
 - **Large faces cover nearer small ones.**
@@ -175,3 +175,99 @@ The workflow these belong to is in [`METHOD.md`](METHOD.md); the commands are in
 - **The tables disagree with each other.**
   - Fix: one video touches the topic README, the root `README.md`, `videos/README.md`, the subtitle file and the
     release notes. Update them in the same commit.
+
+## Added by the author of topics 02 and 04
+
+> **Who wrote this section.** Claude Opus 5.5 (Anthropic), working as a coding agent for the repository owner in
+> one Claude Code session (`98f5ca3a`). In that session I made:
+> - **topic 02**, *Quantum geometry* (13 min), from the review by Gao, Nagaosa, Ni and Xu;
+> - **topic 04**, *Quantum geometry on the Grassmannian*: version 1 (10.1 min), then version 2 (14.6 min) after the
+>   owner's review;
+> - the first versions of `METHOD.md`, this file and `pipeline/tools/check_tts.py`.
+>
+> Above this section I corrected two statements of my own that version 2 proved wrong (the "polar cap" in *3D on a 2D
+> canvas*, and the stage 5 claim in `METHOD.md` that topic 04's audio passed the Whisper check). Nothing written by
+> another author was changed. The teaching problems below were found by the owner, who watched version 1 and listed
+> 19 places where they got lost; I found none of them in my own review passes. The topic 04 README maps each note to
+> its fix.
+
+### Teaching: what the viewer could not find
+
+- **A map is shown but never written down.**
+  - Example: "How does a momentum land on the Bloch sphere? What is the formula?" Version 1 painted the zone onto
+    the sphere cell by cell, but `n(k) = d(k)/|d(k)|` never appeared.
+  - Fix: write the formula, follow one point through it (Γ → X → M → Γ in both pictures), and say where two or three
+    anchor points land and why (Γ: d points down, south pole).
+- **A parameter value appears without its role.**
+  - Example: "What is m = 3.2? It seems unrelated to everything before." Version 1 named the trivial band only by
+    its value.
+  - Fix: before using a value, show the parameter on an axis with its regimes (C = 1 for 0 < m < 2, C = 0 for
+    m > 2) and what changes at the boundary.
+- **A symbol is in the formula but not on the picture.**
+  - Example: "θ, D_HS and d_FS do not show up on the sphere."
+  - Fix: mark every symbol of a formula on the picture (the angle at the centre, the arc, the chord) and, if it
+    changes, show its live value.
+- **An image has no axes and no colour scale.**
+  - Example: "I cannot tell what the black-and-white image means" (the table of 484 × 484 distances).
+  - Fix: label the rows and columns, add a colour bar that says what both ends mean, and explain one marked entry
+    and the diagonal.
+- **A colour bar hides the values that carry the story.**
+  - Example: "The map went from two colours to shades. What do the shades mean?" The bar showed two blocks, +1 and
+    −1, while the map's dark band (cos θ_K ≈ 0) was the point.
+  - Fix: build the bar from the same colour map as the image, with its middle value labelled.
+- **A number next to an object is read as a different kind of number.**
+  - Example: the signs +1, +1, −1 next to three sheets were read as Chern numbers, with "no reason given" for them.
+    They are orientation signs.
+  - Fix: say what kind of number it is and what it is not ("orientation signs, not Chern numbers"), and show where
+    each object comes from (here, the regions of the zone around X, Y and M).
+- **A count is named but not defined.**
+  - Example: "count every sheet" and "count with signs": the viewer could not tell what a sheet is, or how the two
+    counts are related.
+  - Fix: define the word ("a piece of the zone laid down once"), write each count as a formula next to its name,
+    and show the arithmetic that links them (1.189 = 1 + 2 × 0.0945).
+- **A new quantity is used before it is defined.**
+  - Example: "What is det g?" Version 1 first said it at the fold, as "the determinant of the metric", and never
+    said what it measures.
+  - Fix: one line of meaning at first use (det g = λ₁λ₂, the factor by which the map magnifies area). Search the
+    narration and the scenes for the first use of every symbol.
+- **A device is shown without the problem it solves.**
+  - Example: "It looks like we added a parameter, but neither the problem nor why this is the answer is clear"
+    (the surface (s, t², εt)).
+  - Fix: three steps on screen: what goes wrong (a fold needs a direction of motion that stops changing the state),
+    the simplest case where it goes wrong ((s, t²)), then the fix ((s, t², εt)).
+- **The summary is text only.**
+  - Example: "The three stories could each have a representative picture underneath."
+  - Fix: end with the key picture of each act next to its words.
+
+### Correctness
+
+- **A shape named after how it looked from one camera.**
+  - Example: version 1 said the north-pole region is "a polar cap covered three times", and my first version 2 draft
+    called it a curved triangle. The image of the fold has four cusps (on the diagonals, at n_z = 1/√3), so the
+    region is a four-pointed star.
+  - Cause: from the camera of the painted sphere only two or three cusps are visible.
+  - Fix: compute the shape's invariants (cusps, area) before naming it, and show it once from a camera that sees
+    all of it (S07 now looks from 63° elevation).
+
+### Voice
+
+- **A two-letter symbol read as one word.**
+  - Example: "k y" written as "ky" was read as one syllable in three beats of version 1. The Whisper check printed
+    "chi" there, and I filed it under formatting.
+  - Fix: write symbols letter by letter in the narration ("delta k x delta k y"). In the check, treat every word
+    that is neither in the script nor a different spelling of a number as an error until you have explained it.
+
+### Manim
+
+- **A live readout or a redrawn object shows an old state.**
+  - Example: topic 04 version 2, S03: the chord was drawn to the antipode and the readout said ϑ = 1.569 while
+    v sat at ϑ = 0.65.
+  - Cause: `always_redraw` objects are refreshed only by updaters. `FadeIn` suspends the updaters of what it fades
+    in, and a `wait()` without time-based updaters is a frozen frame, so an object keeps the state it had when it was
+    created, here with the tracker at an earlier value.
+  - Fix: call `.update()` on such objects right before adding or fading them in.
+- **A label lands on the wrong side.**
+  - Example: `next_to(axis_end, UR)` put the √λ₁ label inside the ellipse, because the eigenvector happened to
+    point the other way.
+  - Fix: place labels from the geometry: beyond the end of an axis, or perpendicular to a chord on the side away
+    from other labels.

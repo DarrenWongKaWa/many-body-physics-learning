@@ -157,7 +157,9 @@ python ../../pipeline/tools/check_tts.py           # Whisper back-transcription,
   before generating (see [`PITFALLS.md`](PITFALLS.md)).
 - **A misheard name shows up as the same wrong word in every beat that uses it.** Digits versus words and homophones
   ("Chern"/"churn") are harmless.
-- **Topic 04's audio passed this check**: 4.3 % word error rate over 1775 words, all of it formatting and homophones.
+- **Topic 04's first version reached a 4.3 % word error rate over 1775 words**, which I read as formatting and
+  homophones. One real error was among them: "ky" was read as one word (Whisper wrote "chi"). See the section by the
+  author of topics 02 and 04 in `PITFALLS.md`.
 
 ### 6. Scenes
 
@@ -251,3 +253,50 @@ stages 1–2 and into the scene iterations of stage 6.
   a systematic review*, Educational Psychology Review **26**, 9–25 (2014). Concrete first, then fade towards the abstract.
 - [Manim Community](https://docs.manim.community/), [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M),
   and the 3Blue1Brown videos by Grant Sanderson that this style comes from.
+
+## Additions from the author of topics 02 and 04
+
+> Written by Claude Opus 5.5 (Anthropic), the Claude Code session `98f5ca3a` that made topic 02 (*Quantum geometry*)
+> and topic 04 (*Quantum geometry on the Grassmannian*, versions 1 and 2), and the first versions of this file,
+> `PITFALLS.md` and `pipeline/tools/check_tts.py`. Above this section I changed one sentence of my own (stage 5);
+> nothing written by another author was changed. The details are in my section of [`PITFALLS.md`](PITFALLS.md).
+
+### What a viewer review found
+
+The repository owner watched topic 04, version 1, and wrote down 19 places where they got lost, each with a
+timestamp. My three review passes (physics, visual, audio) had found none of them, because each pass checks what is
+on screen: whether it is correct, readable and well pronounced. None of them checks what is missing. The notes fall
+into six groups:
+
+| What was missing | Examples in topic 04, version 1 |
+|---|---|
+| a definition | the map `n(k) = d/\|d\|`; det g; the word "sheet"; the parameter m |
+| a key to a picture | the distance-table image had no axes or colour bar; the cos θ_K bar showed only ±1 |
+| the meaning of a number | +1, +1, −1 next to the sheets were read as Chern numbers |
+| a mark on the picture | ϑ, D_HS and d_FS were in formulas but not on the sphere; u and v were drawn as two separate angle diagrams, not as directions inside the two planes |
+| the problem before the device | the surface (s, t², εt) appeared before the problem it solves |
+| pictures in the summary | the three closing cards were text only |
+
+Version 2 answers every note in the video itself, and runs 14.6 minutes instead of 10.1. Stage 3 above calls the
+shorter version 1 "fine". In hindsight, the four minutes it saved were these missing steps.
+
+### Proposed changes
+
+1. **Make a viewer test the last gate of stage 7.** Someone who has not read the plan watches the whole video and
+   writes down every moment they could not follow, with the time. Each note is answered in the video, or listed in
+   the topic README as deliberately left out. This complements the one-minute pilot proposed by the author of
+   topics 01 and 03: the pilot catches problems of form early, the viewer test catches missing steps at the end.
+2. **Add a first-use table to the plan (stage 2).** One row for every symbol, parameter, word of jargon and number
+   that will appear on screen: the beat where it is defined, its formula or meaning, and where it is marked on the
+   picture. A row without a defining beat is a gap. Version 1 of topic 04 would have failed on `n(k)`, m, det g,
+   "sheet", the signs ±1 and the colour scale of cos θ_K.
+3. **Give every image a key.** Axes with labels, a colour bar built from the image's own colour map, and one entry
+   explained in words.
+4. **Say what kind of number a number is.** "Orientation signs, not Chern numbers"; "in spheres: one sphere has
+   area π".
+5. **State the problem before the device.** On screen: what goes wrong, the simplest case where it goes wrong, then
+   the fix.
+6. **Name a shape only after computing it.** Count its cusps and compute its area; show it once from a camera that
+   sees all of it.
+7. **End with pictures.** The summary of each act shows that act's key picture.
+8. **In the Whisper check, treat an unexplained word as an error** until the phonemes (Kokoro's G2P) explain it.
