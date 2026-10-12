@@ -57,7 +57,9 @@ class S07_Fold(NScene):
             self.play(FadeIn(tag), Write(title), Create(bz), run_time=1.2)
             b.wait_sentence(1)
             self.play(LaggedStart(*[GrowFromCenter(e) for e in ells], lag_ratio=0.01), run_time=2.5)
-            self.play(Create(fcurve), run_time=1.2)
+            ell_f = MathTex(r'\text{axes} \parallel e_1, e_2,\quad \text{lengths} \propto \sqrt{\lambda_1},\ \sqrt{\lambda_2}', font_size=30)
+            ell_f.move_to([3.7, 2.75, 0])
+            self.play(FadeIn(ell_f), Create(fcurve), run_time=1.2)
 
         # ---------------- fol2: crossing the fold, the ellipses collapse
         # a path from X towards M crosses the fold; find the crossing exactly
@@ -98,12 +100,15 @@ class S07_Fold(NScene):
         row_l = txt('along the line $k_x=\\pi$, crossing the fold', 24, GREY_A).next_to(row_box, UP, buff=0.12)
         path_l = Line(ax.c2p(np.pi, row_t[0]), ax.c2p(np.pi, row_t[-1]), color=WHITE, stroke_width=3)
         seg_l = txt('on the fold: a segment', 26, C_FOLD).next_to(row_box, DOWN, buff=0.2)
-        null_l = MathTex(r'\det g = 0', font_size=34, color=C_FOLD).next_to(seg_l, DOWN, buff=0.15)
+        null_l = MathTex(r'\det g = \lambda_1\lambda_2 = 0', font_size=34, color=C_FOLD).next_to(seg_l, DOWN, buff=0.15)
         with self.narrate('fol2') as b:
             self.play(Create(path_l), FadeIn(row_box), FadeIn(row_l), LaggedStartMap(FadeIn, row, lag_ratio=0.15), run_time=1.6)
             b.wait_sentence(1)
             self.play(Create(segf), run_time=1.0)
             self.play(FadeIn(seg_l), Write(null_l), run_time=1.4)
+            b.wait_sentence(2)
+            om_f = MathTex(r'\text{two bands: } \Omega = \pm 2\sqrt{\det g} \ \to\ 0 \text{ on the fold}', font_size=30).next_to(null_l, DOWN, buff=0.25)
+            self.play(FadeIn(om_f), run_time=1.2)
 
         # ---------------- fol3: a folded sheet of clear film
         cam = Cam(0.95, -1.5708, 1.25, center=[3.7, 0.0, 0])
@@ -139,7 +144,7 @@ class S07_Fold(NScene):
         loc = MathTex(r'f(s,t) = (s,\ t^2)', font_size=36).move_to([3.7, -2.75, 0])
         loc2 = txt('$(s,t)$ and $(s,-t)$: one image, opposite orientations', 24, GREY_A).next_to(loc, DOWN, buff=0.15)
         with self.narrate('fol3') as b:
-            self.play(FadeOut(VGroup(row, row_box, row_l, segf, seg_l, null_l, path_l)), run_time=0.7)
+            self.play(FadeOut(VGroup(row, row_box, row_l, segf, seg_l, null_l, path_l, om_f, ell_f)), run_time=0.7)
             self.play(FadeIn(filmm), run_time=0.8)
             b.wait_sentence(1)
             self.play(phi.animate.set_value(PI * 0.999), run_time=3.0, rate_func=smooth)
@@ -160,47 +165,79 @@ class S07_Fold(NScene):
             b.wait_sentence(1)
             self.play(FadeIn(inside), run_time=0.8)
 
-        # ---------------- fol5: the polar cap is covered three times
-        SPH_C, SPH_R = np.array([1.35, -0.7, 0]), 1.85
-        sph = Sphere2D(radius=SPH_R, el=0.42, az=0.55, n_merid=2).move_to(SPH_C)
-        scam = Cam(0.42, 0.55, SPH_R, SPH_C)
-        X, colsX, omX = sphere_cells(NK)
-        smesh = mesh(scam, X, colsX, opacity=0.75, back_opacity=0.1, stroke_width=0.3, cull_center=np.zeros(3), on_top=omX < 0)
-        # which sheet does each cell of the cap belong to?
+        # ---------------- fol5/fol5b: three sheets over the star (the region bounded by the fold's image, four cusps)
+        from matplotlib.path import Path as MPath
         h = TAU_K / NK
         cc = (np.arange(NK) + 0.5) * h
         KX, KY = np.meshgrid(cc, cc, indexing='ij')
         ncent, _, omc, _ = qwz_geom(KX, KY)
-        incap = ncent[2] >= CAP_NZ
+        seg = fold_points()[0]
+        fimg = np.moveaxis(qwz_n(seg[:, 0], seg[:, 1]), 0, -1)
+        stereo = lambda p: p[..., :2] / (1 + p[..., 2:3])          # projection from the south pole
+        inT = MPath(stereo(fimg)).contains_points(stereo(np.moveaxis(ncent, 0, -1)).reshape(-1, 2)).reshape(NK, NK)
+        red = omc < 0
         dX = np.minimum(np.abs(KX - np.pi), TAU_K - np.abs(KX - np.pi)) ** 2 + np.minimum(KY, TAU_K - KY) ** 2
         dY = np.minimum(KX, TAU_K - KX) ** 2 + np.minimum(np.abs(KY - np.pi), TAU_K - np.abs(KY - np.pi)) ** 2
-        sheet = np.where(omc < 0, 2, np.where(dX < dY, 0, 1))
-        lay_cam = [Cam(0.62, 0.55, 1.45, np.array([5.6, y, 0])) for y in (-2.35, -0.75, 0.85)]
-        layers = VGroup()
-        for s_id, lc in zip((0, 1, 2), lay_cam):
-            Xs = X.copy()
-            cols_s = [[(C_FLIP if s_id == 2 else C_UP) for j in range(NK)] for i in range(NK)]
-            op_mask = (sheet == s_id) & incap
-            # draw only this sheet's cap cells: give other cells zero opacity
-            m = mesh(lc, Xs - np.array([0, 0, 0.75]), cols_s, opacity=0.8, stroke_width=0.3)
-            A, B, Cc, D = Xs[:-1, :-1], Xs[1:, :-1], Xs[1:, 1:], Xs[:-1, 1:]
-            dep = (((A + B + Cc + D) / 4) - np.array([0, 0, 0.75])) @ lc.basis()[0]
-            order = np.argsort(dep, axis=None)
-            for poly, idx in zip(m, order):
-                i, j = divmod(int(idx), NK)
-                if not op_mask[i, j]:
-                    poly.set_fill(opacity=0).set_stroke(opacity=0)
-            layers.add(m)
-        signs = VGroup(*[MathTex(s_, font_size=40, color=c_).next_to(lc.center, LEFT, buff=1.55)
-                         for s_, c_, lc in zip(['+1', '+1', '-1'], [C_UP, C_UP, C_FLIP], lay_cam)])
-        cap_l = txt('the polar cap, pulled apart', 24, GREY_A).move_to([5.6, 2.25, 0])
+        masks = [(~red) & inT & (dX < dY), (~red) & inT & (dY <= dX), red]       # X sheet, Y sheet, M sheet
+        names = ['X sheet', 'Y sheet', 'M sheet']
+        sh_cols = [C_UP, C_UP, C_FLIP]
+        signs_s = ['+1', '+1', '-1']
+        SPH_C, SPH_R = np.array([0.7, 0.2, 0]), 1.55
+        EL_T = 1.1                                                 # seen from above, so all four cusps show
+        sph = Sphere2D(radius=SPH_R, el=EL_T, az=0.55, n_merid=2).move_to(SPH_C)
+        scam = Cam(EL_T, 0.55, SPH_R, SPH_C)
+        X, colsX, omX = sphere_cells(NK)
+        smesh = mesh(scam, X, colsX, opacity=0.75, back_opacity=0.1, stroke_width=0.3, cull_center=np.zeros(3), on_top=omX < 0)
+        npole = Dot(scam.p([0, 0, 1.03]), radius=0.07, color=YELLOW)
+        fold_img = polyline3d(scam, fimg * 1.03, color=C_FOLD, width=3, back_opacity=0.2, cull_center=np.zeros(3))
+        tri_l = VGroup(txt('four-pointed star:', 22, YELLOW), txt('covered 3 times', 22, YELLOW)).arrange(DOWN, buff=0.04).next_to(sph, UP, buff=0.1)
+        # each sheet covers the star exactly once, so each layer is the star itself (its boundary is the fold's image)
+        lay_y = (1.95, 0.25, -1.45)
+        lay_cam = [Cam(EL_T, 0.55, 1.0, np.array([5.1, y, 0])) for y in lay_y]
+        bnd = fimg[::8]
+        bnd = np.vstack([bnd, bnd[:1]])
+        rr = np.linspace(0, 1, 7)[:, None, None]
+        Xstar = (1 - rr) * np.array([0, 0, 1.0]) + rr * bnd[None]
+        Xstar /= np.linalg.norm(Xstar, axis=-1, keepdims=True)
+        layers, lay_labels = VGroup(), VGroup()
+        for col, lc, nm, sg_ in zip(sh_cols, lay_cam, names, signs_s):
+            cols_s = [[col] * (len(bnd) - 1) for _ in range(len(rr) - 1)]
+            Xs = Xstar - np.array([0, 0, 0.8])
+            layers.add(VGroup(mesh(lc, Xs, cols_s, opacity=0.9, stroke_width=0.8),
+                              polyline3d(lc, Xs[-1], color=C_FOLD, width=2.5)))
+            lay_labels.add(VGroup(txt(nm + ':', 24, col), MathTex(sg_, font_size=34, color=col)).arrange(RIGHT, buff=0.12))
+            lay_labels[-1].move_to(lc.center + np.array([-1.0, 0.0, 0]), aligned_edge=RIGHT)
+        not_c = txt('orientation signs, not Chern numbers', 22, GREY_A).move_to([5.0, -2.55, 0])
         with self.narrate('fol5') as b:
-            self.play(FadeOut(title), FadeIn(sph), FadeIn(smesh), run_time=1.0)
+            self.play(FadeOut(title), Group(ax, bz, cells, fcurve, fl, inside, Ml).animate.scale(0.72).move_to([-4.45, 0.85, 0]), run_time=1.0)
+            self.play(FadeIn(sph), FadeIn(smesh), run_time=1.0)
             b.wait_sentence(1)
-            self.play(LaggedStart(*[FadeIn(l, shift=0.3 * UP) for l in layers], lag_ratio=0.3), FadeIn(cap_l), run_time=1.6)
-            self.play(FadeIn(signs), run_time=0.8)
+            kmarks = VGroup(*[Circle(radius=0.12, color=YELLOW, stroke_width=4).move_to(ax.c2p(*k))
+                              for k in [(np.pi, 0.0), (0.0, np.pi), (np.pi, np.pi)]])
+            plab = lambda t_, k_: txt(t_, 24, YELLOW, bold=True).set_stroke(BLACK, 3, background=True).move_to(ax.c2p(*k_))
+            pt_l = VGroup(plab('X', (np.pi, 0.5)), plab('Y', (0.5, np.pi)), plab('M', (np.pi, np.pi - 0.6)))
+            self.play(Create(kmarks), FadeIn(pt_l), FadeOut(inside), FadeOut(Ml), FadeIn(npole), run_time=1.2)
+            b.wait_sentence(2)
+            hl_regions = VGroup()
+            for msk in masks[:2]:
+                for i in range(NK):
+                    for j in range(NK):
+                        if msk[i, j]:
+                            hl_regions.add(cells[i * NK + j].copy().set_fill(WHITE, opacity=0.25).set_stroke(WHITE, width=1.6, opacity=1))
+            copies = VGroup(plab('X', (np.pi, TAU_K - 0.5)), plab('Y', (TAU_K - 0.5, np.pi)))
+            msheet = plab('M sheet', (np.pi, np.pi - 0.6))
+            self.play(Create(hl_regions), FadeIn(copies), Transform(pt_l[2], msheet), run_time=1.6)
+        with self.narrate('fol5b') as b:
+            self.play(FadeIn(layers[0], shift=0.2 * UP), FadeIn(lay_labels[0]), FadeIn(layers[1], shift=0.2 * UP), FadeIn(lay_labels[1]),
+                      run_time=1.4)
+            b.wait_sentence(1)
+            self.play(FadeIn(layers[2], shift=0.2 * UP), FadeIn(lay_labels[2]), run_time=1.2)
+            b.wait_sentence(2)
+            self.play(FadeIn(tri_l), Create(fold_img), Flash(npole, color=YELLOW), run_time=1.2)
+            b.wait_sentence(3)
+            self.play(FadeIn(not_c), run_time=0.8)
 
-        # ---------------- fol6/7: unsigned and signed area counters
+        # ---------------- fol6/7/7b: unsigned and signed area counters
         un, sg = cell_areas(NK)
         prog = ValueTracker(0.0)
 
@@ -208,40 +245,48 @@ class S07_Fold(NScene):
             p = prog.get_value()
             mask = (np.arange(NK * NK) < p).reshape(NK, NK)
             return un[mask].sum(), sg[mask].sum()
-        cnt_u = always_redraw(lambda: DecimalNumber(totals()[0], num_decimal_places=3, font_size=40, color=WHITE))
-        cnt_s = always_redraw(lambda: DecimalNumber(totals()[1], num_decimal_places=3, font_size=40, color=C_UP))
-        lu = txt('count every sheet:', 30)
-        ls = txt('count with signs:', 30, C_UP)
-        units = txt('(in spheres; one sphere has area $\\pi$)', 22, GREY_T)
-        panel_c = VGroup(lu, ls).arrange(DOWN, aligned_edge=LEFT, buff=0.35).move_to([-4.6, -3.45, 0])
-        cnt_u.add_updater(lambda m: m.next_to(lu, RIGHT, buff=0.3))
-        cnt_s.add_updater(lambda m: m.next_to(ls, RIGHT, buff=0.3))
-        units.next_to(panel_c, UP, buff=0.25, aligned_edge=LEFT)
+        cnt_u = always_redraw(lambda: DecimalNumber(totals()[0], num_decimal_places=3, font_size=38, color=WHITE))
+        cnt_s = always_redraw(lambda: DecimalNumber(totals()[1], num_decimal_places=3, font_size=38, color=C_UP))
+        lu = MathTex(r'\text{count every sheet: }\ \frac{1}{\pi}\int_{\rm BZ}\sqrt{\det g}\,d^2k =', font_size=30)
+        ls = MathTex(r'\text{count with signs: }\ \frac{1}{\pi}\int_{\rm BZ}\tfrac12\,\Omega\,d^2k =', font_size=30, color=C_UP)
+        panel_c = VGroup(lu, ls).arrange(DOWN, aligned_edge=LEFT, buff=0.3).move_to([-3.2, -3.1, 0])
+        cnt_u.add_updater(lambda m: m.next_to(lu, RIGHT, buff=0.2))
+        cnt_s.add_updater(lambda m: m.next_to(ls, RIGHT, buff=0.2))
+        units = txt('(in spheres: one sphere has area $\\pi$)', 22, GREY_T).next_to(panel_c, UP, buff=0.18, aligned_edge=LEFT)
 
         def sweep_hl(grp):
             p = prog.get_value()
             for r, c in enumerate(grp):
                 c.set_fill(WHITE, opacity=0.35 if r < p <= r + NK else 0.0)
+        sheet_def = txt('sheet: a piece of the zone laid down once', 24, GREY_A).move_to([0.5, -1.75, 0])
         with self.narrate('fol6') as b:
-            self.play(Group(bz, cells, fcurve, fl, inside, Ml).animate.scale(0.82).shift(0.55 * UP + 0.2 * LEFT), run_time=0.8)
+            self.play(FadeOut(not_c), FadeIn(sheet_def), run_time=0.8)
+            b.wait_sentence(1)
             hl = VGroup(*[c.copy().set_fill(WHITE, opacity=0).set_stroke(width=0) for c in cells])
             hl.add_updater(sweep_hl)
             self.add(hl, cnt_u, cnt_s)
             self.play(FadeIn(lu), FadeIn(ls), FadeIn(units), run_time=0.8)
-            b.wait_sentence(1)
-            self.play(prog.animate.set_value(NK * NK), run_time=b.remaining(-0.8), rate_func=linear)
+            self.play(prog.animate.set_value(NK * NK), run_time=max(1.0, b.remaining(-1.6)), rate_func=linear)
             hl.clear_updaters()
-            self.play(Indicate(cnt_u, scale_factor=1.25), run_time=0.7)
-        qv = txt('quantum volume', 26, GREY_A)
+            qv = txt('quantum volume', 24, GREY_A).next_to(cnt_u, RIGHT, buff=0.25)
+            self.play(FadeIn(qv), FadeOut(hl), Indicate(cnt_u, scale_factor=1.2), run_time=1.0)
         with self.narrate('fol7') as b:
-            qv.next_to(cnt_u, RIGHT, buff=0.3)
-            self.play(FadeIn(qv), Indicate(cnt_s, scale_factor=1.25, color=C_UP), run_time=1.2)
+            self.play(Indicate(ls, color=C_UP, scale_factor=1.05), run_time=1.0)
             b.wait_sentence(1)
-            ch = txt('$=$ Chern number $C$', 28, C_UP).next_to(cnt_s, RIGHT, buff=0.3)
-            self.play(FadeIn(ch), layers[2].animate.move_to(layers[1]), signs[2].animate.move_to(signs[1]), run_time=1.2)
-            self.play(FadeOut(layers[2]), FadeOut(layers[1]), FadeOut(signs[1]), FadeOut(signs[2]), run_time=0.8)
+            once = txt('elsewhere: covered once', 22, GREY_A).next_to(sheet_def, DOWN, buff=0.12)
+            self.play(FadeIn(once), run_time=0.8)
             b.wait_sentence(2)
-            bound = MathTex(r'\int_{\rm BZ}\sqrt{\det g}\;d^2k\ \ \ge\ \ \pi\,|C|', font_size=38, color=C_FOLD).move_to([1.5, 2.95, 0])
+            self.play(layers[2].animate.move_to(layers[1]), lay_labels[2].animate.set_opacity(0.4), run_time=1.2)
+            self.play(FadeOut(layers[2]), FadeOut(layers[1]), lay_labels[1].animate.set_opacity(0.4), run_time=0.8)
+            b.wait_sentence(3)
+            ch = txt('$=$ Chern number $C$', 26, C_UP).next_to(cnt_s, RIGHT, buff=0.25)
+            self.play(FadeIn(ch), Indicate(cnt_s, scale_factor=1.2, color=C_UP), run_time=1.2)
+        with self.narrate('fol7b') as b:
+            diff = MathTex(r'1.189 = 1 + 2\times 0.0945', font_size=34, color=C_FOLD).move_to([4.6, -2.95, 0])
+            diff_l = txt('$0.0945$: area of the star, in spheres', 22, GREY_A).next_to(diff, DOWN, buff=0.12)
+            self.play(Write(diff), FadeIn(diff_l), run_time=1.6)
+            b.wait_sentence(1)
+            bound = MathTex(r'\int_{\rm BZ}\sqrt{\det g}\;d^2k\ \ \ge\ \ \pi\,|C|', font_size=36, color=C_FOLD).move_to([0.7, 3.3, 0])
             mo = txt('(Mera \\& Ozawa)', 22, GREY_T).next_to(bound, RIGHT, buff=0.2)
-            self.play(Write(bound), FadeIn(mo), run_time=2.0)
+            self.play(FadeOut(tri_l), Write(bound), FadeIn(mo), run_time=2.0)
         self.play(FadeOut(Group(*self.mobjects)), run_time=0.8)
