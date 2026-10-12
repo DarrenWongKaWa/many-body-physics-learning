@@ -112,29 +112,53 @@ All figures are native TikZ; no external images or bibliography database are nee
 
 ## Video
 
-English narration (Kokoro-82M, voice `af_bella`), 1920×1080, 60 fps, English subtitles burned in.
+English narration (Kokoro-82M, voice `af_bella`), 1920×1080, 60 fps, English subtitles burned in, 14.6 minutes.
 It follows the plan below: one picture (the Brillouin torus pressed onto the Bloch sphere), a cold open with the puzzle,
 then three acts for H1, H2, H3 and a fourth act for the proposal, marked **PROPOSAL (unpublished)** in green on screen.
-The video runs 10 minutes instead of the planned 14 because the narration came out tighter; none of the planned pictures was dropped.
+
+**Version 2 (October 2026).** A viewer watched version 1 (10 min) and listed the places where they got lost. Version 2 keeps
+the structure and adds, at each of those places, the missing definition, formula or picture:
+
+| Where the viewer got lost (v1 time) | What version 2 adds | Scene |
+|---|---|---|
+| How does a momentum land on the sphere? What is the map? (1:17) | `H(k) = d(k)·σ`; the upper band's Bloch vector is `n = d/\|d\|`; a dot runs Γ → X → M → Γ in the zone and on the sphere; the QWZ vector `d(k)` and where Γ, X, M land | S02 |
+| Where are θ, D_HS and d_FS on the sphere? (2:09) | the two Bloch vectors with the angle 2ϑ at the centre; orthogonal states at opposite points; radius ½; arc ϑ = d_FS and chord sin ϑ = D_HS with live values | S03 |
+| What are u and v, and why do they lie in the planes? (2:22) | a floor-and-door picture of two occupied planes: a shared hinge (ϑ₁ = 0) and an opening angle ϑ₂; u and v from the SVD of Ψ₁†Ψ₂; the same angles for any basis | S03 |
+| What does the black-and-white image show? (2:48) | the distance table as an image: axes i and j, a colour bar from 0 (same state) to 1 (orthogonal), one marked entry, the diagonal | S04 |
+| What is m = 3.2, and why only a cap? (3:07) | an m axis: C = 1 for 0 < m < 2, C = 0 for m > 2; for m = 3.2 every state has n_z ≥ 0.87 | S02 |
+| Why does a sign (orientation) matter? | the Chern number is a signed count of how often the sphere is covered; distances cannot see the sign, so we zoom in | S04 |
+| What is the formula of the ellipse? (6:02) | `g = λ₁e₁e₁ᵀ + λ₂e₂e₂ᵀ`; the circle `δk = ε(cos t e₁ + sin t e₂)` maps to `ε(√λ₁ cos t f₁ + √λ₂ sin t f₂)` | S05 |
+| How do the three regions map, and why +1, +1, −1? (6:43) | X, Y and M all land on the north pole; the regions of the zone around them (the X, Y and M sheets) are highlighted; each covers the same star once; +1, +1, −1 are orientation signs, not Chern numbers | S07 |
+| What is a sheet, and how are the two counts related? | sheet = a piece of the zone laid down once; count every sheet: (1/π)∫√det g d²k = 1.189; count with signs: (1/π)∫½Ω d²k = 1.000; 1.189 = 1 + 2 × 0.0945 | S07 |
+| What is det g? (7:00) | det g = λ₁λ₂, the factor by which the map magnifies area; for two bands Ω = ±2√det g | S05, S07 |
+| What replaces the fold beyond two bands? Why does CP² have 4 real dimensions, and why (s, t², εt)? (8:15, 8:34) | counting 2N − 2; a fold needs one direction of motion that stops moving the state; the fold (s, t²) and its lift by εt; min det g = 1.0 × 10⁻⁵ > 0 in the three-band model | S09 |
+| Why five points, and what does the shading mean? (9:08) | cos θ_K = Ω/(2√det g) with a colour bar +1 / 0 / −1; complex points where \|cos θ_K\| = 1, each with an index +1 or −1 (a phase winds once); the indices add up to 3\|C\| | S09 |
+| Pictures for the three summaries (9:51) | one picture under each of H1, H2 and H3 | S10 |
+
+Two errors of version 1 were fixed on the way. The region covered three times is not a polar cap: the image of the fold
+has four cusps (on the diagonals, at n_z ≈ 0.58), so it bounds a four-pointed star around the north pole. And the voice read
+"ky" as one word; the narration now spells it "k y".
 
 | Scene | Content | Source |
 |---|---|---|
 | S01 | cold open: a sheet rolls into a cylinder and a torus; the torus pressed onto the sphere by the actual QWZ map must fold | H3 |
-| S02 | the stage: Brillouin zone = torus, Bloch sphere; the grid painted onto the sphere cell by cell, blue face up, red flipped; the fold curve and its image with cusps | — |
-| S03 | principal angle; chord = D_HS = sin θ and arc = d_FS = θ on the radius-1/2 sphere; principal angles of two planes from the SVD of the overlap matrix | H1 |
-| S04 | the Hilbert–Schmidt distance table of 484 states; SMACOF iterations rebuild a closed sphere (Chern band, m = 1) and an open cap (trivial band, m = 3.2) | H1 |
-| S05 | small circle → metric ellipse, g = ½ tr(∂P ∂P); small square → oriented parallelogram, Berry curvature = signed area; the other band: same g, opposite Ω, both K_G = 4 | H2, guide p. 6 |
+| S02 | the stage: Brillouin zone = torus, Bloch sphere; the map `k ↦ n(k) = d/\|d\|` with a moving point; the QWZ model, the anchors Γ (south pole) and X, M (north pole); the mass m and the Chern number; the grid painted onto the sphere cell by cell, blue face up, red flipped; the fold curve and its image | — |
+| S03 | 2ϑ at the centre, ϑ = 90° for orthogonal states; chord = D_HS = sin ϑ and arc = d_FS = ϑ on the radius-½ sphere; two occupied planes as a floor and a door; principal angles from the SVD of the overlap matrix | H1 |
+| S04 | one pair of momenta and its distance; the Hilbert–Schmidt distance table of 484 states as a labelled image; SMACOF iterations rebuild a closed sphere (Chern band, m = 1) and an open cap (trivial band, m = 3.2); distances cannot see orientation | H1 |
+| S05 | small circle → metric ellipse, ds² = g_ij δk^i δk^j, axes from the eigenvectors of g; g = ½ tr(∂P ∂P); small square → oriented parallelogram, area √det g δk_x δk_y, Berry curvature = ±2 × area density; the other band: same g, opposite Ω, both K_G = 4 | H2, guide p. 6 |
 | S06 | geodesics as exponentials of the horizontal generator; parallel transport around a geodesic triangle turns by the solid angle; Bargmann invariant = half the solid angle; geodesic polygons converge to the Berry phase | H2 |
-| S07 | Tissot-style metric ellipses collapsing to segments on the fold; a folded film with mirrored arrows; the polar cap covered three times; unsigned 1.189 vs signed 1.000 spheres | H3 |
+| S07 | Tissot-style metric ellipses collapsing to segments on the fold (det g = λ₁λ₂ = 0); a folded film with mirrored arrows; the X, Y and M sheets over the four-pointed star, orientation signs +1, +1, −1; count every sheet 1.189 vs count with signs 1.000 | H3 |
 | S08 | Gauss–Bonnet: regular sheets +2.378 × 2π, fold −2.378 × 2π, total 0 = 2πχ(T²); signed: 4πC; Huang's doubled metric gives the same 2.378 | H3 |
-| S09 | proposal: the fold (s, t²) lifted by εt; Kähler angle, cos θ_K = ±1 (two bands) vs smooth (three bands); five complex points with indices +1, +1, +1, +1, −1, signed sum 3 = 3\|C\|; ∫K_G dA = 0 | proposal, `verify/` |
-| S10 | summary of H1–H3 and credits | — |
+| S09 | proposal: why CP² has 4 real dimensions; the fold (s, t²) and its lift by εt; Kähler angle cos θ_K = ±1 (two bands) vs smooth (three bands); five complex points with indices +1, +1, +1, +1, −1, signed sum 3 = 3\|C\|; ∫K_G dA = 0 | proposal, `verify/` |
+| S10 | summary of H1–H3, each with a picture; the chain P → dP → q → geometry; credits | — |
 
 **What is computed.** Every map, ellipse, parallelogram, fold curve, area counter, MDS step and Kähler-angle map comes
 from the two-band formulas in `common.py` (g = ¼ ∂n·∂n, Ω = −½ n·(∂ₓn × ∂ᵧn), the band with Bloch vector n = d/|d|,
 C = +1 at m = 1) or from `compute/make_data.py`, which reuses `verify/verify_kahler_gauss.py` for the three-band model.
 The parallelogram insets in S05 are the linearised map at the sample momentum; the bars in S08 are drawn to scale.
-The film fold in S07 and the lifted fold in S09 are teaching pictures and are labelled as such.
+The star in S07 is bounded by the computed image of the fold. Its area, 0.0945 spheres, is both the unsigned area of the
+flipped region (the M sheet covers the star once) and the result of a direct point-in-polygon count on the sphere. The film fold in S07, the floor and door in S03 and the lifted fold in S09 are teaching pictures and
+are labelled as such.
 
 **Build** (from this folder, with the environment in [`pipeline/`](../../pipeline/README.md)):
 
