@@ -148,14 +148,14 @@ class S05_Zoom(NScene):
                               stroke_width=0, fill_color=color, fill_opacity=1))
             return g
 
-        def inset_par(center, Jm, scale, color):
+        def inset_par(center, Jm, scale, color, head=0.13):
             o = np.asarray(center, float) - scale * ds * np.array([*(Jm @ np.array([0.5, 0.5])), 0])
             vx = scale * ds * np.array([*(Jm @ np.array([1.0, 0.0])), 0])
             vy = scale * ds * np.array([*(Jm @ np.array([0.0, 1.0])), 0])
             poly = Polygon(o, o + vx, o + vx + vy, o + vy, stroke_color=WHITE, stroke_width=2, fill_color=color, fill_opacity=0.65)
             ar = VGroup(Arrow(o, o + vx, buff=0, color=YELLOW, stroke_width=5, max_tip_length_to_length_ratio=0.25),
                         Arrow(o, o + vy, buff=0, color=C_PROP, stroke_width=5, max_tip_length_to_length_ratio=0.25))
-            return VGroup(poly, ar, circulation([o, o + vx, o + vx + vy, o + vy]))
+            return VGroup(poly, ar, circulation([o, o + vx, o + vx + vy, o + vy], size=head))
         par_in = inset_par(INS_C, Jt, F, C_UP)
         area = MathTex(r'\text{area} = \sqrt{\det g}\;\delta k_x\,\delta k_y', font_size=34).move_to([-5.1, -1.1, 0])
         detg = MathTex(r'\det g = \lambda_1\lambda_2', font_size=32).next_to(area, DOWN, buff=0.2)
@@ -185,12 +185,15 @@ class S05_Zoom(NScene):
         par1 = Polygon(*[sph.p(qwz_n(*p) * 1.01) for p in edge1], stroke_color=WHITE, stroke_width=2, fill_color=C_FLIP, fill_opacity=0.8)
         ins2c = INS_C + np.array([0, -0.0, 0])
         par_in_left = par_in.copy()
-        F1 = F * 2.0
-        par_in1 = inset_par(INS_C + np.array([0.95, 0.1, 0]), Jt1, F1, C_FLIP)
-        enl = txt('(2$\\times$ enlarged)', 20, GREY_T).next_to(par_in1, DOWN, buff=0.12)
+        par_in1 = inset_par(INS_C + np.array([0.95, 0.1, 0]), Jt1, F, C_FLIP, head=0.08)   # true scale: it covers less area
+        enl = txt('(same scale)', 20, GREY_T).next_to(par_in1, DOWN, buff=0.12)
         lab_up = VGroup(txt('same way as most', 20, C_UP), txt('face up, $\\Omega>0$', 20, C_UP)).arrange(DOWN, buff=0.04)
         lab_fl = VGroup(txt('mirror way', 20, C_FLIP), txt('flipped, $\\Omega<0$', 20, C_FLIP)).arrange(DOWN, buff=0.04)
         berry = MathTex(r'\Omega_{xy} = \pm\,2\sqrt{\det g}', font_size=36).move_to([-5.0, -2.75, 0])
+        two_l = VGroup(MathTex(r'2 = \tfrac12 \times 4', font_size=30, color=GREY_A),
+                       txt('a Berry phase is half a solid angle;', 22, GREY_A),
+                       txt('on a sphere of radius $\\tfrac12$, solid angle $= 4\\times$ area', 22, GREY_A)
+                       ).arrange(DOWN, buff=0.08).move_to([4.45, -1.35, 0])
         with self.narrate('zoo5') as bt:
             self.play(FadeOut(h2), FadeOut(nophase), par_in.animate.shift(0.9 * LEFT), run_time=0.8)
             lab_up.next_to(par_in, DOWN, buff=0.12)
@@ -198,8 +201,10 @@ class S05_Zoom(NScene):
             self.play(FadeIn(ksq1), FadeIn(par1), FadeIn(par_in1), FadeIn(enl), run_time=1.4)
             lab_fl.next_to(enl, DOWN, buff=0.06)
             self.play(FadeIn(lab_fl), run_time=0.5)
-            bt.wait_sentence(1)
+            bt.wait_sentence(2)
             self.play(Write(berry), run_time=1.8)
+            bt.wait_sentence(3)
+            self.play(FadeIn(two_l), run_time=1.0)
 
         # ---------------- zoo6: the other band: same shape, flipped
         mirror = Jt.copy()
@@ -208,21 +213,25 @@ class S05_Zoom(NScene):
         oth_box = inset_frame(INS_C + np.array([0, -2.95, 0]), h=2.0, label='the other band ($-\\mathbf n$, antipodal point)')
         rel = MathTex(r'g_{-} = g_{+},\qquad \Omega_{-} = -\,\Omega_{+}', font_size=36, color=C_FOLD).move_to([-4.9, -3.45, 0])
         with self.narrate('zoo6') as bt:
-            self.play(FadeOut(VGroup(ksq1, par1, par_in1, enl, lab_fl)), par_in.animate.shift(0.9 * RIGHT),
+            self.play(FadeOut(VGroup(ksq1, par1, par_in1, enl, lab_fl, two_l)), par_in.animate.shift(0.9 * RIGHT),
                       lab_up.animate.shift(0.9 * RIGHT), run_time=0.8)
             bt.wait_sentence(1)
             self.play(FadeIn(oth_box), run_time=0.6)
             self.play(TransformFromCopy(par_in, par_other), run_time=1.6)
             bt.wait_sentence(2)
             self.play(Write(rel), run_time=1.6)
+            bt.wait_sentence(3)
+            known = txt('(the known two-band result)', 22, GREY_A).next_to(rel, RIGHT, buff=0.3)
+            self.play(FadeIn(known), Circumscribe(rel, color=C_FOLD), run_time=1.2)
 
         # ---------------- zoo7: same Gaussian curvature for both bands
-        kg = MathTex(r'\text{both bands: sphere of radius } \tfrac12,\quad K_G = 4', font_size=34).move_to([-0.4, 3.1, 0])
-        neq = MathTex(r'\Omega \;\neq\; K_G', font_size=46, color=C_FOLD).move_to([-0.4, 2.35, 0])
+        kg = MathTex(r'K_G = 4 \text{ everywhere: the shape of the sphere (both bands)}', font_size=28).move_to([-0.4, 3.15, 0])
+        neq = MathTex(r'\Omega \neq K_G:\ \ \Omega \text{ is how the zone is laid onto it}', font_size=28, color=C_FOLD).move_to([-0.4, 2.6, 0])
         with self.narrate('zoo7') as bt:
-            self.play(FadeOut(title), Write(kg), run_time=1.8)
+            self.play(FadeOut(title), run_time=0.6)
             bt.wait_sentence(1)
-            self.play(Write(neq), run_time=1.2)
+            self.play(Write(kg), run_time=1.8)
             bt.wait_sentence(2)
+            self.play(Write(neq), run_time=1.6)
             self.play(Circumscribe(neq, color=C_FOLD), run_time=1.0)
         self.play(FadeOut(Group(*self.mobjects)), run_time=0.8)

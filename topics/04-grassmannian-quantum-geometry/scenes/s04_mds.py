@@ -66,9 +66,17 @@ class S04_MDS(NScene):
         cb[0].set_sheen_direction(RIGHT)
         cbl = VGroup(MathTex('0', font_size=24).next_to(cb, LEFT, buff=0.1), MathTex('1', font_size=24).next_to(cb, RIGHT, buff=0.1))
         cbt = txt('same state \\quad\\quad orthogonal', 20, GREY_A).next_to(cb, DOWN, buff=0.08)
-        tab_l = MathTex(r'D_{ij} = D_{\rm HS}\big(P(\mathbf k_i), P(\mathbf k_j)\big)', font_size=30).next_to(xi, UP, buff=0.12)
+        # the trivial band's table, on the same colour scale (shown in mds5)
+        Dt = DATA['trivial_D'].astype(float)
+        img_t = ImageMobject(mono_rgba(Dt, D.max(), color='#E8E8E8', gamma=0.8))
+        img_t.set_resampling_algorithm(RESAMPLING_ALGORITHMS['nearest'])
+        tab_l = VGroup(MathTex(r'D_{ij} = D_{\rm HS}\big(P(\mathbf k_i), P(\mathbf k_j)\big)', font_size=28),
+                       MathTex(r'= \tfrac12\,|\mathbf n(\mathbf k_i) - \mathbf n(\mathbf k_j)| \quad \text{(the chord)}', font_size=28)
+                       ).arrange(DOWN, aligned_edge=LEFT, buff=0.1).next_to(xi, UP, buff=0.12).set_x(4.4)
+        all_l = txt('$484\\times484$ entries: every pair', 22, GREY_A)
         with self.narrate('mds1b') as b:
-            self.play(FadeIn(img), Create(img_box), FadeIn(xi), FadeIn(yi), FadeIn(tab_l), run_time=1.4)
+            all_l.next_to(cbt, DOWN, buff=0.12)
+            self.play(FadeIn(img), Create(img_box), FadeIn(xi), FadeIn(yi), FadeIn(tab_l), FadeIn(all_l), run_time=1.4)
             self.play(Create(pix), Indicate(chord_l, color=C_UP), run_time=1.0)
             b.wait_sentence(1)
             self.play(FadeIn(cb), FadeIn(cbl), FadeIn(cbt), run_time=1.0)
@@ -83,7 +91,7 @@ class S04_MDS(NScene):
         why = txt('$D_{\\rm HS}$ is a straight-line distance between matrices', 28, GREY_A).move_to([1.6, -3.3, 0])
         blind_in = txt('input: only the table (no momenta, no states)', 24, GREY_A).move_to([2.7, 2.6, 0])
         with self.narrate('mds2') as b:
-            self.play(FadeOut(VGroup(msph, mi, mj, chord, chord_l, not_l, cb, cbl, cbt, pix, xi, yi)),
+            self.play(FadeOut(VGroup(msph, mi, mj, chord, chord_l, not_l, cb, cbl, cbt, pix, xi, yi, all_l)),
                       Group(bz, dots_k, nl, pair, pi_, pj_, li, lj).animate.scale(0.7).move_to([-5.2, 1.3, 0]),
                       Group(img, img_box, tab_l).animate.scale(0.62).move_to([-5.2, -1.85, 0]), run_time=1.2)
             self.play(FadeIn(blind_in), run_time=0.8)
@@ -100,6 +108,7 @@ class S04_MDS(NScene):
         _, _, omt, _ = qwz_geom(DATA['trivial_kx'], DATA['trivial_ky'], M_TRIV)
         cols_of['trivial'] = [C_UP if o >= 0 else C_FLIP for o in omt]
         cloud = VGroup(*[Dot(radius=0.035) for _ in range(len(kx))])
+        vis = ValueTracker(1.0)                      # overall visibility of the cloud (hidden while the band switches)
 
         def upd(grp):
             X, _ = snapshot(which['tag'], s.get_value())
@@ -109,7 +118,7 @@ class S04_MDS(NScene):
             dn = (dep - dep.min()) / max(1e-9, dep.max() - dep.min())
             for d, p, a, col in zip(grp, P, dn, cols_of[which['tag']]):
                 d.move_to(p)
-                d.set_fill(col, opacity=0.25 + 0.75 * a)
+                d.set_fill(col, opacity=vis.get_value() * (0.25 + 0.75 * a))
         cloud.add_updater(upd)
         upd(cloud)
         ghost = DashedVMobject(Circle(radius=0.5 * SCALE, stroke_color=GREY_D, stroke_width=1.5).move_to(CLOUD_C), num_dashes=60)
@@ -127,17 +136,25 @@ class S04_MDS(NScene):
             self.play(FadeIn(sphere_l), az.animate.set_value(2.6), run_time=b.remaining(-0.1), rate_func=linear)
         chk = txt('same shape as classical MDS (difference $<10^{-14}$)', 22, GREY_T).next_to(sphere_l, DOWN, buff=0.15)
 
-        # ---------------- mds5: the trivial band
+        # ---------------- mds5: the trivial band: its table is darker, and the shape it encodes is a cap
         with self.narrate('mds5') as b:
             self.play(FadeIn(chk), az.animate.set_value(3.1), run_time=1.2, rate_func=linear)
+            triv_l = txt('trivial band ($m=3.2$): all $n_z\\ge0.87$', 30, C_FLIP).move_to(sphere_l)
+            self.play(FadeOut(sphere_l), FadeOut(chk), FadeIn(triv_l), vis.animate.set_value(0.0), run_time=0.8)
             which['tag'] = 'trivial'
             s.set_value(0.0)
-            triv_l = txt('trivial band ($m=3.2$, all $n_z\\ge0.87$): an open cap', 30, C_FLIP).move_to(sphere_l)
-            self.play(FadeOut(sphere_l), FadeOut(chk), FadeIn(triv_l), run_time=0.8)
-            self.play(s.animate.set_value(1.0), az.animate.set_value(3.8), run_time=b.until_sentence(1, 2.5) + 1.2, rate_func=linear)
-            no_hole = txt('fully covered, but never closes', 26, GREY_A).next_to(triv_l, DOWN, buff=0.2)
-            self.play(FadeIn(no_hole), az.animate.set_value(4.3), run_time=1.5, rate_func=linear)
+            b.wait_sentence(1)
+            img_t.match_height(img).move_to(img)
+            lab_t = VGroup(txt('$m=3.2$, same colour scale:', 22, C_FLIP),
+                           txt(f'largest $D_{{ij}} = {Dt.max():.2f}$ (Chern band: $1.00$)', 22, GREY_A)
+                           ).arrange(DOWN, buff=0.05, aligned_edge=LEFT).next_to(img_box, DOWN, buff=0.12).align_to(img_box, LEFT)
+            self.play(FadeIn(img_t), FadeIn(lab_t), run_time=1.2)
             b.wait_sentence(2)
+            vis.set_value(1.0)
+            self.play(s.animate.set_value(1.0), az.animate.set_value(3.8), run_time=b.until_sentence(3, 2.5), rate_func=linear)
+            no_hole = txt('an open cap: fully covered, but never closes', 26, GREY_A).next_to(triv_l, DOWN, buff=0.2)
+            self.play(FadeIn(no_hole), az.animate.set_value(4.3), run_time=1.5, rate_func=linear)
+            b.wait_sentence(4)
             topo = txt('closed or open: a first glimpse of topology', 30, C_FOLD).move_to([2.7, -3.5, 0])
             self.play(FadeOut(spring), FadeIn(topo), az.animate.set_value(4.8), run_time=b.remaining(-0.1), rate_func=linear)
 
