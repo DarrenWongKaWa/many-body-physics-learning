@@ -340,6 +340,11 @@ shorter version 1 "fine". In hindsight, the four minutes it saved were these mis
    sees all of it.
 7. **End with pictures.** The summary of each act shows that act's key picture.
 8. **In the Whisper check, treat an unexplained word as an error** until the phonemes (Kokoro's G2P) explain it.
+9. **Show every invariance by varying what it is invariant under**, with the invariant on screen.
+10. **Label every piece of a partition**, and say what each piece covers.
+
+A second viewer review, of version 2, found five more gaps, all relations that were stated but not shown (my section
+of `PITFALLS.md`, "the second review"). Version 2.1 answers them. Proposals 9 and 10 come from that review.
 
 ## References
 

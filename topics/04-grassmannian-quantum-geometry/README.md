@@ -112,7 +112,7 @@ All figures are native TikZ; no external images or bibliography database are nee
 
 ## Video
 
-English narration (Kokoro-82M, voice `af_bella`), 1920×1080, 60 fps, English subtitles burned in, 14.6 minutes.
+English narration (Kokoro-82M, voice `af_bella`), 1920×1080, 60 fps, English subtitles burned in, 16.1 minutes (version 2.1).
 It follows the plan below: one picture (the Brillouin torus pressed onto the Bloch sphere), a cold open with the puzzle,
 then three acts for H1, H2, H3 and a fourth act for the proposal, marked **PROPOSAL (unpublished)** in green on screen.
 
@@ -139,15 +139,25 @@ Two errors of version 1 were fixed on the way. The region covered three times is
 has four cusps (on the diagonals, at n_z ≈ 0.58), so it bounds a four-pointed star around the north pole. And the voice read
 "ky" as one word; the narration now spells it "k y".
 
+**Version 2.1 (October 2026).** After watching version 2, the owner asked five more questions. Each answer is now in the video:
+
+| Question (v2 time) | What version 2.1 adds | Scene |
+|---|---|---|
+| If u₁ and v₁ are not on the hinge, do θ₁, θ₂ and D_HS change? (3:59) | the arrows in the floor and the door are turned to other directions: the angles between them change, the principal angles (0°, 50°) and D_HS = 0.766 do not; the first principal angle is the smallest angle any arrow in one plane makes with any arrow in the other | S03 |
+| Is the black-and-white table every pair? Why does m = 3.2 give only a cap? (4:33) | the table has 484 × 484 entries, `D_ij = ½\|n_i − n_j\|`, the chord between the two image points; the m = 3.2 table on the same colour scale (largest entry 0.49 instead of 1.00) before its reconstruction | S04 |
+| Why is the red cell twice the blue one, and why "twice"? (7:10) | both cells at the same scale; the factor two explained (a Berry phase is half a solid angle, and on the radius-½ sphere the solid angle is four times the area); the other band as a check against the known two-band result; K_G describes the surface, Ω how the zone is laid onto it | S05 |
+| How is Ω = ±2√det g at the fold related to what came before? (9:12) | √det g is the area a cell covers (from the zoom-in), so on the fold Ω = 0, and it changes sign across the fold | S07 |
+| What about the blue region outside the highlighted sheets? (10:21) | the rest of the blue zone covers everything outside the star once; with the X sheet it makes one whole sphere, face up (+1); the Y and M sheets are an extra pair over the star (+1 − 1 = 0) | S07 |
+
 | Scene | Content | Source |
 |---|---|---|
 | S01 | cold open: a sheet rolls into a cylinder and a torus; the torus pressed onto the sphere by the actual QWZ map must fold | H3 |
 | S02 | the stage: Brillouin zone = torus, Bloch sphere; the map `k ↦ n(k) = d/\|d\|` with a moving point; the QWZ model, the anchors Γ (south pole) and X, M (north pole); the mass m and the Chern number; the grid painted onto the sphere cell by cell, blue face up, red flipped; the fold curve and its image | — |
-| S03 | 2ϑ at the centre, ϑ = 90° for orthogonal states; chord = D_HS = sin ϑ and arc = d_FS = ϑ on the radius-½ sphere; two occupied planes as a floor and a door; principal angles from the SVD of the overlap matrix | H1 |
-| S04 | one pair of momenta and its distance; the Hilbert–Schmidt distance table of 484 states as a labelled image; SMACOF iterations rebuild a closed sphere (Chern band, m = 1) and an open cap (trivial band, m = 3.2); distances cannot see orientation | H1 |
-| S05 | small circle → metric ellipse, ds² = g_ij δk^i δk^j, axes from the eigenvectors of g; g = ½ tr(∂P ∂P); small square → oriented parallelogram, area √det g δk_x δk_y, Berry curvature = ±2 × area density; the other band: same g, opposite Ω, both K_G = 4 | H2, guide p. 6 |
+| S03 | 2ϑ at the centre, ϑ = 90° for orthogonal states; chord = D_HS = sin ϑ and arc = d_FS = ϑ on the radius-½ sphere; two occupied planes as a floor and a door; principal angles from the SVD of the overlap matrix; other arrows change the angles between them, not the principal angles or D_HS | H1 |
+| S04 | one pair of momenta and its distance; the Hilbert–Schmidt distance table of 484 states (484 × 484 chords) as a labelled image; SMACOF iterations rebuild a closed sphere (Chern band, m = 1); the darker table of the trivial band (m = 3.2) and the open cap it gives; distances cannot see orientation | H1 |
+| S05 | small circle → metric ellipse, ds² = g_ij δk^i δk^j, axes from the eigenvectors of g; g = ½ tr(∂P ∂P); small square → oriented parallelogram, area √det g δk_x δk_y, Berry curvature = ±2 × area density, with 2 = ½ × 4 (half a solid angle; solid angle = 4 × area); the other band: same g, opposite Ω; K_G = 4 for both, a property of the surface | H2, guide p. 6 |
 | S06 | geodesics as exponentials of the horizontal generator; parallel transport around a geodesic triangle turns by the solid angle; Bargmann invariant = half the solid angle; geodesic polygons converge to the Berry phase | H2 |
-| S07 | Tissot-style metric ellipses collapsing to segments on the fold (det g = λ₁λ₂ = 0); a folded film with mirrored arrows; the X, Y and M sheets over the four-pointed star, orientation signs +1, +1, −1; count every sheet 1.189 vs count with signs 1.000 | H3 |
+| S07 | Tissot-style metric ellipses collapsing to segments on the fold (det g = λ₁λ₂ = 0); a folded film with mirrored arrows; the X, Y and M sheets over the four-pointed star, orientation signs +1, +1, −1; the rest of the blue zone covers everything else once (with the X sheet: one whole sphere; Y and M: an extra pair); count every sheet 1.189 vs count with signs 1.000 | H3 |
 | S08 | Gauss–Bonnet: regular sheets +2.378 × 2π, fold −2.378 × 2π, total 0 = 2πχ(T²); signed: 4πC; Huang's doubled metric gives the same 2.378 | H3 |
 | S09 | proposal: why CP² has 4 real dimensions; the fold (s, t²) and its lift by εt; Kähler angle cos θ_K = ±1 (two bands) vs smooth (three bands); five complex points with indices +1, +1, +1, +1, −1, signed sum 3 = 3\|C\|; ∫K_G dA = 0 | proposal, `verify/` |
 | S10 | summary of H1–H3, each with a picture; the chain P → dP → q → geometry; credits | — |

@@ -369,6 +369,36 @@ The workflow these belong to is in [`METHOD.md`](METHOD.md); the commands are in
   - Example: "The three stories could each have a representative picture underneath."
   - Fix: end with the key picture of each act next to its words.
 
+### Teaching: the second review (version 2 → 2.1)
+
+The owner watched version 2 and found five more gaps. They are of a different kind: each one is a relation that the
+video stated but did not show.
+
+- **An invariance is stated but not shown.**
+  - Example: "the principal angles do not depend on the basis" was only said. The viewer asked whether D_HS changes
+    when u₁ and v₁ are not on the hinge. Version 1 had shown the invariance with a rotating basis; version 2 dropped it.
+  - Fix: show the invariance by changing what it is invariant under while the invariant stays on screen (topic 04
+    S03: turn the arrows, the angles between them change, 0°, 50° and D_HS = 0.766 do not).
+- **A parameter changes the output, but the input is not shown.**
+  - Example: the m = 3.2 reconstruction gave a cap, but only the m = 1 distance table was shown, so the viewer could
+    not see why the table "knows" about the cap.
+  - Fix: for each case, show input, method and output (here the darker m = 3.2 table, largest entry 0.49 instead
+    of 1.00, before its reconstruction), and write the relation that links them (D_ij = ½|n_i − n_j|, a chord).
+- **A drawing factor next to a physical object is read as physics.**
+  - Example: "(2× enlarged)" next to the flipped parallelogram was read as "red is twice blue", and mixed with the
+    "twice" in Ω = ±2√det g and the 2 in 1.189 = 1 + 2 × 0.0945.
+  - Fix: draw objects that are compared at the same scale. When the same number appears with different meanings,
+    say which one is which (here: a unit conversion, ½ × 4; and two extra layers).
+- **A check or a warning that does not say what it checks.**
+  - Example: "here is a check" (the other band) and "keep the two apart" (Ω and K_G) left the viewer asking why
+    these explain the picture.
+  - Fix: name the known result that the check reproduces, and name the two things that the warning separates.
+- **A partition with a piece left out.**
+  - Example: the X, Y and M sheets were labelled, but the rest of the blue zone was not, so the coverage count could
+    not be completed.
+  - Fix: when the zone (or anything) is split into pieces, label every piece and say what each one covers. Here:
+    the rest of the zone covers everything outside the star once; with the X sheet it is one whole sphere.
+
 ### Correctness
 
 - **A shape named after how it looked from one camera.**

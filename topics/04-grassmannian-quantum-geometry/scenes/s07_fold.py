@@ -107,8 +107,13 @@ class S07_Fold(NScene):
             self.play(Create(segf), run_time=1.0)
             self.play(FadeIn(seg_l), Write(null_l), run_time=1.4)
             b.wait_sentence(2)
-            om_f = MathTex(r'\text{two bands: } \Omega = \pm 2\sqrt{\det g} \ \to\ 0 \text{ on the fold}', font_size=30).next_to(null_l, DOWN, buff=0.25)
+            om_f = VGroup(MathTex(r'\text{two bands: } \Omega = \pm\,2\sqrt{\det g}', font_size=30),
+                          txt('$\\sqrt{\\det g}$: the area a cell covers (from the zoom-in)', 22, GREY_A)
+                          ).arrange(DOWN, buff=0.1).next_to(null_l, DOWN, buff=0.25)
             self.play(FadeIn(om_f), run_time=1.2)
+            b.wait_sentence(3)
+            om_z = txt('on the fold: area $0 \\Rightarrow \\Omega = 0$; across it, the sign flips', 22, C_FOLD).next_to(om_f, DOWN, buff=0.15)
+            self.play(FadeIn(om_z), run_time=1.0)
 
         # ---------------- fol3: a folded sheet of clear film
         cam = Cam(0.95, -1.5708, 1.25, center=[3.7, 0.0, 0])
@@ -144,7 +149,7 @@ class S07_Fold(NScene):
         loc = MathTex(r'f(s,t) = (s,\ t^2)', font_size=36).move_to([3.7, -2.75, 0])
         loc2 = txt('$(s,t)$ and $(s,-t)$: one image, opposite orientations', 24, GREY_A).next_to(loc, DOWN, buff=0.15)
         with self.narrate('fol3') as b:
-            self.play(FadeOut(VGroup(row, row_box, row_l, segf, seg_l, null_l, path_l, om_f, ell_f)), run_time=0.7)
+            self.play(FadeOut(VGroup(row, row_box, row_l, segf, seg_l, null_l, path_l, om_f, om_z, ell_f)), run_time=0.7)
             self.play(FadeIn(filmm), run_time=0.8)
             b.wait_sentence(1)
             self.play(phi.animate.set_value(PI * 0.999), run_time=3.0, rate_func=smooth)
@@ -237,6 +242,27 @@ class S07_Fold(NScene):
             b.wait_sentence(3)
             self.play(FadeIn(not_c), run_time=0.8)
 
+        # ---------------- fol5c: the rest of the blue zone covers everything outside the star once
+        rest_mask = (~red) & (~inT)
+        rest_hl = VGroup(*[cells[i * NK + j].copy().set_fill(C_UP, opacity=0.95).set_stroke(BLUE_A, width=0.8, opacity=0.6)
+                           for i in range(NK) for j in range(NK) if rest_mask[i, j]])
+        rest_l = txt('rest of the blue zone', 24, BLUE_B).next_to(bz, DOWN, buff=0.22)
+        out_l = txt('outside the star: covered once', 22, BLUE_B).next_to(sph, DOWN, buff=0.15)
+        grp_a = VGroup(txt('X sheet $+$ rest of the blue zone', 24, C_UP),
+                       txt('$=$ one whole sphere, face up: $+1$', 24, C_UP)).arrange(DOWN, buff=0.06).move_to([4.8, 3.3, 0])
+        box_a = RoundedRectangle(width=4.5, height=2.55, corner_radius=0.15, stroke_color=C_UP, stroke_width=2).move_to([4.75, 2.45, 0])
+        box_b = RoundedRectangle(width=4.5, height=3.4, corner_radius=0.15, stroke_color=GREY_B, stroke_width=2).move_to([4.75, -0.6, 0])
+        pair_l = txt('Y and M: an extra pair, $+1-1=0$', 22, GREY_A).move_to([4.75, -2.55, 0])
+        with self.narrate('fol5c') as b:
+            self.play(FadeIn(rest_hl), FadeIn(rest_l), run_time=1.2)
+            self.bring_to_front(fl)
+            b.wait_sentence(1)
+            self.play(FadeIn(out_l), Circumscribe(sph, shape=Circle, color=BLUE_B), run_time=1.6)
+            b.wait_sentence(2)
+            self.play(FadeIn(grp_a), Create(box_a), run_time=1.4)
+            b.wait_sentence(3)
+            self.play(FadeOut(not_c), Create(box_b), FadeIn(pair_l), run_time=1.4)
+
         # ---------------- fol6/7/7b: unsigned and signed area counters
         un, sg = cell_areas(NK)
         prog = ValueTracker(0.0)
@@ -260,7 +286,7 @@ class S07_Fold(NScene):
                 c.set_fill(WHITE, opacity=0.35 if r < p <= r + NK else 0.0)
         sheet_def = txt('sheet: a piece of the zone laid down once', 24, GREY_A).move_to([0.5, -1.75, 0])
         with self.narrate('fol6') as b:
-            self.play(FadeOut(not_c), FadeIn(sheet_def), run_time=0.8)
+            self.play(FadeOut(VGroup(rest_hl, rest_l, out_l, grp_a, box_a, box_b, pair_l)), FadeIn(sheet_def), run_time=0.8)
             b.wait_sentence(1)
             hl = VGroup(*[c.copy().set_fill(WHITE, opacity=0).set_stroke(width=0) for c in cells])
             hl.add_updater(sweep_hl)

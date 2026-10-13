@@ -178,4 +178,77 @@ class S03_Distance(NScene):
             self.play(Write(hs), FadeIn(sk), run_time=1.6)
         for m in (door_m, lab_d, v2, darc, lv2):
             m.clear_updaters()
+
+        # ---------------- dis5c: another basis changes the angles between the arrows, not the principal angles
+        alpha, beta = ValueTracker(0.0), ValueTracker(0.0)
+        ex, ey0 = np.array([1.0, 0, 0]), np.array([0, 1.0, 0])
+        ed = np.array([0, np.cos(PHI_DOOR), np.sin(PHI_DOOR)])
+        LA = 1.25
+
+        def basis():
+            a_, b_ = alpha.get_value(), beta.get_value()
+            A = [np.cos(a_) * ex + np.sin(a_) * ey0, -np.sin(a_) * ex + np.cos(a_) * ey0]
+            B = [np.cos(b_) * ex + np.sin(b_) * ed, -np.sin(b_) * ex + np.cos(b_) * ed]
+            return A, B
+
+        def your_arrows():
+            A, B = basis()
+            g = VGroup()
+            for vec, col, name, off in ((A[0], C_UP, 'a_1', DOWN), (A[1], C_UP, 'a_2', DOWN),
+                                        (B[0], C_G, 'b_1', UP), (B[1], C_G, 'b_2', UP)):
+                start, tip = cam.p(o), cam.p(o + LA * vec)
+                g.add(Arrow(start, tip, buff=0, color=col, stroke_width=5, max_tip_length_to_length_ratio=0.15))
+                d_ = (tip - start) / max(1e-6, np.linalg.norm(tip - start))
+                g.add(MathTex(name, font_size=28, color=col).move_to(tip + 0.25 * d_ + 0.17 * off))
+            return g
+
+        def stats():
+            A, B = basis()
+            M = np.array([[A[i] @ B[j] for j in range(2)] for i in range(2)])          # overlap matrix in your basis
+            naive = [np.degrees(np.arccos(np.clip(abs(M[i, i]), 0, 1))) for i in range(2)]
+            sv = np.clip(np.linalg.svd(M, compute_uv=False), 0, 1)
+            pa = np.sort(np.degrees(np.arccos(sv)))
+            return naive, pa, float(np.sqrt(np.sum(1 - sv ** 2)))
+        yarr = always_redraw(your_arrows)
+        r_head = txt('angles between your arrows:', 26, GREY_A)
+        r_n = VGroup(MathTex(r'\angle(a_1,b_1) =', font_size=30), DecimalNumber(0, num_decimal_places=1, unit=r'^\circ', font_size=30),
+                     MathTex(r'\angle(a_2,b_2) =', font_size=30), DecimalNumber(50, num_decimal_places=1, unit=r'^\circ', font_size=30))
+        r_p_head = txt('principal angles (from the SVD):', 26, GREY_A)
+        r_p = VGroup(MathTex(r'\vartheta_1 =', font_size=30, color=YELLOW), DecimalNumber(0, num_decimal_places=1, unit=r'^\circ', font_size=30, color=YELLOW),
+                     MathTex(r'\vartheta_2 =', font_size=30, color=C_G), DecimalNumber(50, num_decimal_places=1, unit=r'^\circ', font_size=30, color=C_G))
+        r_d = VGroup(MathTex(r'D_{\rm HS} =', font_size=32, color=C_UP), DecimalNumber(np.sin(PHI_DOOR), num_decimal_places=3, font_size=32, color=C_UP))
+        for row in (r_n, r_p):
+            row[0].move_to(ORIGIN)
+            row[1].next_to(row[0], RIGHT, buff=0.15)
+            row[2].next_to(row[1], RIGHT, buff=0.6)
+            row[3].next_to(row[2], RIGHT, buff=0.15)
+        r_d[1].next_to(r_d[0], RIGHT, buff=0.15)
+        panel = VGroup(r_head, r_n, r_p_head, r_p, r_d).arrange(DOWN, aligned_edge=LEFT, buff=0.22).move_to([-3.6, -1.05, 0])
+
+        def keep(row, i, value):
+            def upd(m):
+                m.set_value(value())
+                m.next_to(row[i - 1], RIGHT, buff=0.15)
+            return upd
+        r_n[1].add_updater(keep(r_n, 1, lambda: stats()[0][0]))
+        r_n[3].add_updater(keep(r_n, 3, lambda: stats()[0][1]))
+        r_p[1].add_updater(keep(r_p, 1, lambda: stats()[1][0]))
+        r_p[3].add_updater(keep(r_p, 3, lambda: stats()[1][1]))
+        r_d[1].add_updater(keep(r_d, 1, lambda: stats()[2]))
+        principal = VGroup(u1, u2, v2, darc, lu1, lu2, lv2)
+        with self.narrate('dis5c') as b:
+            self.add(yarr)
+            self.play(FadeOut(VGroup(svd, pair, inv, sk, hs)), FadeOut(principal), FadeIn(yarr), FadeIn(panel), run_time=1.2)
+            b.wait_sentence(1)
+            self.play(alpha.animate.set_value(np.radians(45)), beta.animate.set_value(np.radians(45)), run_time=2.0)
+            self.play(alpha.animate.set_value(np.radians(30)), beta.animate.set_value(np.radians(-70)), run_time=2.0)
+            b.wait_sentence(2)
+            self.play(alpha.animate.set_value(np.radians(80)), beta.animate.set_value(np.radians(10)), run_time=2.0)
+            self.play(Indicate(VGroup(r_p, r_d), scale_factor=1.08), run_time=1.2)
+            b.wait_sentence(3)
+            self.play(alpha.animate.set_value(0.0), beta.animate.set_value(0.0), run_time=2.0)
+            self.play(FadeIn(principal), FadeOut(yarr), run_time=1.0)
+            self.play(Indicate(hinge, color=YELLOW, scale_factor=1.05), run_time=1.0)
+        for m in (yarr, *r_n, *r_p, *r_d):
+            m.clear_updaters()
         self.play(FadeOut(Group(*self.mobjects)), run_time=0.8)
